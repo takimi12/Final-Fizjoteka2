@@ -1,0 +1,61 @@
+.tvelve {
+	background-color: #f5f6f5;
+	padding: 50px 0px;
+	.subtitle{
+		font-size: 18px;
+	}
+}
+.wraper {
+	display: grid;
+	grid-gap: 25px;
+	gap: 25px;
+	grid-auto-flow: row;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 20px 0;
+	@media screen and (max-width: 899px){
+		display: flex;
+		flex-direction: column;
+		
+	 }
+	 .chapter{
+    font-size: 18px;
+    line-height: 28px;
+    color: #eba37a;
+	 }
+}
+.card {
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.87);
+	transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	box-shadow: none;
+	overflow: hidden;
+	border-radius: 10px;
+	padding: 30px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #eba37a;
+	.subtitle{
+		font-weight: 300;
+		letter-spacing: .15px;
+		font-size: 14px;
+		line-height: 22px;
+		display: block;
+		margin-bottom: 20px;
+		
+	}
+	.ul{
+		margin: 0px 20px;
+	.point{
+		list-style-type: disc;
+	}
+	.pointer{
+		font-weight: 300;
+    letter-spacing: .15px;
+    font-size: 14px;
+    line-height: 22px;
+    display: block;
+	}
+}
+	
+}

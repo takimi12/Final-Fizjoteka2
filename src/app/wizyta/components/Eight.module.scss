@@ -1,0 +1,30 @@
+.eight {
+	padding: 50px 0px;
+	background-color: #f5f6f5;
+	.mainHeading{
+		margin-bottom: 40px;
+	}
+}
+
+
+.span {
+	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	color: #255a6b;
+}
+
+.link {
+	background-color: transparent;
+	color: var(--primary);
+	text-decoration: underline;
+	margin-left: 10px;
+}
+.link:hover {
+	background-color: transparent;
+	color: var(--primary-hover);
+}
+
+.list{
+
+	margin-left: 20px;
+	margin-bottom: 10px;
+}

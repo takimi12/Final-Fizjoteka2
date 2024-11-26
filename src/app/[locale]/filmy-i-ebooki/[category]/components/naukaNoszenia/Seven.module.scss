@@ -1,0 +1,17 @@
+.inner{
+    @media screen and (max-width: 900px){
+        display: flex;
+        flex-direction: column;;
+        
+     }
+}
+.text{
+    h6{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    li{
+        list-style-type: disc;
+        padding: 5px;
+    }
+}

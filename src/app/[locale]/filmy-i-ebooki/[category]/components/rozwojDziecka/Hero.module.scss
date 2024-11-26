@@ -1,0 +1,30 @@
+.Hero {
+padding-top: 0;
+.bottomSection{
+	@media (max-width: 900px) {
+		display: flex;
+			justify-content: center;
+		flex-direction: column;
+	
+	}
+}
+	.Inner {
+		.leftSection {
+
+			.text{
+
+				.paragraph{
+					margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    width: 100%;
+				}
+			}
+			
+	
+
+		}
+
+	}
+}

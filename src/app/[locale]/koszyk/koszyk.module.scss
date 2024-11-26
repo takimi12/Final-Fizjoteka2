@@ -1,0 +1,143 @@
+
+    .cart {
+    width: 100%;
+.orderSummary {
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    max-width: 500px;
+    background-color: #faf8f6;
+    .order{
+
+      .orders{
+        background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+      }
+      .topText{
+      color: #265969;
+    font-size: 18px;
+    margin: 0;
+    }
+    .bottomText{
+      font-weight: 600;
+      .normalFont{
+        font-weight: 300;
+      }
+    }
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: #333;
+    }
+  
+    .totalAmount {
+      background-color: #f0f0f0;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+  
+      span {
+        font-size: 1.2em;
+        color: #2d6872;
+      }
+  
+      strong {
+        font-size: 1.2em;
+        color: #2d6872;
+      }
+    }
+  
+    .discountCode {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  
+      label {
+        margin-bottom: 8px;
+        font-size: 1em;
+        color: #333;
+      }
+  
+      .inputContainer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+  
+        input {
+          padding: 10px;
+          margin-right: 10px;
+          flex-grow: 1;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1em;
+        }
+  
+        button {
+          padding: 10px 20px;
+          background-color: #2d6872;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          white-space: nowrap;
+  
+          &:hover {
+            background-color: #245a63;
+          }
+        }
+      }
+    }
+  }
+    }
+
+
+    .orderFormSecond {
+      width: 100%;
+      margin: auto;
+      padding: 20px;
+    
+      .checkboxContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+    
+        .input {
+          margin-right: 10px;
+          width: 30px;
+        }
+      }
+    
+      .paymentDetails {
+        display: flex;
+        flex-direction: column;
+        .label {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          font-size: 14px;
+          color: #555;
+    
+          input {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+        }
+    
+        h2 {
+          margin-bottom: 20px;
+          font-size: 18px;
+          color: #333;
+        }
+    
+      
+      }
+    }
+    

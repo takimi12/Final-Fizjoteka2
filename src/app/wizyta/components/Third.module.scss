@@ -1,0 +1,30 @@
+.Third{
+    .inner{
+        @media screen and (max-width: 899px){
+			display: flex;
+			flex-direction: column;
+            gap: 30px;
+		 }
+    }
+    .topSection{
+
+        margin-bottom: 50px;
+    .bottomHeading{
+        font-size: 18px;
+    }
+    }
+
+    .rightSection{
+        .mainHeading{
+            font-size: 28px;
+        }
+        .text{
+            ul{
+                li{
+                    list-style: disc;
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}

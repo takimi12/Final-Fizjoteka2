@@ -1,0 +1,16 @@
+.six {
+	background-color: #f5f6f5;
+	padding: 50px 0;
+
+	.topSection {
+		margin-bottom: 50px;
+	}
+	.bottomSection{
+		@media screen and (max-width: 900px){
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+			
+		 }
+	}
+}

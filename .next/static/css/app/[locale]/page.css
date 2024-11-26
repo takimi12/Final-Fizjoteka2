@@ -1,0 +1,256 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/Homepage/Hero/Hero.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Hero_Hero__KMa6k {
+  display: flex;
+  justify-content: center;
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX {
+  display: grid;
+  gap: 50px;
+  grid-column-gap: 50px;
+  grid-template-areas: "c c";
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 900px) {
+  .Hero_Hero__KMa6k .Hero_Inner__HOHEX {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 29px;
+    gap: 29px;
+    grid-template-areas: "c" "b";
+  }
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX .Hero_leftSection__0l7VJ {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX .Hero_leftSection__0l7VJ .Hero_title__sXZsh {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 30px;
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX .Hero_leftSection__0l7VJ .Hero_title__sXZsh .Hero_main__UbhCY {
+  font-size: 38px;
+  line-height: 44px;
+  width: 100%;
+  margin-top: 0;
+  white-space: pre-wrap;
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX .Hero_leftSection__0l7VJ .Hero_paragraph__0Qxij {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  white-space: pre-wrap;
+}
+.Hero_Hero__KMa6k .Hero_Inner__HOHEX .Hero_rightSection__CxSY5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/Homepage/Help/Help.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Help_Help__oRNYO {
+  display: flex;
+  justify-content: center;
+}
+.Help_Help__oRNYO .Help_topSection__KJAsM {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Help_Help__oRNYO .Help_topSection__KJAsM h2 {
+  font-size: 34px;
+  line-height: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.Help_Help__oRNYO .Help_topSection__KJAsM p {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.Help_Help__oRNYO .Help_itemWraper__L4byz {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+@media only screen and (max-width: 900px) {
+  .Help_Help__oRNYO .Help_itemWraper__L4byz {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    gap: 20px;
+  }
+}
+.Help_Help__oRNYO .Help_itemWraper__L4byz .Help_bottomItem__PEhzJ {
+  background-color: #f5f6f5;
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.Help_Help__oRNYO .Help_itemWraper__L4byz .Help_bottomItem__PEhzJ h4 {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 40px;
+  color: #2e7f89;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/repeated/button/button.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.button_button__XS2ja {
+  background-color: transparent;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.button_button__XS2ja:hover {
+  background-color: transparent;
+  color: var(--primary-hover);
+}
+
+.button_decoration__f2kyO {
+  line-height: 24px;
+  color: #255a6b;
+  text-decoration: underline;
+  text-decoration-color: rgba(37, 90, 107, 0.4);
+  margin-top: auto;
+}
+
+.button_decoration__f2kyO:hover {
+  text-decoration-color: #255a6b;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/Homepage/Ebook/Ebook.module.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Ebook_Ebook__MUkST {
+  background-color: #f5f6f5;
+  padding: 50px 0px;
+}
+.Ebook_Ebook__MUkST .Ebook_topSection__u1NvM {
+  margin-bottom: 50px;
+}
+.Ebook_Ebook__MUkST .Ebook_bottomSection__qHjIt .Ebook_rightSection__p7p_U .Ebook_paragraph__OgTTM {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  white-space: pre-wrap;
+}
+.Ebook_Ebook__MUkST .Ebook_bottomSection__qHjIt .Ebook_inner__snfHR {
+  display: flex;
+}
+@media screen and (max-width: 900px) {
+  .Ebook_Ebook__MUkST .Ebook_bottomSection__qHjIt .Ebook_inner__snfHR {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 29px;
+    gap: 29px;
+    grid-template-areas: "c" "b";
+  }
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/Homepage/Quizfizz/Quizfizz.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Quizfizz_Quiz__8TGF6 h2 {
+  font-size: 38px;
+}
+.Quizfizz_Quiz__8TGF6 p {
+  font-size: 16px;
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ {
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 900px) {
+  .Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 29px;
+    gap: 29px;
+    grid-template-areas: "c" "b";
+    margin-top: 50px;
+  }
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ .Quizfizz_inner__mJSZ3 {
+  display: flex;
+  align-items: center;
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ .Quizfizz_inner__mJSZ3 .Quizfizz_leftSection__0bfcZ {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ .Quizfizz_inner__mJSZ3 .Quizfizz_leftSection__0bfcZ .Quizfizz_text__SzIW_ {
+  display: flex;
+  flex-direction: column;
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ .Quizfizz_inner__mJSZ3 .Quizfizz_rightSection__TfuH9 {
+  width: 100%;
+}
+.Quizfizz_Quiz__8TGF6 .Quizfizz_bottomSection__3hcgQ .Quizfizz_inner__mJSZ3 .Quizfizz_rightSection__TfuH9 .Quizfizz_image__CxLVf {
+  display: flex;
+  justify-content: center;
+}
+
+.Quizfizz_topSection__v05Xz {
+  display: flex;
+  flex-direction: column;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/Homepage/Contact/Contact.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Contact_Help__CF_PC {
+  display: flex;
+  justify-content: center;
+}
+.Contact_Help__CF_PC .Contact_topSection__4JJfT {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.Contact_Help__CF_PC .Contact_topSection__4JJfT .Contact_subtitle__FooZ1 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.Contact_Help__CF_PC .Contact_itemWraper__Jfqcs {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+@media screen and (max-width: 900px) {
+  .Contact_Help__CF_PC .Contact_itemWraper__Jfqcs {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    gap: 20px;
+  }
+}
+.Contact_Help__CF_PC .Contact_itemWraper__Jfqcs .Contact_bottomItem__bttty {
+  background-color: #f5f6f5;
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}

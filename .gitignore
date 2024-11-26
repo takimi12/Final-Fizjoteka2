@@ -1,0 +1,13 @@
+# Ignoruj folder node_modules
+node_modules
+
+# Ignoruj pliki logów
+*.log
+
+# Ignoruj pliki tymczasowe systemu
+.DS_Store
+Thumbs.db
+
+# Ignoruj pliki kompilacji
+*.out
+*.class

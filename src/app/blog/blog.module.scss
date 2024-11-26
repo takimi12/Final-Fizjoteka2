@@ -1,0 +1,35 @@
+.mainHeading {
+	margin-bottom: 50px;
+}
+
+.singlePost {
+	padding: 20px 10px 10px 10px;
+	background-color: #faf8f6;
+	width: 100%;
+	.ul{
+		gap: 5px;
+	}
+	.top {
+		margin-bottom: 20px;
+	}
+	.callendar {
+		margin-bottom: 20px;
+	}
+	.etiquette {
+		margin-bottom: 20px;
+	}
+}
+
+.blocs{
+	grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-gap: 30px;
+	@media screen and (max-width: 900px) {
+		margin-top: 50px;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 30px;
+		overflow: hidden;
+		
+	}
+}

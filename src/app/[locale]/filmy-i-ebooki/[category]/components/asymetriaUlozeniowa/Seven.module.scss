@@ -1,0 +1,26 @@
+.topSection{
+	@media screen and (max-width: 900px){
+		text-align: center;
+		
+	 }
+}
+
+.itemWraper {
+	display: flex;
+	width: 100%;
+	gap: 30px;
+    margin-top: 50px;
+	@media screen and (max-width: 900px){
+		display: flex;
+		flex-direction: column;;
+		
+	 }
+	.bottomItem {
+		background-color: #f5f6f5;
+		width: 100%;
+		padding: 25px;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+}

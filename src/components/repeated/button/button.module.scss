@@ -1,0 +1,21 @@
+.button {
+	background-color: transparent;
+	color: var(--primary);
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.button:hover {
+	background-color: transparent;
+	color: var(--primary-hover);
+}
+.decoration {
+	line-height: 24px;
+	color: #255a6b;
+	text-decoration: underline;
+	text-decoration-color: rgba(37, 90, 107, 0.4);
+	margin-top: auto;
+}
+.decoration:hover {
+	text-decoration-color: #255a6b;
+}

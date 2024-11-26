@@ -11,3 +11,5 @@ Thumbs.db
 # Ignoruj pliki kompilacji
 *.out
 *.class
+# Ignoruj plik .env.local
+.env.local

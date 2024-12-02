@@ -12,3 +12,4 @@ Thumbs.db
 # Ignoruj plik .env.local
 .env.local
 
+.next/

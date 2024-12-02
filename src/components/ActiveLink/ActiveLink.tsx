@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 interface NavLinkProps {
     href: string;
@@ -11,8 +11,8 @@ interface NavLinkProps {
 }
 
 const ActiveLink: React.FC<NavLinkProps> = ({ href, className, activeClassName, onClick, children }) => {
-    const router = useRouter();
-    const isActive = router.pathname === href;
+    const pathname = usePathname();
+    const isActive = pathname === href;
 
     return (
         <Link href={href} className={`${className} ${isActive ? activeClassName : ''}`} onClick={onClick}>

@@ -11,7 +11,6 @@ export const getContacts = async () => {
   
       return res.json();
     } catch (error) {
-      console.log("Error loading topics: ", error);
     }
   };
   

@@ -78,7 +78,6 @@ export async function POST(req: Request): Promise<Response> {
       { status: 200 }
     );
   } catch (error) {
-    console.error(error);
     return new Response(
       JSON.stringify({ message: 'Subscription failed. Please try again later.' }),
       { status: 500 }

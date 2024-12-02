@@ -1,22 +1,24 @@
-"use client";
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+interface NavLinkProps {
+    href: string;
+    className?: string;
+    activeClassName?: string;
+    onClick?: () => void; 
+    children: React.ReactNode;
+}
 
-const NavLink = ({ exact = true, href, activeClassName, className, children }: any) => {
-	const pathname = usePathname();
+const ActiveLink: React.FC<NavLinkProps> = ({ href, className, activeClassName, onClick, children }) => {
+    const router = useRouter();
+    const isActive = router.pathname === href;
 
-	const isActive = () => {
-		return pathname === href;
-	};
-
-	return (
-		<>
-			<Link href={href} className={isActive() ? activeClassName : className}>
-				{children}
-			</Link>
-		</>
-	);
+    return (
+        <Link href={href} className={`${className} ${isActive ? activeClassName : ''}`} onClick={onClick}>
+            {children}
+        </Link>
+    );
 };
 
-export default NavLink;
+export default ActiveLink;

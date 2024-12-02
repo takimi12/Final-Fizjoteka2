@@ -4,7 +4,7 @@ import Link from "next/link";
 import circle from "../../../../../../..//public/assets/Kurs-Noszenia/Eleven/circle.svg";
 import Image from "next/image";
 import { getTopics } from "../../../../../../../helpers/api/getTopic";
-import Button from "../../../../../../components/AdminComponents1/components/button";
+import Button from "../../../../../../components/AdminComponents/Subcomponents/button";
 
 interface Topic {
     _id: string;

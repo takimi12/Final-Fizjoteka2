@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
     await dbConnect();
     await Categorylist.create({ title, subtitle1, subtitle2, subtitle3, price, description, category, imageFileUrl });
   } catch (err) {
-    console.log(err);
   }
   return NextResponse.json({ message: "Category Created" }, { status: 201 });
 }

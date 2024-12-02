@@ -50,13 +50,12 @@ export async function POST(request: NextRequest) {
       const fileUrl = await uploadFileToS3(fileBuffer, file.name, file.type || '');
       return NextResponse.json({ success: true, fileUrl });
     } catch (error: unknown) { 
-      console.log("err", error);
+
       const errorMessage = (error as Error).message || "Unknown error";
       return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 
   } catch (error: unknown) { 
-    console.error("Upload error:", error);
     const errorMessage = (error as Error).message || "Unknown error";
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }

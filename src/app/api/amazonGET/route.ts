@@ -39,7 +39,6 @@ export async function GET() {
     return NextResponse.json({ urls });
 
   } catch (error) {
-    console.error('Error fetching objects from S3:', error);
     return NextResponse.json({ error: 'Error fetching objects from S3' }, { status: 500 });
   }
 }

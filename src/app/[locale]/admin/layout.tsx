@@ -1,35 +1,36 @@
-// app/admin/layout.tsx
+import User from "../../../../backend/models/user"; 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession  } from "next-auth";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Document } from "mongoose";
 
-declare module 'next-auth' {
-    interface Session {
-      user: {
-        id: string;
-        name?: string | null;
-        email?: string | null;
-        image?: string | null;
-        role?: string;
-      }
-    }
-  }
+interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  createdAt: Date;
+}
 
+type Lean<T> = Omit<T, keyof Document>;
 
 export default async function AdminLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  //@ts-ignore
-    const data  = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-    if (!data || data.user.role !== 'admin') {
-        console.log('ddd')
-              redirect("/"); 
-    }
+  if (!session || !session.user || !session.user._id) {
+    redirect("/"); 
+  }
+
+  const user: Lean<IUser> | null = await User.findById(session.user._id).lean();
+
+  if (!user || user.role !== "admin") {
+    redirect("/"); 
+  }
+
 
   return <div>{children}</div>;
 }
-
-

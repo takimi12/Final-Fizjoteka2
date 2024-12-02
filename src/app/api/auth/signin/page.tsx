@@ -15,24 +15,22 @@ const LoginForm = () => {
   const params = useSearchParams();
   const callBackUrl = params.get("callbackUrl");
 
-  const submitHandler = async (e:any) => {
+  const submitHandler = async (e: any) => {
     e.preventDefault();
 
     const data = await signIn("credentials", {
       email,
       password,
-      callbackUrl: callBackUrl ? parseCallbackUrl(callBackUrl) : "/admin",
+      redirect: false,
     });
 
-    console.log("data===>", data);
     if (data?.error) {
-      Error(data?.error);
+      console.log(data?.error);
       toast.error("Login failed. Try again.");
     }
 
     if (data?.ok) {
       toast.success("Login successful");
-      router.push("/admin");
     }
   };
 
@@ -86,7 +84,7 @@ const LoginForm = () => {
         </p>
       </form>
 
-      <button 
+      <button
         className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         onClick={() => {
           signIn("google");
@@ -98,12 +96,10 @@ const LoginForm = () => {
   );
 };
 
-const Login = () => {
+export default function Login() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <LoginForm />
     </Suspense>
   );
-};
-
-export default Login;
+}

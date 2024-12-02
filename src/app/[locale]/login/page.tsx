@@ -1,41 +1,36 @@
 "use client";
 
-import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
-import { useRouter,useSearchParams } from "next/navigation";
-import { parseCallbackUrl } from "../../../../helpers/helpers";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  const params = useSearchParams();
-  const callBackUrl = params.get("callbackUrl");
-  const submitHandler = async (e:any) => {
+ 
+  const submitHandler = async (e: any) => {
     e.preventDefault();
-
+    
     const data = await signIn("credentials", {
       email,
       password,
-       callbackUrl: callBackUrl ? parseCallbackUrl(callBackUrl) : "/admin",
-       
-      //callbackUrl: false,
+      redirect: false, 
     });
-      console.log("data===>", data)
+  
+  
     if (data?.error) {
-      Error(data?.error);
-      toast.error("Registration failed. Try again.");
+      toast.error(data.error);
     }
-
+  
     if (data?.ok) {
-      toast.success("Registration successful");
-      router.push("/admin");
-      
+      toast.success("Logowanie udane");
+      router.push("/pl/admin");
     }
   };
+  
 
   return (
     <div
@@ -70,6 +65,7 @@ const Login = () => {
           />
         </div>
 
+      
         <button
           type="submit"
           className="my-2 px-4 py-2 text-center w-full inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
@@ -81,20 +77,11 @@ const Login = () => {
 
         <p className="text-center mt-5">
           Don have an account?{" "}
-          <Link href="/register" className="text-blue-500">
+
             Register
-          </Link>
+
         </p>
       </form>
-
-      <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-        onClick={() => {
-          signIn("google");
-        }}
-        
-      >
-        Login with Google
-      </button>
     </div>
   );
 };

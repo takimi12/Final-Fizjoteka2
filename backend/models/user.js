@@ -17,18 +17,10 @@ const userSchema = new mongoose.Schema({
     minLength: [6, "Your password must be longer than 6 characters"],
     select: false,
   },
-  avatar: {
-    public_id: String,
-    url: String,
-  },
   role: {
     type: String,
     default: "user",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  }
 });
 
 userSchema.pre("save", async function (next) {

@@ -61,10 +61,12 @@
 	text-decoration-color: rgba(37, 90, 107, 0.4);
 	.title{
 		font-size: 25px;
+		min-height: 100px;
 	}
 }
 .subtitle {
 	color: #8d8d8d;
+	min-height: 50px;
 }
 
 .listParent {
@@ -81,5 +83,3 @@
 
 
 }
-
-

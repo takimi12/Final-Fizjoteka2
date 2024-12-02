@@ -19,8 +19,43 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "api/register/route.js", "src/middleware.jsx", "src/app/[locale]/register/page.jsx", "context/AuthContext.js", "api/auth/[...nextauth]/route.js", "src/app/api/topics/route.ts", "src/components/AdminComponents/TopicsList.jsx", "src/app/api/add-product/route.js", "src/app/api/images/route.ts", "src/app/api/s3-upload/route.ts", "src/app/api/getAmazon/route.ts", "src/app/api/list/route.ts", "src/app/[locale]/koszyk/przelewypage.mdx", "src/app/Redux/Store.ts", "src/app/[locale]/login/page.tsx", "src/components/AdminComponents1/AddTopic.jsx", "src/components/AdminComponents1/EditCategory.jsx", "src/components/Header/components/DesktopHeader.jsx", "src/app/api/auth/[...nextauth]/route.js", "src/app/api/news/route.js", "src/app/api/auth/[...nextauth]/options.js", "src/app/api/category/route.ts", "src/app/api/category/[id]/route.ts", "libs/sesClient.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "api/register/route.js",
+    "src/middleware.jsx",
+    "src/app/[locale]/register/page.jsx",
+    "context/AuthContext.js",
+    "api/auth/[...nextauth]/route.js",
+    "src/app/api/topics/route.ts",
+    "src/components/AdminComponents/TopicsList.tsx",
+    "src/app/api/add-product/route.js",
+    "src/app/api/images/route.ts",
+    "src/app/api/s3-uploadTopic/route.ts",
+    "src/app/api/getAmazon/route.ts",
+    "src/app/api/list/route.ts",
+    "src/app/[locale]/koszyk/przelewypage.mdx",
+    "src/app/Redux/Store.ts",
+    "src/app/[locale]/login/page.tsx",
+    "src/components/AdminComponents/Components/AddTopic.tsx",
+    "src/components/AdminComponents/Components/EditCategory.tsx",
+    "src/components/Header/components/DesktopHeader.jsx",
+    "src/app/api/auth/[...nextauth]/route.ts",
+    "src/app/api/news/route.js",
+    "src/app/api/auth/[...nextauth]/options.ts",
+    "src/app/api/category/route.ts",
+    "src/app/api/category/[id]/route.ts",
+    "libs/sesClient.ts",
+    "src/components/AdminComponents/Components/EditTopic.tsx",
+    "src/components/AdminComponents/Components/RemoveCategory.tsx",
+    "src/components/AdminComponents/Components/RemoveTopicForm.tsx",
+    "src/components/AdminComponents/Components/RemoveTopic.tsx",
+    "src/app/api/s3-uploadCategory/route.ts"
+  ],
   "exclude": ["node_modules"]
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import circle from "../../../../../../..//public/assets/Kurs-Noszenia/Eleven/circle.svg";
 import Image from "next/image";
 import {getTopics} from "../../../../../../../helpers/api/getTopic";
-import Button from "../../../../../../components/AdminComponents1/components/button"
+import Button from "../../../../../../components/AdminComponents/Subcomponents/button"
 
 
 interface Topic {
@@ -81,7 +81,7 @@ const ElevenComponent = async () => {
 
 
 
-                                <div>
+                                <div className={styles.lists}>
                                     <ul className={`${styles.listParent} mt-4`}>
                                         {product.description.split('. ').map((sentence, idx) => (
                                             <li className={styles.list} key={idx}>{sentence.trim()}.</li>

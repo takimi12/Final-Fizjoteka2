@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SendEmailCommand } from "@aws-sdk/client-ses";
+import { SendEmailCommand, SendEmailCommandInput, SendEmailCommandOutput } from "@aws-sdk/client-ses";
 import { sesClient } from "../../../../libs/sesClient";
 
 interface EmailParams {
@@ -14,8 +14,14 @@ interface EmailParams {
 }
 
 const sendEmail = async (params: EmailParams): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    sesClient.send(new SendEmailCommand(params), (err: any, data: any) => {
+  return new Promise<void>((resolve, reject) => {
+    const sendEmailCommandInput: SendEmailCommandInput = {
+      Source: params.Source,
+      Destination: params.Destination,
+      Message: params.Message,
+    };
+
+    sesClient.send(new SendEmailCommand(sendEmailCommandInput), (err: Error | undefined, data: SendEmailCommandOutput | undefined) => {
       if (err) {
         reject(err);
       } else {

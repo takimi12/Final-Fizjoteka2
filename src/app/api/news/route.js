@@ -1,4 +1,4 @@
-import {connectMongoDB} from "../../../../backend/config/dbDataconnect";
+import {dbConnect} from "../../../../backend/config/dbConnect";
 import { NextResponse } from "next/server";
 import Newsletter from "../../../../backend/models/newsletter";
 
@@ -8,12 +8,11 @@ export async function POST(request) {
 
     const { name, email } = requestData;
 
-    await connectMongoDB();
+    await dbConnect();
     await Newsletter.create({ name, email });
 
     return NextResponse.json({ message: "Topic Created" }, { status: 201 });
   } catch (error) {
-    console.error("Błąd podczas obsługi żądania POST:", error); 
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 
   }
@@ -21,12 +20,11 @@ export async function POST(request) {
 
 export async function GET() {
   try {
-    await connectMongoDB();
+    await dbConnect();
     const newsletters = await Newsletter.find({});
 
     return NextResponse.json(newsletters, { status: 200 });
   } catch (error) {
-    console.error("Błąd podczas obsługi żądania GET:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

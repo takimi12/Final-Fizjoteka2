@@ -19,7 +19,6 @@ export async function POST(request: NextRequest) {
     await dbConnect();
     await Topic.create({ title, subtitle, description, categories, price, imageFileUrl, pdfFileUrl });
   } catch (err) {
-    console.log(err);
   }
   return NextResponse.json({ message: "Topic Created" }, { status: 201 });
 }

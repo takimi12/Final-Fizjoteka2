@@ -26,9 +26,7 @@ export default function Home() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/api/payment', formData);
-      console.log(response.data);
     } catch (error) {
-      console.error(error);
     }
   };
 

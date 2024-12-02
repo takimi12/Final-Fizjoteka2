@@ -1,0 +1,86 @@
+.container{
+    margin:auto;
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;;
+    }
+    .codesGroup{
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+    .input{
+        border: 1px solid slategray;
+        padding: 8px 32px;
+        border-radius: 6px;
+    }
+}
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin: 50px 0px;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 480px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .codesGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .button {
+    background-color: #3F4552;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #2C3241;
+    }
+  }

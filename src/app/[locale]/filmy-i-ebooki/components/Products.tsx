@@ -1,7 +1,7 @@
 import styles from "./Products.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import Button from "../../../../components/AdminComponents1/components/button";
+import Button from "../../../../components/AdminComponents/Subcomponents/button";
 // import Circle from "../../../../public/assets/Filmy-i-ebooki/circle.svg";
 
 

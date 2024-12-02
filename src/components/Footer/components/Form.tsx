@@ -1,7 +1,8 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { sendEmail } from '../../../../libs/emailService';
 import styles from "./Form.module.scss";
+import { usePathname } from 'next/navigation';
 
 function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -9,12 +10,30 @@ function NewsletterForm() {
   const [consent, setConsent] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [submittedEmail, setSubmittedEmail] = useState(''); // New state for submitted email
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false); 
+  const pathname = usePathname();
 
+  
+  const resetForm = () => {
+    setEmail('');
+    setName('');
+    setConsent(false);
+    setSuccessMessage('');
+    setErrorMessage('');
+    setSubmittedEmail('');
+    setIsSubmitting(false);
+  };
+
+  useEffect(() => {
+    resetForm();
+  }, [pathname]); 
+  
 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true); 
 
     try {
       const mongoResponse = await fetch("http://localhost:3000/api/news", {
@@ -32,8 +51,8 @@ function NewsletterForm() {
       const link = 'https://raddys-web-storage1.s3.eu-north-1.amazonaws.com/157.pdf';
 
       await sendEmail({
-        Source: 'tomek12olech@gmail.com', // Zmień na swój adres e-mail
-        Destination: { ToAddresses: [email] }, // Wysyłamy do adresu e-mail wprowadzonego przez użytkownika
+        Source: 'tomek12olech@gmail.com',
+        Destination: { ToAddresses: [email] }, 
         Message: {
           Subject: { Data: 'Przesyłamy link do pobrania poradnika' },
           Body: { Html: { Data: `Kliknij <a href="${link}">tutaj</a> aby pobrać poradnik.` } },
@@ -46,8 +65,9 @@ function NewsletterForm() {
       setName('');
       setConsent(false);
     } catch (error) {
-      console.error('Błąd podczas wysyłania danych:', error);
       setErrorMessage('Wystąpił błąd podczas wysyłania danych.');
+    } finally {
+      setIsSubmitting(false); 
     }
   };
 
@@ -130,8 +150,15 @@ function NewsletterForm() {
                 </label>
               </fieldset>
             </div>
-            <button type="submit">
-              <span className="default">CHCĘ OTRZYMAĆ KALENDARZ</span>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span>
+                  <span className={styles.spinner}></span>
+                  Przetwarzanie...
+                </span>
+              ) : (
+                <span className="default">CHCĘ OTRZYMAĆ KALENDARZ</span>
+              )}
             </button>
           </div>
         </form>

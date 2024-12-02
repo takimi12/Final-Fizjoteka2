@@ -10,6 +10,5 @@ export const getCategory = async () => {
   
       return res.json();
     } catch (error) {
-      console.log("Error loading topics: ", error);
     }
   };

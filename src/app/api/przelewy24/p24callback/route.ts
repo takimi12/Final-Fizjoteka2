@@ -32,24 +32,19 @@ interface NotificationBody {
 export async function POST(request: NextRequest) {
   const body: NotificationBody = await request.json();
 
-  console.log("notification from przelewy", body);
 
   await dbConnect();
   const transaction = await Transaction.findById(body.sessionId).populate('products') as TransactionType;
 
   if (!transaction) {
-    console.log("transaction not found");
     return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
   }
 
-  console.log("transaction", transaction.products);
 
   const totalPrice = transaction.products.reduce((acc: number, cur: Product) => {
-    console.log("cur", cur);
     return acc + Number(cur.price);
   }, 0);
 
-  console.log("test", totalPrice);
 
   const POS_ID = 303306;
   const CRC = "d6cfd7c99d6a21f6";
@@ -89,7 +84,6 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json({ message: "Email sent" });
   } catch (err) {
-    console.log("sending mail err", err);
     return NextResponse.json({ message: "Error sending email" }, { status: 500 });
   }
   // }

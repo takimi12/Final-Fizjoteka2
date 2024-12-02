@@ -36,12 +36,10 @@ export async function GET() {
       return getSignedUrl(s3, getObjectCommand);
     }));
 
-    console.log('urls:', urls);
 
     return NextResponse.json({ urls });
 
   } catch (error) {
-    console.error('Error fetching objects from S3:', error);
     return new Response('Error fetching objects from S3', { status: 500 });
   }
 }

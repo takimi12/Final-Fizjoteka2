@@ -1,4 +1,4 @@
-import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, S3Client, S3ServiceException } from "@aws-sdk/client-s3";
 import { NextRequest, NextResponse } from "next/server";
 
 const s3Client = new S3Client({
@@ -20,8 +20,11 @@ export async function DELETE(request: NextRequest) {
   try {
     const response = await s3Client.send(command);
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    const err = error as Error;
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (error) {
+    if (error instanceof S3ServiceException) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    } else {
+      return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
+    }
   }
 }

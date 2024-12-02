@@ -50,7 +50,6 @@ const Cartpage: React.FC = () => {
         window.location.href = data.url;
       }
     } catch (error) {
-      console.error(error);
     }
   };
 

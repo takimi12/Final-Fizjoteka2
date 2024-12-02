@@ -102,22 +102,22 @@ const handleRemoveFromCart = (item) => {
 							<ActiveLink href="/" className={styles.anchor} activeClassName={styles.anchorActive}>
 								Start
 							</ActiveLink>
-							<Link className={styles.anchor} href="/blog">
+							<Link className={styles.anchor} href="/pl/blog">
 								Blog
 							</Link>
-							<Link className={styles.anchor} href="/filmy-i-ebooki">
+							<Link className={styles.anchor} href="/pl/filmy-i-ebooki">
 								Filmy i ebooki
 							</Link>
-							<Link className={styles.anchor} href="/filmy-i-ebooki/Nauka-noszenia">
+							<Link className={styles.anchor} href="/pl/filmy-i-ebooki/Nauka-noszenia">
 								Kurs noszenia
 							</Link>
-							<Link className={styles.anchor} href="/fizquiz">
+							<Link className={styles.anchor} href="/pl/fizquiz">
 								FizQuiz
 							</Link>
-							<Link className={styles.anchor} href="/o-mnie">
+							<Link className={styles.anchor} href="/pl/o-mnie">
 								O mnie
 							</Link>
-							<Link className={styles.anchor} href="/wizyta">
+							<Link className={styles.anchor} href="/pl/wizyta">
 								Wizyta
 							</Link>
 

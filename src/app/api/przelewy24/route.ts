@@ -55,7 +55,6 @@ export async function POST(request: NextRequest) {
       url: product.pdfFileUrl
     }));
     
-    console.log("allProducts", allProducts);
 
     const transaction = await Transaction.create({
       status: false,
@@ -99,7 +98,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: result.link });
 
   } catch (err) {
-    console.log("err", err);
     return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   }
 }

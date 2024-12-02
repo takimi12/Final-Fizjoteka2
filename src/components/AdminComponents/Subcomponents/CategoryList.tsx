@@ -1,4 +1,4 @@
-import styles from "./categoryList.module.scss";
+import styles from "./CategoryList.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Circle from "../../../../public/assets/Filmy-i-ebooki/circle.svg";

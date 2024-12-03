@@ -21,7 +21,7 @@ interface CartItem {
 
 interface RequestBody {
   cartItems: CartItem[];
-
+  email: string;
 }
 
 interface Product {

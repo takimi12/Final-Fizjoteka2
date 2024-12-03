@@ -4,18 +4,6 @@ import Transaction from '../../../../../backend/models/transactionID';
 import {dbConnect} from '../../../../../backend/config/dbConnect';
 import { sendEmail } from '../../../../../libs/emailService';
 
-interface Product {
-  price: string | number;
-  url: string;
-
-}
-
-interface TransactionType {
-  _id: string;
-  products: Product[];
-
-}
-
 interface NotificationBody {
   merchantId: number;
   posId: number;
@@ -34,49 +22,49 @@ export async function POST(request: NextRequest) {
 
 
   await dbConnect();
-  const transaction = await Transaction.findById(body.sessionId).populate('products') as TransactionType;
+  const transaction = await Transaction.findById(body.sessionId).populate('products');
 
   if (!transaction) {
     return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
   }
 
 
-  const totalPrice = transaction.products.reduce((acc: number, cur: Product) => {
+  const totalPrice = transaction.products.reduce((acc: number, cur: any) => {
     return acc + Number(cur.price);
   }, 0);
 
 
-  const POS_ID = 303306;
-  const CRC = "d6cfd7c99d6a21f6";
-  const API_KEY = "ab5592ef8267599515dad8d635afae29";
+  const POS_ID = process.env.P24_MERCHANT_ID!;
+    const CRC = process.env.P24_CRC_KEY!;
+    const API_KEY = process.env.P24_API_KEY!;
 
-  const p24 = new P24(
-    POS_ID,
-    POS_ID,
-    API_KEY,
-    CRC,
-    {
-      sandbox: true 
-    }
-  );
+    const p24 = new P24(
+      Number(POS_ID),
+      Number(POS_ID),
+      API_KEY,
+      CRC,
+      {
+        sandbox: true 
+      }
+    );
 
   // Zakomentowane do czasu, gdy będzie potrzebne
-  // const result = await p24.verifyTransaction({
-  //   sessionId: body.sessionId,
-  //   amount: totalPrice,
-  //   currency: Currency.PLN,
-  //   orderId: body.orderId,
-  // });
+  const result = await p24.verifyTransaction({
+    sessionId: body.sessionId,
+    amount: totalPrice,
+    currency: Currency.PLN,
+    orderId: body.orderId,
+  });
 
-  // if(result) {
+  if(result) {
   await Transaction.findOneAndUpdate({ _id: body.sessionId }, { status: true });
 
-  const urls = transaction.products.map(el => el.url);
+  const urls = transaction.products.map((el:any) => el.url);
 
   try {
     await sendEmail({
       Source: 'tomek12olech@gmail.com', 
-      Destination: { ToAddresses: ['tomek12olech@gmail.com'] }, 
+      Destination: { ToAddresses: [transaction.customer.email] }, 
       Message: {
         Subject: { Data: 'Przesyłamy link do pobrania poradnika' },
         Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
@@ -86,5 +74,5 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     return NextResponse.json({ message: "Error sending email" }, { status: 500 });
   }
-  // }
+  }
 }

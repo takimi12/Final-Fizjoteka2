@@ -67,13 +67,13 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    const POS_ID = 303306;
-    const CRC = "d6cfd7c99d6a21f6";
-    const API_KEY = "ab5592ef8267599515dad8d635afae29";
+    const POS_ID = process.env.P24_MERCHANT_ID!;
+    const CRC = process.env.P24_CRC_KEY!;
+    const API_KEY = process.env.P24_API_KEY!;
 
     const p24 = new P24(
-      POS_ID,
-      POS_ID,
+      Number(POS_ID),
+      Number(POS_ID),
       API_KEY,
       CRC,
       {
@@ -89,8 +89,8 @@ export async function POST(request: NextRequest) {
       email: "john.doe@example.com",
       country: Country.Poland,
       language: Language.PL,
-      urlReturn: "http://localhost:3000/pl/continue",
-      urlStatus: "http://localhost:3000/api/przelewy24/p24callback", 
+      urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/pl/continue`,
+      urlStatus:`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24/p24callback`, 
       timeLimit: 15, 
       encoding: Encoding.UTF8,
     });

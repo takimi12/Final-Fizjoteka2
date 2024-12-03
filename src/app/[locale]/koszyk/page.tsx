@@ -5,29 +5,12 @@ import { addToCart, removeFromCart, selectTotalPrice } from '../../Redux/Cartsli
 import Breadcrumbs from '@/components/breadcrumbs/breadcrumbs';
 import styles from "./koszyk.module.scss"
 import axios from 'axios';
-
-interface RootState {
-  cart: {
-    items: Array<{
-      _id: string;
-      title: string;
-      price: number;
-      quantity: number;
-    }>;
-  };
-}
-
-interface CartItem {
-  _id: string;
-  title: string;
-  price: number;
-  quantity: number;
-}
+import { RootState } from '@/app/Redux/Store';
 
 const Cartpage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state.cart);
 
   const [isCompany, setIsCompany] = useState<boolean>(false);
   const totalPrice = useSelector(selectTotalPrice);
@@ -38,7 +21,7 @@ const Cartpage: React.FC = () => {
 
   const handlePayment = async (): Promise<void> => {
     try {
-      const { data } = await axios.post('http://localhost:3000/api/przelewy24', {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, {
         cartItems: cartItems.map(el => ({
           id: el._id,
           quantity: el.quantity
@@ -66,7 +49,7 @@ const Cartpage: React.FC = () => {
           <div className={styles.orderSummary}>
             <h2>PODSUMOWANIE ZAMÓWIENIA:</h2>
             <div className={styles.order}>
-              {cartItems.map((item: CartItem) => (
+              {cartItems.map((item) => (
                 <React.Fragment key={item._id}>
                   <div className={styles.orders} >
                     <div >

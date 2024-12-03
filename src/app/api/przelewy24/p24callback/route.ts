@@ -48,10 +48,13 @@ export async function POST(request: NextRequest) {
       }
     );
 
+        console.log("p24 callback", totalPrice * 100)
+
+
   // Zakomentowane do czasu, gdy będzie potrzebne
   const result = await p24.verifyTransaction({
     sessionId: body.sessionId,
-    amount: totalPrice,
+    amount: totalPrice*100,
     currency: Currency.PLN,
     orderId: body.orderId,
   });

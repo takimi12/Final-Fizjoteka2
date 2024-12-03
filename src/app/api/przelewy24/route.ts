@@ -81,6 +81,8 @@ export async function POST(request: NextRequest) {
       }
     );
 
+    console.log("p24 create transaction", totalPrice * 100)
+
     const result = await p24.createTransaction({
       sessionId: transaction._id.toString(),
       amount: totalPrice * 100, 

@@ -1,7 +1,7 @@
 
 export const getContacts = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/news", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/news`, {
         cache: "no-store",
       });
   

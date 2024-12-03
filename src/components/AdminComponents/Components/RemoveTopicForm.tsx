@@ -21,7 +21,7 @@ export default function RemoveBtn({ id, imageFileUrl, pdfFileUrl }: RemoveBtnPro
 
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/topics?id=${id}`, {
           method: "DELETE",
         });
 
@@ -32,7 +32,7 @@ export default function RemoveBtn({ id, imageFileUrl, pdfFileUrl }: RemoveBtnPro
         const imageName = imageFileUrl.split("/").pop();
 
         try {
-          await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+          await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
             method: "DELETE",
             body: JSON.stringify({ fileName: imageName }),
           });
@@ -40,7 +40,7 @@ export default function RemoveBtn({ id, imageFileUrl, pdfFileUrl }: RemoveBtnPro
           const formData = new FormData();
           formData.append("file", imageFileUrl);
 
-          const uploadRes = await fetch(`http://localhost:3000/api/addAmazonObj`, {
+          const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/addAmazonObj`, {
             method: "POST",
             body: formData,
           });
@@ -55,7 +55,7 @@ export default function RemoveBtn({ id, imageFileUrl, pdfFileUrl }: RemoveBtnPro
         const pdfName = pdfFileUrl.split("/").pop();
 
         try {
-          await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+          await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
             method: "DELETE",
             body: JSON.stringify({ fileName: pdfName }),
           });

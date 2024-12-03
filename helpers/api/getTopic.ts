@@ -1,6 +1,6 @@
 export const getTopics = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/topics", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/topics`, {
         cache: "no-store",
       });
   

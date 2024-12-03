@@ -80,7 +80,7 @@ const AddTopic: React.FC = () => {
       const imageFileUrl = s3Data.imageUrl;
       const pdfFileUrl = s3Data.pdfUrl;
 
-      const mongoResponse = await fetch("http://localhost:3000/api/topics", {
+      const mongoResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/topics`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

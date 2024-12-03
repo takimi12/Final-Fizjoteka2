@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async ({ name, email, password }) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/auth/register`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

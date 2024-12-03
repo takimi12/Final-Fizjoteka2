@@ -25,7 +25,7 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/payment', formData);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/payment`, formData);
     } catch (error) {
     }
   };

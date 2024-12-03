@@ -57,7 +57,7 @@ export default function EditTopicForm({
       const imageName = imageLink.split("/").pop();
 
       try {
-        await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+        await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
           method: "DELETE",
           body: JSON.stringify({ fileName: imageName }),
         });
@@ -65,7 +65,7 @@ export default function EditTopicForm({
         const formData = new FormData();
         formData.append("file", imageFile);
 
-        const res = await fetch(`http://localhost:3000/api/addAmazonObj`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/addAmazonObj`, {
           method: "POST",
           body: formData,
         });
@@ -76,7 +76,7 @@ export default function EditTopicForm({
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/category/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

@@ -36,7 +36,7 @@ function NewsletterForm() {
     setIsSubmitting(true); 
 
     try {
-      const mongoResponse = await fetch("http://localhost:3000/api/news", {
+      const mongoResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/news`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

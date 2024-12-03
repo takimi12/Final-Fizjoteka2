@@ -18,7 +18,7 @@ interface Category {
 
 const getCategoryById = async (id: string): Promise<Category> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/category/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category/${id}`, {
       cache: "no-store",
     });
 

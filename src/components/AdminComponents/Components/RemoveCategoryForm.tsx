@@ -18,7 +18,7 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/api/category?id=${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category?id=${id}`, {
           method: "DELETE",
         });
 
@@ -29,7 +29,7 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
         const imageName = imageFileUrl.split("/").pop();
 
         try {
-          await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+          await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
             method: "DELETE",
             body: JSON.stringify({ fileName: imageName }),
           });

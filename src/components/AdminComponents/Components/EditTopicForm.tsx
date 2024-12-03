@@ -66,7 +66,7 @@ e
       const imageName = imageLink.split("/").pop();
 
       try {
-        await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+        await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
           method: "DELETE",
           body: JSON.stringify({ fileName: imageName }),
         });
@@ -74,7 +74,7 @@ e
         const formData = new FormData();
         formData.append("file", imageFile);
 
-        const res = await fetch(`http://localhost:3000/api/addAmazonObj`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/addAmazonObj`, {
           method: "POST",
           body: formData,
         });
@@ -90,7 +90,7 @@ e
       const pdfName = pdfLink.split("/").pop();
 
       try {
-        await fetch(`http://localhost:3000/api/deleteAmazonObj`, {
+        await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
           method: "DELETE",
           body: JSON.stringify({ fileName: pdfName }),
         });
@@ -98,7 +98,7 @@ e
         const formData = new FormData();
         formData.append("file", pdfFile);
 
-        const res = await fetch(`http://localhost:3000/api/addAmazonObj`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/addAmazonObj`, {
           method: "POST",
           body: formData,
         });
@@ -110,7 +110,7 @@ e
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/topics/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

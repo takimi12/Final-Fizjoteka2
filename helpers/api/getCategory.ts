@@ -1,6 +1,6 @@
 export const getCategory = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/category", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category`, {
         cache: "no-store",
       });
   

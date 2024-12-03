@@ -56,6 +56,8 @@ export async function POST(request: NextRequest) {
     orderId: body.orderId,
   });
 
+  console.log('result', result)
+
   if(result) {
   await Transaction.findOneAndUpdate({ _id: body.sessionId }, { status: true });
 

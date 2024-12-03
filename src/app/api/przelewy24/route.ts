@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       status: false,
       products: allProducts,
       customer: {
-        email: 'tomek12olech@gmail.com',
+        email:  body.email,
         nameAndSurname: 'John Doe',
         companyName: '',
         nip: ''
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       amount: totalPrice * 100, 
       currency: Currency.PLN,
       description: "test order",
-      email: "john.doe@example.com",
+      email: body.email,
       country: Country.Poland,
       language: Language.PL,
       urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/pl/continue`,

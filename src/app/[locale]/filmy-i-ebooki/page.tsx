@@ -6,7 +6,7 @@ import Mainpage from "./components/Mainpage"
 
 export default async function FilmsAndEbook() {
   const { topics } = await getTopics();
-  const { categories } = await getCategory();
+  const categories = await getCategory();
 
 
     return (

@@ -4,45 +4,17 @@ import styles from './Mainpage.module.scss';
 import Products from "./Products";
 import Categories from "./Category";
 import FilterComponent from './subcomponents/Filters';
-
-// Define TypeScript types for categories and topics
-interface Category {
-    _id: string;
-    title: string;
-    subtitle1: string;
-    subtitle2: string;
-    subtitle3: string;
-    price: string;
-    description: string;
-    category: string;
-    imageFileUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
-
-interface Topic {
-    _id: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    categories: string[];
-    price: string;
-    imageFileUrl: string;
-    pdfFileUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
+import { ICategory } from '../../../../../backend/models/category';
+import { ITopic } from '../../../../../backend/models/topics';
 
 interface FilmsAndEbookProps {
-    categories: Category[];
-    topics: Topic[];
+    categories: ICategory[];
+    topics: ITopic[];
 }
 
 export default function FilmsAndEbook({ categories, topics }: FilmsAndEbookProps) {
-    const [filteredCategories, setFilteredCategories] = useState<Category[]>(categories);
-    const [filteredTopics, setFilteredTopics] = useState<Topic[]>(topics);
+    const [filteredCategories, setFilteredCategories] = useState<ICategory[]>(categories);
+    const [filteredTopics, setFilteredTopics] = useState<ITopic[]>(topics);
 
     return (
         <div className={`${styles.mainWrapper} ${styles.localContainer}`}>

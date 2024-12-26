@@ -1,35 +1,48 @@
-.mainHeading {
-	margin-bottom: 50px;
+.parent{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.container{
+	margin: auto;
+}
+.containers{
+	margin: auto;
+	padding-bottom: 50px;
 }
 
-.singlePost {
-	padding: 20px 10px 10px 10px;
-	background-color: #faf8f6;
-	width: 100%;
-	.ul{
-		gap: 5px;
-	}
-	.top {
-		margin-bottom: 20px;
-	}
-	.callendar {
-		margin-bottom: 20px;
-	}
-	.etiquette {
-		margin-bottom: 20px;
-	}
-}
-
-.blocs{
-	grid-template-columns: 1fr 1fr;
-    display: grid;
-    grid-gap: 30px;
-	@media screen and (max-width: 900px) {
-		margin-top: 50px;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 30px;
+.singleElement{
+	display: flex;
+		flex-direction: column;
+		background: #faf8f6;
+		border-radius: 4px;
 		overflow: hidden;
-		
+		padding: 0;
+}
+.content{
+	display: flex;
+		flex-direction: column;
+		gap: 20px;
+		margin-top: 20px;
+		margin-left: 20px;
+}
+.etiquette{
+	display: flex;
+	gap: 5px;
+}
+.calendar{
+	display: flex;
+	gap: 5px;
+}
+.anchor {
+	color: var(--primary);
+}
+.readMe{
+	display: flex;
+	gap: 5px;
+	padding-bottom: 20px;
+	.readmeAnchor{
+		color: var(--primary);
+		font-weight: 600;
+		text-transform: uppercase;
 	}
 }

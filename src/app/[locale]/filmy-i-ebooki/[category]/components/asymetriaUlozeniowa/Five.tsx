@@ -5,42 +5,14 @@ import circle from "../../../../../../..//public/assets/Kurs-Noszenia/Eleven/cir
 import Image from "next/image";
 import { getTopics } from "../../../../../../../helpers/api/getTopic";
 import Button from "../../../../../../components/AdminComponents/Subcomponents/button";
-
-interface Topic {
-    _id: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    categories: string[];
-    price: string;
-    imageFileUrl: string;
-    pdfFileUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-  }
-
-interface Product {
-_id: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    categories: string[];
-    price: string;
-    imageFileUrl: string;
-    pdfFileUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-
-}
+import { ITopic } from "../../../../../../../backend/models/topics";
 
 export default async function Products() {
     const response = await getTopics();
     const topicsArray = response.topics;
 
 
-    const filteredTopics = topicsArray.filter((topic: Topic) =>
+    const filteredTopics = topicsArray.filter((topic: ITopic) =>
   topic.categories.includes('Asymetria ułożeniowa')
 );
 
@@ -56,7 +28,7 @@ export default async function Products() {
                         </div>
                     </div>
                     <div className={`flex gap-10 ${styles.blockParent}`}>
-                        {filteredTopics.map((product:Product) => (
+                        {filteredTopics.map((product:IProduct) => (
                             <div key={product._id} className={`flex w-full flex-col ${styles.singleBox}`}>
                                 <div className={styles.inner}>
                                     <span className={styles.available}>Produkt Dostępny</span>

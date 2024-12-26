@@ -1,35 +1,13 @@
 import styles from "./Category.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { ICategory } from "../../../../../backend/models/category";
+import { replacePolishChars } from "@/helpers";
 // import Circle from "../../../../public/assets/Filmy-i-ebooki/circle.svg";
 
-
-interface Category {
-    _id: string;
-    title: string;
-    subtitle1: string;
-    subtitle2: string;
-    subtitle3: string;
-    price: string;
-    description: string;
-    category: string;
-    imageFileUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
-
 interface CategoryListProps {
-    filteredCategories: Category[];
+    filteredCategories: ICategory[];
 }
-
-const replacePolishChars = (str: string): string => {
-    const polishChars: { [key: string]: string } = {
-        'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
-        'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N', 'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z'
-    };
-    return str.replace(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, char => polishChars[char] || char);
-};
 
 const CategoryList: React.FC<CategoryListProps> = ({ filteredCategories }) => {
 

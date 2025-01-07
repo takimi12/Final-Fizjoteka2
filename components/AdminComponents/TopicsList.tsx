@@ -1,6 +1,6 @@
 import AddTopic from "./Components/AddTopic";
 import { getTopics } from "../../helpers/api/getTopic";
-import { getCategory } from "../../helpers/api/getCategory";
+import { getCategories } from "../../helpers/api/getCategory";
 import styles from "./TopicList.module.scss";
 import TopicCategory from "./Subcomponents/CategoryList";
 import TopicList from "./Subcomponents/TopicsList";
@@ -9,7 +9,7 @@ import AddCode from "../../app/[lang]/admin/kodyRabatowe/page";
 
 export default async function TopicsList() {
 	const { topics } = await getTopics();
-	const { categories } = await getCategory();
+	const { categories } = await getCategories();
 
 	return (
 		<>

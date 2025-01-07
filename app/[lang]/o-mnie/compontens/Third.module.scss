@@ -1,0 +1,64 @@
+.Ebook {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.Container {
+		margin: auto;
+	}
+
+	.bottomSection {
+		display: flex;
+		align-items: center;
+
+		@media screen and (max-width: 899px) {
+			flex-direction: column;
+			gap: 30px;
+		}
+
+		.inner {
+			display: flex;
+			width: 100%;
+			align-items: center;
+		}
+
+		.leftSection {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 15px;
+
+			.text {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+
+				.thirdTitle {
+					/* Style nagłówka */
+				}
+			}
+		}
+
+		.rightSection {
+			width: 100%;
+
+			.image {
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+
+	.ul {
+		margin-left: 20px;
+
+		.list {
+			list-style-type: disc;
+			padding: 5px;
+
+			p {
+				/* Style dla listy */
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+.Ebook {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Container {
+	margin: auto;
+}
+
+.bottomSection {
+	display: flex;
+	align-items: center;
+}
+
+.Inner {
+	display: flex;
+	align-items: center;
+}
+
+.leftSection {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.rightSection {
+	width: 100%;
+}
+
+.image {
+	display: flex;
+	justify-content: center;
+}

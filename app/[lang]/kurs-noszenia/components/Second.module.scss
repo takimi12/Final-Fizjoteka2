@@ -1,0 +1,64 @@
+.second {
+	background-color: #f5f6f5;
+	display: flex;
+	justify-content: center;
+}
+
+.topSection {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.bottomText {
+	font-size: 22px;
+}
+
+.bottomSection {
+	display: flex;
+	align-items: center;
+}
+
+.Inner {
+	display: flex;
+	gap: 10px;
+
+	@media screen and (max-width: 900px) {
+		flex-direction: column;
+	}
+}
+
+.leftSection {
+	width: 100%;
+}
+
+.image {
+	display: flex;
+	justify-content: center;
+}
+
+.rightSection {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 3px;
+	width: 100%;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+
+	h6 {
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	p {
+		margin-bottom: 24px;
+
+		&:first-of-type {
+			margin-top: 24px;
+		}
+	}
+}

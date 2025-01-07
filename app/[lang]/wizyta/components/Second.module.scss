@@ -1,0 +1,67 @@
+.second {
+	background-color: #f5f6f5;
+	padding: 50px 0;
+	display: flex;
+	justify-content: center;
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: auto;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.textCenter {
+		text-align: center;
+	}
+
+	.mainHeading {
+		font-size: 28px;
+		margin-bottom: 50px;
+	}
+
+	.inner {
+		display: flex;
+		gap: 10px;
+
+		@media screen and (max-width: 899px) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	.imageContainer {
+		width: 100%;
+		max-width: 408px;
+	}
+
+	.columnSection {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		max-width: 500px;
+
+		@media screen and (max-width: 899px) {
+			align-items: center;
+		}
+	}
+
+	.buttonContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
+
+	.button {
+		width: 300px;
+		height: 50px;
+		margin-bottom: 20px;
+	}
+}

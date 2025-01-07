@@ -1,0 +1,46 @@
+.Hero {
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	.Inner {
+		display: grid;
+		gap: 50px;
+		grid-column-gap: 50px;
+		grid-template-areas: "c c";
+		grid-template-columns: 1fr 1fr;
+		@media screen and (max-width: 899px) {
+			display: flex;
+			flex-direction: column;
+		}
+		.leftSection {
+			display: flex;
+			align-items: start;
+			justify-content: center;
+			flex-direction: column;
+			.title {
+				width: 100%;
+				max-width: 900px;
+				margin-bottom: 20px;
+				h1 {
+					font-size: 38px;
+					line-height: 44px;
+					width: 100%;
+					margin-top: 0;
+					white-space: pre-wrap;
+				}
+			}
+			.paragraph {
+				font-size: 16px;
+				line-height: 24px;
+				white-space: pre-wrap;
+				margin: 10px;
+			}
+		}
+		.rightSection {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+	}
+}

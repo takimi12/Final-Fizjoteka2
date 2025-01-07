@@ -1,0 +1,65 @@
+.ebook {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 0;
+
+	.container {
+		margin: auto;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		text-align: center;
+	}
+
+	.mainHeading {
+		font-size: 38px;
+		line-height: 44px;
+		width: 100%;
+		margin-top: 0;
+		white-space: pre-wrap;
+		margin-bottom: 50px;
+	}
+
+	.bottomSection {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		@media screen and (max-width: 899px) {
+			flex-direction: column;
+			margin-top: 0;
+			gap: 30px;
+		}
+	}
+
+	.leftSection {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		gap: 10px;
+
+		.list {
+			list-style-type: disc;
+			margin-left: 20px;
+		}
+	}
+
+	.rightSection {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		.image {
+			display: flex;
+			justify-content: center;
+		}
+	}
+}

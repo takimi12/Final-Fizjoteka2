@@ -1,0 +1,34 @@
+.Hero {
+	padding-top: 0;
+	margin: auto;
+
+	.bottomSection {
+		padding-bottom: 100px;
+		@media (max-width: 900px) {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+	}
+
+	.Inner {
+		display: grid;
+		grid-template-columns: 2fr 2fr;
+		.leftSection {
+			.text {
+				.paragraph {
+					margin: 0;
+					font-size: 16px;
+					line-height: 24px;
+					font-weight: 600;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+.buttonGroup {
+	display: flex;
+	gap: 30px;
+	margin-top: 20px;
+}

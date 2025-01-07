@@ -1,0 +1,55 @@
+.Hero {
+	padding-top: 0;
+}
+
+.Container {
+	margin: 0 auto;
+}
+
+.bottomSection {
+	display: flex;
+	justify-content: center;
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+	}
+}
+
+.Inner {
+	display: flex;
+}
+
+.leftSection {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.text {
+	margin-top: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	.paragraph {
+		margin: 0;
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 600;
+		width: 100%;
+	}
+}
+
+.buttonContainer {
+	display: flex;
+	gap: 1.75rem;
+}
+
+.rightSection {
+	width: 100%;
+}
+
+.image {
+	display: flex;
+	justify-content: center;
+}

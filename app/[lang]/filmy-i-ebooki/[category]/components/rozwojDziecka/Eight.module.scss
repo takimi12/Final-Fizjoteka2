@@ -1,0 +1,70 @@
+.tvelve {
+	background-color: #f5f6f5;
+	padding: 50px 0;
+	margin-bottom: 100px;
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.subtitle {
+		font-size: 18px;
+		margin-top: 20px;
+	}
+}
+
+.wraper {
+	display: grid;
+	grid-gap: 25px;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 20px 0;
+
+	@media screen and (max-width: 899px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.card {
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.87);
+	transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	box-shadow: none;
+	overflow: hidden;
+	border-radius: 10px;
+	padding: 30px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #eba37a;
+
+	h5 {
+		margin-bottom: 20px;
+	}
+
+	.subtitle {
+		font-weight: 300;
+		letter-spacing: 0.15px;
+		font-size: 14px;
+		line-height: 22px;
+		margin-bottom: 20px;
+	}
+
+	.ul {
+		margin: 0 20px;
+
+		.point {
+			list-style-type: disc;
+		}
+	}
+}

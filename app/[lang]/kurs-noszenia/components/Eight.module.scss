@@ -1,0 +1,45 @@
+.eight {
+	background-color: #f5f6f5;
+}
+.container {
+	margin: auto;
+}
+.textStyle {
+	text-align: center;
+}
+.eightWhite {
+	background-color: #fff;
+}
+.blockParent {
+	display: flex;
+	margin: 90px 0px;
+	@media screen and (max-width: 900px) {
+		display: flex;
+		flex-direction: column;
+	}
+	.inner {
+		h5 {
+			color: var(--primary);
+			margin-bottom: 50px;
+		}
+		p {
+			font-weight: 300;
+		}
+	}
+}
+.mediumSection {
+	text-align: center;
+	h3 {
+		font-size: 28px;
+		margin-bottom: 10px;
+	}
+	h6 {
+		font-weight: bold;
+		font-size: 20px;
+		margin-bottom: 40px;
+	}
+}
+.stars {
+	display: flex;
+	justify-content: center;
+}

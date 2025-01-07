@@ -1,0 +1,139 @@
+.asked {
+	padding: 50px 0;
+	background-color: #f5f6f5;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+	grid-gap: 20px;
+	position: relative;
+	z-index: 10;
+	@media screen and (max-width: 900px) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.single {
+		display: grid;
+		grid-auto-rows: 220px 390px;
+		grid-row-gap: 30px;
+		@media screen and (max-width: 900px) {
+			grid-auto-rows: 200px 250px;
+		}
+
+		.cardItem {
+			height: 100%;
+			max-width: 270px;
+			display: flex;
+			flex-direction: column;
+			margin: 20px auto;
+			box-sizing: border-box;
+			background-color: #fff;
+			border: 1px solid #f5c077;
+			border-radius: 10px;
+			padding: 30px 25px;
+			letter-spacing: -0.02em;
+			align-items: center;
+			gap: 20px;
+			text-align: center;
+			@media screen and (max-width: 900px) {
+				width: 100%;
+				max-width: 100%;
+			}
+
+			h4 {
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 28px;
+				white-space: pre-wrap;
+				text-align: center;
+				margin-top: 20px;
+				color: var(--primary);
+			}
+		}
+	}
+}
+
+.bubbleWrapper {
+	position: absolute;
+	left: 0;
+	z-index: 0;
+}
+.bubbleWrapper1 {
+	position: relative;
+	left: 0;
+	z-index: 9;
+}
+.buble1 {
+	position: relative;
+	left: 500px;
+	z-index: 0;
+	top: 50px;
+}
+.buble2 {
+	position: relative;
+	left: 800px;
+	z-index: 0;
+}
+.buble3 {
+	position: relative;
+	left: 500px;
+	z-index: 0;
+	top: -50px;
+}
+
+// .bubble1{
+// 	position: relative;
+// 	z-index: 1;
+// 	left: 400px;
+// }
+// .bubble2{
+// 	position: relative;
+// 	z-index: 1;
+// 	left: 600px;
+// }
+// .bubble3{
+// 	position: relative;
+// 	z-index: 1;
+// 	left: 400px;
+// }
+
+.bubble1Image {
+	width: 102px;
+	position: absolute;
+	top: 16vh;
+	left: 34vw;
+}
+
+.bubble2Image {
+	width: 125px;
+	position: absolute;
+	top: 30vh;
+	left: 60vw;
+}
+
+.bubble3Image {
+	width: 170px;
+	position: absolute;
+	top: 30vh;
+	left: 32vw;
+}
+
+.container {
+	padding: 0 20px;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+}
+
+.iconWrapper {
+	display: flex;
+	justify-content: center;
+}

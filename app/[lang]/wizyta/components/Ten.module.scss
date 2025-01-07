@@ -1,0 +1,80 @@
+.ten {
+	background-color: #f5f6f5;
+	padding: 50px 0;
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+}
+
+.title {
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 32px;
+	color: #255a6b;
+}
+
+.wraper {
+	display: grid;
+	column-gap: 24px;
+	row-gap: 24px;
+	grid-template-columns: repeat(3, 1fr);
+
+	@media screen and (max-width: 899px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.consultationSingle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px;
+	background: #fff;
+	border-radius: 10px;
+	border: 1px solid #f5c077;
+	flex-shrink: 0;
+	gap: 24px;
+}
+
+.consultationHeading {
+	margin: 0;
+	text-align: center;
+	color: #255a6b;
+	font-size: 24px;
+}
+
+.consultationPrice {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.ul {
+	margin-left: 40px;
+	min-height: 170px;
+
+	li {
+		list-style-type: disc;
+	}
+}
+
+.listItem {
+	font-weight: normal;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.bookLink {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #255a6b;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}

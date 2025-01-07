@@ -1,0 +1,123 @@
+.Eleven {
+	.Container {
+		margin: auto;
+	}
+
+	.mb10 {
+		margin-bottom: 100px;
+		text-align: center;
+	}
+
+	.top {
+		h4 {
+			font-size: 25px;
+		}
+		p {
+			font-size: 16px;
+			color: #333;
+		}
+	}
+
+	.blockParent {
+		display: flex;
+		gap: 10px;
+		justify-content: space-between;
+		@media screen and (max-width: 1199px) {
+			flex-direction: column;
+		}
+	}
+
+	.singleBox {
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 30px 20px 20px;
+		margin-bottom: 40px;
+		background: #f7f7f7;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		max-width: 350px;
+
+		.inner {
+			padding: 20px;
+		}
+
+		.blockImage {
+			width: 200px;
+			height: 200px;
+			margin: auto;
+			margin-bottom: 4px;
+		}
+
+		.available {
+			position: absolute;
+			top: -16px;
+			padding: 5px 20px;
+			background-color: #8bde7b;
+			border-radius: 7px;
+			color: #fff;
+			font-size: 12px;
+			text-transform: uppercase;
+		}
+
+		.date {
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			font-size: 12px;
+			color: #cbcbcb;
+			font-weight: 600;
+		}
+
+		.anchor {
+			line-height: 24px;
+			color: #255a6b;
+			text-decoration: underline;
+			text-decoration-color: rgba(37, 90, 107, 0.4);
+
+			.title {
+				font-size: 25px;
+				min-height: 76px;
+			}
+		}
+
+		.subtitle {
+			color: #8d8d8d;
+		}
+
+		.listParent {
+			min-height: 510px;
+			margin-bottom: 50px;
+			@media screen and (max-width: 1199px) {
+				min-height: 200px;
+			}
+			.list {
+				list-style-type: disc;
+				color: var(--primary);
+			}
+		}
+
+		.prizeContainer {
+			margin-top: auto;
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+
+			.availableprize {
+				font-weight: 400;
+			}
+		}
+
+		.priceContainer {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+
+			.price {
+				font-weight: bold;
+			}
+		}
+	}
+}

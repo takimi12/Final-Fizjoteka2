@@ -1,0 +1,34 @@
+.Hero {
+	padding-top: 0;
+	margin: auto;
+	.bottomSection {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 100px;
+		@media (max-width: 900px) {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+	}
+	.Inner {
+		.leftSection {
+			.text {
+				.paragraph {
+					margin: 0;
+					font-size: 16px;
+					line-height: 24px;
+					font-weight: 600;
+					width: 100%;
+				}
+			}
+			.buttons {
+				display: flex;
+				gap: 20px;
+				margin-top: 20px;
+			}
+		}
+	}
+}

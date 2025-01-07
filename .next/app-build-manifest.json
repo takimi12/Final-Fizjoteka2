@@ -17,12 +17,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/layout.js"
     ],
-    "/[lang]/kurs-noszenia/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/kurs-noszenia/page.css",
-      "static/chunks/app/[lang]/kurs-noszenia/page.js"
-    ],
     "/[lang]/koszyk/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -34,18 +28,6 @@
       "static/chunks/main-app.js",
       "static/css/app/[lang]/blog/page.css",
       "static/chunks/app/[lang]/blog/page.js"
-    ],
-    "/[lang]/o-mnie/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/o-mnie/page.css",
-      "static/chunks/app/[lang]/o-mnie/page.js"
-    ],
-    "/[lang]/wizyta/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/wizyta/page.css",
-      "static/chunks/app/[lang]/wizyta/page.js"
     ]
   }
 }

@@ -14,7 +14,7 @@ interface Blog {
 }
 
 export default async function Page() {
-  const response = await fetch("http://localhost:3000/api/gql/blog");
+  const response = await fetch("/api/gql/blog");
 
   if (!response.ok) {
     return <div>Error loading blogs</div>;

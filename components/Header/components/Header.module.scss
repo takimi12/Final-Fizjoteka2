@@ -1,0 +1,195 @@
+.topHeader {
+	background-color: #d7ede8;
+
+	@media (min-width: 900px) {
+		height: 30px;
+	}
+	.inner {
+		margin: 0 auto !important;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		gap: 30px;
+	}
+}
+
+.bottom {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background-color: #fff;
+	box-shadow: 2px 2px 10px 2px rgba(66, 68, 90, 0.14);
+	margin: 0 auto;
+
+	.bottomContainer {
+		margin: 0 auto !important;
+		overflow: visible;
+
+		.bottomContainerInner {
+			height: 80px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin: auto;
+			width: 100%;
+
+			.logoss {
+				padding: 16px 14px;
+			}
+
+			.links {
+				display: flex;
+				align-items: center;
+
+				.anchor {
+					line-height: 24px;
+					padding: 12px 14px;
+
+					&:hover {
+						background: #d8ede8;
+						border-radius: 5px;
+						text-decoration: none;
+					}
+
+					&.anchorActive {
+						color: #2e7f89 !important;
+						font-weight: 800 !important;
+						line-height: 24px;
+						padding: 12px 14px;
+
+						&:hover {
+							background: #d8ede8;
+							border-radius: 5px;
+							text-decoration: none;
+						}
+					}
+
+					.search {
+						padding: 16px 14px;
+					}
+				}
+			}
+
+			.cart {
+				padding: 15px;
+				position: relative;
+
+				.numberCart {
+					position: absolute;
+					background: red;
+					color: #fff;
+					padding: 3px;
+					top: 0;
+					right: 5px;
+					font-size: 10px;
+					border-radius: 50%;
+					width: 20px;
+					height: 20px;
+					text-align: center;
+				}
+
+				.innerCard {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+
+					.detailsCard {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						background-color: #f5f6f5;
+						padding: 15px;
+						margin-bottom: 10px;
+						border-radius: 10px;
+						width: 100%;
+
+						.desc {
+							color: #265a6b;
+							font-weight: 400;
+						}
+
+						.descPrice {
+							color: #265a6b;
+							font-weight: 700;
+						}
+					}
+
+					.button {
+						width: 30px;
+						height: 30px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+				}
+
+				.cartContent {
+					box-shadow: 2px 2px 10px 2px rgba(66, 68, 90, 0.14);
+					display: none;
+					position: sticky;
+					border: 1px solid #ececec;
+					border-radius: 5px;
+					padding: 20px;
+					background-color: #fff;
+					top: 45px;
+					z-index: 1;
+					right: 0;
+					width: 360px;
+					max-width: calc(100vw - 50px);
+
+					.myCart {
+						font-size: 28px;
+						color: #255a6b;
+					}
+
+					.desc {
+						font-size: 16px;
+						color: #255a6b;
+					}
+
+					.noProducts {
+						margin-top: 30px;
+
+						.sum {
+							display: flex;
+							justify-content: space-between;
+							padding-top: 10px;
+
+							.text {
+								color: #255a6b;
+								font-weight: 400;
+							}
+						}
+
+						.payment {
+							display: flex;
+							padding-top: 10px;
+							justify-content: center;
+						}
+					}
+				}
+
+				&:hover {
+					cursor: pointer;
+					background: rgba(61, 167, 180, 0.039);
+					text-decoration: none;
+
+					.cartContent {
+						display: block;
+						position: absolute;
+					}
+				}
+			}
+		}
+	}
+}
+
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: white; // or your desired background color
+}

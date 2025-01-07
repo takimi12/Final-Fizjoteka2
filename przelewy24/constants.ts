@@ -10,7 +10,7 @@
 //         body: JSON.stringify({
 //   "merchantId": POS_ID,
 //   "posId": POS_ID,
-//   "sessionId": "test123", 
+//   "sessionId": "test123",
 //   "amount": 2137,
 //   "currency": "PLN",
 //   "description": "jakis opis transkacji",

@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "home": "Start",
+    "blog": "Blog",
+    "filmyIEbooki":"Moovies & ebooks",
+    "kursNoszenia":"Carrying Course",
+    "fizQuiz":"FizQuiz",
+    "oMnie":"About",
+    "wizyta":"Visit"
+  },
+    "Homepage": {
+      "Hero": { 
+        "title": "Hi, I'm Magda!", 
+      "description1": "I'm a pediatric physiotherapist and educator. E-fizjoteka is my space on the web.", 
+      "description2": "Here, I share physiotherapy knowledge and teach parents proper child care and methods to support their healthy development." 
+    }
+    }
+}

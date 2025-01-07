@@ -1,85 +1,90 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-
+// Interface for Category document
 export interface ICategory extends Document {
-  _id: string;
-  title: string;
-  subtitle1: string;
-  subtitle2: string;
-  subtitle3: string;
-  price: string;
-  description: string;
-  category: string;
-  imageFileUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+    _id: string;
+    title: string;
+    subtitle1: string;
+    subtitle2: string;
+    subtitle3: string;
+    price: number;
+    description: string;
+    category: string;
+    imageFileUrl: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 // Schema definition with validation
-const productSchema = new Schema(
-  {
-    title: {
-      type: String,
-      required: [true, "Title is required"],
-      trim: true,
-      maxLength: [100, "Title cannot be more than 100 characters"],
+const categorySchema = new Schema(
+    {
+        title: {
+            type: String,
+            required: [true, "Title is required"],
+            trim: true,
+            maxLength: [100, "Title cannot be more than 100 characters"],
+        },
+        subtitle1: {
+            type: String,
+            required: [true, "Subtitle 1 is required"],
+            trim: true,
+            maxLength: [200, "Subtitle 1 cannot be more than 200 characters"],
+        },
+        subtitle2: {
+            type: String,
+            required: [true, "Subtitle 2 is required"],
+            trim: true,
+            maxLength: [200, "Subtitle 2 cannot be more than 200 characters"],
+        },
+        subtitle3: {
+            type: String,
+            required: [true, "Subtitle 3 is required"],
+            trim: true,
+            maxLength: [200, "Subtitle 3 cannot be more than 200 characters"],
+        },
+        price: {
+            type: Number,
+            required: [true, "Price is required"],
+            min: [0, "Price cannot be negative"],
+            set: (v: string) => parseFloat(parseFloat(v).toFixed(2)),
+        },
+        description: {
+            type: String,
+            required: [true, "Description is required"],
+            trim: true,
+        },
+        category: {
+            type: String,
+            required: [true, "Category is required"],
+            trim: true,
+        },
+        imageFileUrl: {
+            type: String,
+            required: [true, "Image URL is required"],
+            validate: {
+                validator: function (v: string) {
+                    return /^https?:\/\/.+/.test(v);
+                },
+                message: "Image URL must be a valid URL",
+            },
+        },
     },
-    subtitle1: {
-      type: String,
-      required: [true, "Subtitle1 is required"],
-      trim: true,
+    {
+        timestamps: true,
+        toJSON: {
+            transform: function (doc, ret) {
+                ret.id = ret._id;
+                delete ret.__v;
+                return ret;
+            },
+        },
     },
-    subtitle2: {
-      type: String,
-      required: [true, "Subtitle2 is required"],
-      trim: true,
-    },
-    subtitle3: {
-      type: String,
-      required: [true, "Subtitle3 is required"],
-      trim: true,
-    },
-    price: {
-      type: String, // Can be changed to number if needed
-      required: [true, "Price is required"],
-    },
-    description: {
-      type: String,
-      required: [true, "Description is required"],
-    },
-    category: {
-      type: String,
-      required: [true, "Category is required"],
-    },
-    imageFileUrl: {
-      type: String,
-      required: [true, "Image URL is required"],
-    },
-    createdAt: {
-      type: String,
-      required: [true, "CreatedAt is required"],
-    },
-    updatedAt: {
-      type: String,
-      required: [true, "UpdatedAt is required"],
-    },
-    __v: {
-      type: Number,
-    },
-  },
-  {
-    timestamps: true,
-    toJSON: {
-      transform: function (doc, ret) {
-        ret.id = ret._id;
-        delete ret.__v;
-        return ret;
-      },
-    },
-  }
 );
 
-const Product = mongoose.models.Product || mongoose.model<ICategory>("Product", productSchema);
+// Index for faster queries
+categorySchema.index({ category: 1 });
+categorySchema.index({ title: 1 });
 
-export default Product;
+const Categories = mongoose.models.Categories || mongoose.model<ICategory>("Categories", categorySchema);
+
+export default Categories;

@@ -1,4 +1,9 @@
 {
-  "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js",
-  "/[lang]/blog/page": "app/[lang]/blog/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/category/route": "app/api/category/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/topics/route": "app/api/topics/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/[lang]/blog/page": "app/[lang]/blog/page.js",
+  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js"
 }

@@ -5,11 +5,12 @@ import Categories from "./components/Category";
 import FilterComponent from "./components/subcomponents/Filters";
 import Breadcrumbs from "../../../components/breadcrumbs/breadcrumbs";
 import { getTopics } from "../../../helpers/api/getTopic";
-import { getCategory } from "../../../helpers/api/getCategory";
+import { getCategories } from "../../../helpers/api/getCategory";
 
 const MainPage = async () => {
 	const { topics } = await getTopics();
-	const { categories } = await getCategory();
+	const  {categories}  = await getCategories();
+
 
 	return (
 		<>

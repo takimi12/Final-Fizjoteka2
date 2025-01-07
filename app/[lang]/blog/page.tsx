@@ -14,7 +14,7 @@ interface Blog {
 }
 
 export default async function Page() {
-  const response = await fetch("https://fizjoteka.vercel.app//api/gql/blog");
+  const response = await fetch("https://fizjoteka.vercel.app/api/gql/blog");
 
   if (!response.ok) {
     return <div>Error loading blogs</div>;

@@ -1,3 +1,11 @@
+.container{
+	margin: auto;
+}
+.wrapper{
+	display: flex;
+	margin-top: 50px;
+	margin-bottom: 100px;
+
 .cart {
 	width: 100%;
 	.orderSummary {
@@ -134,4 +142,5 @@
 			color: #333;
 		}
 	}
+}
 }

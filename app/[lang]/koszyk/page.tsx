@@ -41,9 +41,10 @@ const Cartpage: React.FC = () => {
 
 	return (
 		<>
+		
+			<div className={`Container ${styles.container} m-auto flex`}>
 			<Breadcrumbs />
-
-			<div className={`Container m-auto flex`}>
+			<div className={styles.wrapper}>
 				<div className={` ${styles.cart}`}>
 					<div className={styles.orderSummary}>
 						<h2>PODSUMOWANIE ZAMÓWIENIA:</h2>
@@ -120,6 +121,7 @@ const Cartpage: React.FC = () => {
 						</button>
 					</div>
 				</div>
+			</div>
 			</div>
 		</>
 	);

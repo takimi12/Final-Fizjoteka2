@@ -1,20 +1,19 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// Interface for Topic document
+
 export interface ITopic extends Document {
 	_id: string;
 	title: string;
 	subtitle: string;
 	description: string;
 	categories: string[];
-	price: number; // Changed from String to Number
+	price: number; 
 	imageFileUrl: string;
 	pdfFileUrl: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
 
-// Schema definition with validation
 const topicSchema = new Schema(
 	{
 		title: {
@@ -48,7 +47,7 @@ const topicSchema = new Schema(
 			type: Number,
 			required: [true, "Price is required"],
 			min: [0, "Price cannot be negative"],
-			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)), // Convert string to number with 2 decimal places
+			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)), 
 		},
 		imageFileUrl: {
 			type: String,
@@ -83,7 +82,7 @@ const topicSchema = new Schema(
 	},
 );
 
-// Index for faster queries
+
 topicSchema.index({ categories: 1 });
 topicSchema.index({ title: 1 });
 

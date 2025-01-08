@@ -1,6 +1,7 @@
 {
+  "/api/topics/route": "app/api/topics/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js",
-  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js",
-  "/[lang]/continue/page": "app/[lang]/continue/page.js"
+  "/[lang]/filmy-i-ebooki/[category]/page": "app/[lang]/filmy-i-ebooki/[category]/page.js",
+  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js"
 }

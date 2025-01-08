@@ -16,11 +16,10 @@ const customerSchema = new Schema({
 
 const transactionSchema = new Schema({
 	status: { type: Boolean, required: true },
-	products: [productSchema], // Embedding the Product schema
+	products: [productSchema], 
 	customer: customerSchema,
 });
 
-// mongoose.deleteModel('Transaction');
 
 const Transaction = mongoose.models.Transaction || mongoose.model("Transaction", transactionSchema);
 

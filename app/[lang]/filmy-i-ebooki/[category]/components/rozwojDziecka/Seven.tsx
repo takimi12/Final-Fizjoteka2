@@ -4,31 +4,25 @@ import Link from "next/link";
 import circle from "../../../../../..//public/assets/Kurs-Noszenia/Eleven/circle.svg";
 import Image from "next/image";
 import { getTopics } from "../../../../../../helpers/api/getTopic";
-import {Button} from "../../../../../../components/AdminComponents/Subcomponents/Button";
-
-interface Topic {
-	_id: string;
-	title: string;
-	subtitle: string;
-	description: string;
-	categories: string[];
-	price: string;
-	imageFileUrl: string;
-	pdfFileUrl: string;
-	createdAt: string;
-	updatedAt: string;
-	__v: number;
-}
+import { Button } from "../../../../../../components/AdminComponents/Subcomponents/Button";
+import { ITopic } from "../../../../../../backend/models/topics";
 
 const Seven = async () => {
-	const response = await getTopics();
-	const topicsArray: Topic[] = response.topics;
-	const filteredTopics = topicsArray.filter((topic: Topic) =>
-		topic.categories.includes("Rozwój dziecka"),
-	);
+	try {
+		const response = await getTopics();
 
-	return (
-		<>
+
+		if (!response || !Array.isArray(response.topics)) {
+			console.error("Invalid response from getTopics:", response);
+			return <div>Error loading topics</div>;
+		}
+
+		const topicsArray: ITopic[] = response.topics;
+		const filteredTopics = topicsArray.filter((topic: ITopic) =>
+			topic.categories.includes("Rozwój dziecka"),
+		);
+
+		return (
 			<section className={styles.Eleven} id="products">
 				<div className={`${styles.container} Container`}>
 					<div className={styles.textCenter}>
@@ -41,50 +35,59 @@ const Seven = async () => {
 						</div>
 					</div>
 					<div className={styles.blockParent}>
-						{filteredTopics.map((product, index) => (
-							<div key={index} className={styles.singleBox}>
-								<div className={styles.inner}>
-									<span className={styles.available}>Produkt Dostępny</span>
-									<span className={styles.date}>{product.createdAt}</span>
-									<div className={styles.blockImage}>
-										<Image
-											src={product.imageFileUrl}
-											width={200}
-											height={200}
-											alt={product.title}
-										/>
-									</div>
-									<div className={styles.titleWrapper}>
-										<Link href="#" className={styles.anchor}>
-											<h4 className={styles.title}>{product.title}</h4>
-										</Link>
-										<p className={styles.subtitle}>{product.subtitle}</p>
-									</div>
-									<div className={styles.lists}>
-										<ul className={styles.listParent}>
-											{product.description.split(". ").map((sentence, idx) => (
-												<li className={styles.list} key={idx}>
-													{sentence.trim()}.
-												</li>
-											))}
-										</ul>
-										<div className={styles.availableWrapper}>
-											<Image src={circle} width={15} height={15} alt="online" />
-											<p className={styles.availableprize}>Produkt dostępny </p>
+						{filteredTopics.length === 0 ? (
+							<p>No topics available in this category.</p>
+						) : (
+							filteredTopics.map((product, index) => (
+								<div key={index} className={styles.singleBox}>
+									<div className={styles.inner}>
+										<span className={styles.available}>Produkt Dostępny</span>
+										<span className={styles.date}>
+											{new Date(product.createdAt).toLocaleDateString()}
+										</span>
+										<div className={styles.blockImage}>
+											<Image
+												src={product.imageFileUrl}
+												width={200}
+												height={200}
+												alt={product.title}
+											/>
 										</div>
-										<div className={styles.footer}>
-											<p className={styles.price}>{product.price}</p>
-											{/* <Button product={product} /> */}
+										<div className={styles.titleWrapper}>
+											<Link href="#" className={styles.anchor}>
+												<h4 className={styles.title}>{product.title}</h4>
+											</Link>
+											<p className={styles.subtitle}>{product.subtitle}</p>
+										</div>
+										<div className={styles.lists}>
+											<ul className={styles.listParent}>
+												{product.description.split(". ").map((sentence, idx) => (
+													<li className={styles.list} key={idx}>
+														{sentence.trim()}.
+													</li>
+												))}
+											</ul>
+											<div className={styles.availableWrapper}>
+												<Image src={circle} width={15} height={15} alt="online" />
+												<p className={styles.availableprize}>Produkt dostępny</p>
+											</div>
+											<div className={styles.footer}>
+												<p className={styles.price}>{product.price}zł</p>
+												<Button product={product} />
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						))}
+							))
+						)}
 					</div>
 				</div>
 			</section>
-		</>
-	);
+		);
+	} catch (error) {
+		console.error("Error fetching topics:", error);
+		return <div>Error loading topics</div>;
+	}
 };
 
 export default Seven;

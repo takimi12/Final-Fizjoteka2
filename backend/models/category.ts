@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// Interface for Category document
 export interface ICategory extends Document {
     _id: string;
     title: string;
@@ -15,7 +14,6 @@ export interface ICategory extends Document {
     updatedAt: Date;
 }
 
-// Schema definition with validation
 const categorySchema = new Schema(
     {
         title: {
@@ -81,7 +79,6 @@ const categorySchema = new Schema(
     },
 );
 
-// Index for faster queries
 categorySchema.index({ category: 1 });
 categorySchema.index({ title: 1 });
 

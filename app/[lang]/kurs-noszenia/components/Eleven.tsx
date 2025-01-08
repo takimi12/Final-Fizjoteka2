@@ -65,7 +65,7 @@ const ElevenComponent = async () => {
                                        </div>
                                        
                                        <div className={styles.priceContainer}>
-                                           <p className={styles.price}>{product.price}</p>
+                                           <p className={styles.price}>{product.price} zł</p>
                                            <Button product={product} />
                                        </div>
                                    </div>

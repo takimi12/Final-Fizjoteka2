@@ -135,7 +135,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 														<p className={styles.text}>Suma: {totalPrice.toFixed(2)} zł</p>
 													</div>
 													<div className={styles.payment}>
-														<Link href="/pl/koszyk">
+														<Link href="/koszyk">
 															<button className="button">Zapłać</button>
 														</Link>
 													</div>

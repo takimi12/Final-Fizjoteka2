@@ -1,7 +1,4 @@
-import Image from "next/image";
-import Photo from "../../../../public/assets/HomePage/Fizquizz/fizquiz.webp";
 import styles from "./Four.module.scss";
-import Link from "next/link";
 
 async function Four() {
 	return (

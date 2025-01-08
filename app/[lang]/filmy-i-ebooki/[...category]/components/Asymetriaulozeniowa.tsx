@@ -17,7 +17,7 @@ export default function Asymetria() {
 			<Second />
 			<Third />
 			<Fourth />
-			{/* <Five /> */}
+			<Five />
 			<Six />
 			<Seven />
 			<BubbleSection />

@@ -16,7 +16,7 @@ export default function Rozwoj() {
 			<Fourth />
 			<Six />
 			<OpinionSection />
-			{/* <Seven /> */}
+			<Seven />
 			<Eight />
 		</>
 	);

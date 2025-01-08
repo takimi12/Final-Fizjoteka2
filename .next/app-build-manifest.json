@@ -16,12 +16,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/layout.js"
-    ],
-    "/[lang]/filmy-i-ebooki/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/filmy-i-ebooki/page.css",
-      "static/chunks/app/[lang]/filmy-i-ebooki/page.js"
     ]
   }
 }

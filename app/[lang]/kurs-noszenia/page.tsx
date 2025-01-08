@@ -25,7 +25,7 @@ function NaukaNoszenia() {
 			<Eight />
 			<Nine />
 			<Ten />
-			<Eleven />
+			{/* <Eleven /> */}
 			<Tvelwe />
 			<Thirteen />
 		</>

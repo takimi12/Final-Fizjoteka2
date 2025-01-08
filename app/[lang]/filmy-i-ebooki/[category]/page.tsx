@@ -10,7 +10,7 @@ export const generateStaticParams = async ({ params }: { params: { category: str
 	];
 };
 
-export default function Page({ params }: { params: { category: string } }) {
+export default  async function Page({ params }: { params: { category: string } }) {
 	let content;
 
 	if (params.category === "Nauka-noszenia") {

@@ -13,7 +13,6 @@ interface UserInput {
 export const POST = async (request: Request): Promise<NextResponse> => {
   try {
     const data: UserInput = await request.json();
-    console.log("Received data:", data);
 
     const { name, email, password, role } = data;
 
@@ -32,12 +31,10 @@ export const POST = async (request: Request): Promise<NextResponse> => {
       role,
     });
 
-    console.log("New user object:", newUser);
 
     await newUser.save();
     return new NextResponse("User is registered", { status: 200 });
   } catch (err: unknown) {
-    console.error("Error details:", err);
     const errorMessage = err instanceof Error ? err.message : "Internal Server Error";
     return new NextResponse(errorMessage, { status: 500 });
   }

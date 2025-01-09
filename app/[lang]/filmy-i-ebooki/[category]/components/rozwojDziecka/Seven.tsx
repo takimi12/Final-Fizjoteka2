@@ -13,7 +13,6 @@ const Seven = async () => {
 
 
 		if (!response || !Array.isArray(response.topics)) {
-			console.error("Invalid response from getTopics:", response);
 			return <div>Error loading topics</div>;
 		}
 
@@ -85,7 +84,6 @@ const Seven = async () => {
 			</section>
 		);
 	} catch (error) {
-		console.error("Error fetching topics:", error);
 		return <div>Error loading topics</div>;
 	}
 };

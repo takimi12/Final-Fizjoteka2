@@ -86,7 +86,7 @@ export default function EditTopicForm({
 				const newFileUrl = await res.json();
 				newImageUrl = newFileUrl.fileUrl;
 			} catch (err) {
-				console.error("Error updating image:", err);
+				return null
 			}
 		}
 
@@ -109,7 +109,6 @@ export default function EditTopicForm({
 				throw new Error("Failed to update the topic");
 			}
 		} catch (error) {
-			console.error("Error updating category:", error);
 		}
 	};
 

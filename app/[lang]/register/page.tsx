@@ -54,7 +54,6 @@ const Register = () => {
       }
     } catch (error) {
       setError("An error occurred, please try again");
-      console.error(error);
     }
   };
 

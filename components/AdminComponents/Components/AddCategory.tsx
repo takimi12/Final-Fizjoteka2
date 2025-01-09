@@ -77,7 +77,6 @@ const AddCategory = () => {
 				throw new Error("Failed to create a category");
 			}
 		} catch (error) {
-			console.log("ERROR", error);
 		} finally {
 			setUploading(false);
 		}

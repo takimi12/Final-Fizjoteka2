@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -19,7 +18,7 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["user",],
+      enum: ["user"],
       default: "user",
       required: true,
     },
@@ -27,7 +26,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-// Usuwamy istniejący model przed utworzeniem nowego
-mongoose.models = {};
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
-export default mongoose.model("User", userSchema);
+export default User;

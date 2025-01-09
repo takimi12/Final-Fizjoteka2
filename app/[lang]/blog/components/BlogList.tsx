@@ -6,28 +6,40 @@ import Calendar from "../../../../public/assets/Blog/calendar.svg";
 import Arrow from "../../../../public/assets/Blog/arrow.svg";
 
 interface Blog {
-	id: string;
-	publishedAt: string;
-	tytul: string;
-	slugs: string[];
-	richText: {
-		raw: string | Record<string, string>;
-	};
+    id: string;
+    publishedAt: string;
+    tytul: string;
+    slugs: string[];
+    richText: {
+        raw: string | Record<string, unknown>;
+    };
 }
 
 interface BlogListProps {
-	blogs: Blog[];
+    blogs: Blog[];
 }
 
-const getFirstImageSrc = (rawContent: any): string | undefined => {
-	if (rawContent && rawContent.children) {
-		for (const child of rawContent.children) {
-			if (child.type === "image" && child.src) {
-				return child.src;
-			}
-		}
-	}
-	return undefined;
+interface RichTextChild {
+    type: string;
+    src?: string;
+    children?: RichTextChild[];
+}
+
+interface RichTextContent {
+    children?: RichTextChild[];
+}
+
+const getFirstImageSrc = (rawContent: string | Record<string, unknown>): string | undefined => {
+    const content = typeof rawContent === 'string' ? JSON.parse(rawContent) as RichTextContent : rawContent as RichTextContent;
+    
+    if (content && content.children) {
+        for (const child of content.children) {
+            if (child.type === "image" && child.src) {
+                return child.src;
+            }
+        }
+    }
+    return undefined;
 };
 
 export const BlogList = ({ blogs }: BlogListProps) => {

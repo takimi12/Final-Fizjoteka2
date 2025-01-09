@@ -36,7 +36,6 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 					body: JSON.stringify({ fileName: imageName }),
 				});
 			} catch (err) {
-				console.error("Error deleting image from S3:", err);
 			}
 
 			router.refresh();

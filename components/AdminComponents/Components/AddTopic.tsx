@@ -118,7 +118,6 @@ const AddTopic: React.FC = () => {
 				throw new Error("Failed to create a topic");
 			}
 		} catch (error) {
-			console.error("ERROR", error);
 		} finally {
 			setUploading(false);
 		}

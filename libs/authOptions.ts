@@ -1,7 +1,7 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "../backend/models/user";
-import connect from "../backend/config/authConnect";
+import {dbConnect} from "../backend/config/authConnect";
 import bcrypt from "bcryptjs";
 
 export const authOptions: AuthOptions = {
@@ -14,7 +14,7 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         try {
-          await connect();
+          await dbConnect();
           const user = await User.findOne({ email: credentials?.email });
 
           if (!user) {
@@ -58,7 +58,7 @@ export const authOptions: AuthOptions = {
     },
   },
   pages: {
-    signIn: '/login', // Strona logowania
+    signIn: '/login', 
   },
-  secret: process.env.NEXTAUTH_SECRET, // Sekret z zmiennych środowiskowych
+  secret: process.env.NEXTAUTH_SECRET, 
 };

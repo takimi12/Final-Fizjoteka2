@@ -38,7 +38,6 @@ export async function fetchData(): Promise<Blog[] | null> {
     const data: FetchDataResponse = await graphQLClient.request(query);
     return data.blog1S;
   } catch (error) {
-    console.error("Error fetching data:", error);
     return null;
   }
 }

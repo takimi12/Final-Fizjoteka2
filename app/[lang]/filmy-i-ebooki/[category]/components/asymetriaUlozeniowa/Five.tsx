@@ -85,7 +85,6 @@ export default async function Five() {
             </>
         );
     } catch (error) {
-        console.error("Error fetching topics:", error);
         return (
             <section className={styles.Eleven} id="products">
                 <div className={`Container ${styles.Container}`}>

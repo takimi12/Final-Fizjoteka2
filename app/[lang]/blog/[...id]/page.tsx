@@ -27,9 +27,8 @@ interface BlogId {
 export default async function BlogPage({ params }: { params: { id: string | string[] } }) {
   const pathname = Array.isArray(params.id) ? params.id.join("/") : params.id;
 
-  // Pobierz dane z endpointów API
-  const blogResponse = await fetch(`http://localhost:3000/api/gql/blogposts?id=${pathname}`);
-  const blogsResponse = await fetch(`http://localhost:3000/api/gql/blog`);
+  const blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogposts?id=${pathname}`);
+  const blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blog`);
 
   if (!blogResponse.ok || !blogsResponse.ok) {
     return <div>Error: Failed to fetch data</div>;

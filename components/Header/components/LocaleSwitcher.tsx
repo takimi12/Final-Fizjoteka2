@@ -84,17 +84,18 @@ export default function LocaleSwitcher() {
         router.push(newPath);
     };
 
-    const oppositeLocale = i18n.locales.find(
-        (locale) => locale !== currentLocale
-    ) as Locale;
+    // Determine button text based on URL
+    const isEnglishPath = pathname.includes("/en/");
+    const buttonText = isEnglishPath ? "pl" : "en";
+    
+    // Set the opposite locale based on the current path
+    const oppositeLocale = isEnglishPath ? "pl" : "en" as Locale;
 
     return (
         <div className={styles.wrapper}>
-            {oppositeLocale && (
-                <button onClick={() => handleLocaleChange(oppositeLocale)} className="">
-                    {oppositeLocale}
-                </button>
-            )}
+            <button onClick={() => handleLocaleChange(oppositeLocale)} className="">
+                {buttonText}
+            </button>
         </div>
     );
 }

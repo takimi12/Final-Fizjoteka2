@@ -24,11 +24,22 @@ interface BlogId {
   id: string;
 }
 
-export default async function BlogPage({ params }: { params: { id: string | string[] } }) {
+export default async function BlogPage({ params }: { params: { lang: string; id: string[] } }) {
+  const { lang } = params;
+
   const pathname = Array.isArray(params.id) ? params.id.join("/") : params.id;
 
-  const blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogposts?id=${pathname}`);
-  const blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blog`);
+
+  let blogResponse, blogsResponse;
+  if (lang === "en") {
+    blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogpostsEng?id=${pathname}`);
+    blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogEng`);
+  } else {
+    blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogposts?id=${pathname}`);
+    blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blog`);
+  }
+
+
 
   if (!blogResponse.ok || !blogsResponse.ok) {
     return <div>Error: Failed to fetch data</div>;
@@ -69,22 +80,22 @@ export default async function BlogPage({ params }: { params: { id: string | stri
 
         <div className={styles.pagination}>
           {prevBlog && (
-            <Link className={styles.step} href={`/pl/blog/${prevBlog.id}`}>
+            <Link className={styles.step} href={`/${lang}/blog/${prevBlog.id}`}>
               <Image src={ArrowBack} alt="Previous post" width={10} height={10} />
-              Poprzedni wpis
+              {lang === "en" ? "Previous post" : "Poprzedni wpis"}
             </Link>
           )}
           {nextBlog && (
-            <Link className={styles.step} href={`/pl/blog/${nextBlog.id}`} style={{ marginLeft: "10px" }}>
-              Następny wpis
+            <Link className={styles.step} href={`/${lang}/blog/${nextBlog.id}`} style={{ marginLeft: "10px" }}>
+              {lang === "en" ? "Next post" : "Następny wpis"}
               <Image src={Arrow} alt="Next post" width={10} height={10} />
             </Link>
           )}
         </div>
       </div>
-      <section className="Container">
+      <section className={`Container ${styles.container}`}>
         <div className={styles.authorShare}>
-          <b>Udostępnij</b>
+          <b>{lang === "en" ? "Share" : "Udostępnij"}</b>
           <a href="https://www.facebook.com/sharer/sharer.php?u=https://efizjoteka.com/blog/post/prowadzanie-za-raczke">
             <Image src={Facebook} width={30} height={30} alt="Facebook" />
           </a>
@@ -98,12 +109,11 @@ export default async function BlogPage({ params }: { params: { id: string | stri
             <Image src={Author} width={300} height={300} alt="Author" />
           </div>
           <div>
-            <h5>Autorka: mgr Magdalena Adaś</h5>
+            <h5>{lang === "en" ? "Author: mgr Magdalena Adaś" : "Autorka: mgr Magdalena Adaś"}</h5>
             <p>
-              Jestem fizjoterapeutką dziecięcą. Ta praca to moje marzenie i pasja. Poza bezpośrednim wsparciem
-              pacjentów, staram się, aby wiedza na temat prawidłowej pielęgnacji dzieci trafiła do jak największej
-              liczby rodziców. Stąd moje działania online. Z moich materiałów każdego miesiąca korzystają tysiące
-              rodziców.
+              {lang === "en"
+                ? "I am a pediatric physiotherapist. This work is my dream and passion. In addition to directly supporting patients, I strive to ensure that knowledge about proper child care reaches as many parents as possible. Hence my online activities. Thousands of parents use my materials every month."
+                : "Jestem fizjoterapeutką dziecięcą. Ta praca to moje marzenie i pasja. Poza bezpośrednim wsparciem pacjentów, staram się, aby wiedza na temat prawidłowej pielęgnacji dzieci trafiła do jak największej liczby rodziców. Stąd moje działania online. Z moich materiałów każdego miesiąca korzystają tysiące rodziców."}
             </p>
           </div>
         </div>

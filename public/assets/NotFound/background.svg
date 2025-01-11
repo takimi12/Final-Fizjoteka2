@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <!-- Light blue background circle -->
+  <circle cx="300" cy="200" r="150" fill="#24596a" fill-opacity="0.1"/>
+  
+  <!-- Horizontal line -->
+  <line x1="50" y1="300" x2="550" y2="300" stroke="#24596a" stroke-width="2"/>
+  
+  <!-- Laptop base -->
+  <path d="M150 200 L450 200 L480 300 L120 300 Z" fill="#24596a"/>
+  
+  <!-- Laptop screen -->
+  <rect x="180" y="100" width="240" height="150" fill="#24596a"/>
+  
+  <!-- Screen inner part -->
+  <rect x="190" y="110" width="220" height="130" fill="white"/>
+  
+  <!-- 404 text -->
+  <text x="250" y="190" font-family="Arial" font-size="40" fill="#24596a">404</text>
+  
+  <!-- Globe icon -->
+  <circle cx="150" cy="80" r="20" fill="none" stroke="#24596a" stroke-width="2"/>
+  <path d="M130 80 Q150 60 170 80 Q150 100 130 80" fill="none" stroke="#24596a" stroke-width="2"/>
+  <path d="M150 60 L150 100" stroke="#24596a" stroke-width="2"/>
+  
+  <!-- Magnifying glass -->
+  <circle cx="450" cy="180" r="15" fill="none" stroke="#24596a" stroke-width="2"/>
+  <line x1="460" y1="190" x2="475" y2="205" stroke="#24596a" stroke-width="2"/>
+</svg>

@@ -80,11 +80,11 @@ export async function POST(request: NextRequest) {
 			const imageUrl = await uploadFileToS3(imageBuffer, imageFileName, imageFileType);
 			const pdfUrl = await uploadFileToS3(pdfBuffer, pdfFileName, pdfFileType);
 			return NextResponse.json({ success: true, imageUrl, pdfUrl });
-		} catch (err: any) {
+		} catch (err) {
 			console.error("Upload error:", err);
 			return NextResponse.json({ error: (err as Error).message }, { status: 500 });
 		}
-	} catch (error: any) {
+	} catch (error) {
 		console.error("Error:", error);
 		return NextResponse.json({ error: (error as Error).message }, { status: 500 });
 	}

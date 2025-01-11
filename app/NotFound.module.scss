@@ -1,0 +1,37 @@
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Opcjonalnie, półprzezroczyste tło dla czytelności */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .iconBox {
+    margin-bottom: 20px;
+  }
+  
+  .heading {
+    margin-bottom: 10px;
+  }
+  
+  .subheading {
+    margin-bottom: 20px;
+  }
+
+  .textSection{
+    position: relative;
+    top: -99px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }

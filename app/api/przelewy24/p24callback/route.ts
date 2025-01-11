@@ -1,6 +1,6 @@
 import { Currency, P24 } from "@ingameltd/node-przelewy24";
 import { NextRequest, NextResponse } from "next/server";
-import Transaction from "../../../../backend/models/transactionID";
+import Transaction, { ITransaction } from "../../../../backend/models/transactionID";
 import { dbConnect } from "../../../../backend/config/dbConnect";
 import { sendEmail } from "../../../../libs/emailService";
 
@@ -21,13 +21,13 @@ export async function POST(request: NextRequest) {
 	const body: NotificationBody = await request.json();
 
 	await dbConnect();
-	const transaction = await Transaction.findById(body.sessionId).populate("products");
+	const transaction:ITransaction = await Transaction.findById(body.sessionId).populate("products");
 
 	if (!transaction) {
 		return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
 	}
 
-	const totalPrice = transaction.products.reduce((acc: number, cur: any) => {
+	const totalPrice = transaction.products.reduce((acc: number, cur) => {
 		return acc + Number(cur.price);
 	}, 0);
 
@@ -54,17 +54,19 @@ export async function POST(request: NextRequest) {
 	if (result) {
 		await Transaction.findOneAndUpdate({ _id: body.sessionId }, { status: true });
 
-		const urls = transaction.products.map((el: any) => el.url);
+		const urls = transaction.products.map((el) => el.url);
 
 		try {
-			await sendEmail({
-				Source: "tomek12olech@gmail.com",
-				Destination: { ToAddresses: [transaction.customer.email] },
-				Message: {
-					Subject: { Data: "Przesyłamy link do pobrania poradnika" },
-					Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
-				},
-			});
+			if(transaction.customer && transaction.customer.email){
+				await sendEmail({
+					Source: "tomek12olech@gmail.com",
+					Destination: { ToAddresses: [transaction.customer.email] },
+					Message: {
+						Subject: { Data: "Przesyłamy link do pobrania poradnika" },
+						Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
+					},
+				});
+			}
 			return NextResponse.json({ message: "Email sent" });
 		} catch (err) {
 			console.log("err", err);

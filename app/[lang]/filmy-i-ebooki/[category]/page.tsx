@@ -6,6 +6,9 @@ export const generateStaticParams = async () => {
 	  { lang: "pl", category: "Nauka-noszenia" },
 	  { lang: "pl", category: "Asymetria-ulozeniowa" },
 	  { lang: "pl", category: "Rozwoj-dziecka" },
+	  { lang: "en", category: "Nauka-noszenia" },
+	  { lang: "en", category: "Asymetria-ulozeniowa" },
+	  { lang: "en", category: "Rozwoj-dziecka" },
 	];
   };
   

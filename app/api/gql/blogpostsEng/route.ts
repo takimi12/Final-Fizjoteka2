@@ -22,7 +22,7 @@ export const GET = async (request: Request) => {
 				body: JSON.stringify({
 					query: `
 						query MyQuery($id: ID!) {
-							blog1(where: { id: $id }) {
+							blog2(where: { id: $id }) {
 								createdAt
 								author
 								tytul
@@ -50,7 +50,7 @@ export const GET = async (request: Request) => {
 			throw new Error(`GraphQL Error: ${data.errors[0].message}`);
 		}
 
-		return NextResponse.json(data.data.blog1);
+		return NextResponse.json(data.data.blog2);
 	} catch (error) {
 		return NextResponse.json({ error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
 	}

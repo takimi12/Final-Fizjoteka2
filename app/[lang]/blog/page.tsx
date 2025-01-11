@@ -13,16 +13,25 @@ interface Blog {
   };
 }
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const { lang } = params;
+
   const response = await fetch("https://fizjoteka.vercel.app/api/gql/blog");
+  const responseEng = await fetch("https://fizjoteka.vercel.app/api/gql/blogEng");
 
   if (!response.ok) {
     return <div>Error loading blogs</div>;
   }
 
   const blogs: Blog[] = await response.json();
+  const blogs1: Blog[] = await responseEng.json();
 
-  if (!blogs) {
+
+  if (!blogs || !blogs1) {
     return <div>Error loading blogs</div>;
   }
 
@@ -32,10 +41,10 @@ export default async function Page() {
         <Breadcrumbs />
         <div className={styles.parent}>
           <div>
-            <h2>Rozwoj dziecka okiem fizjoterapeuty</h2>
+            <h2>{lang === 'pl' ? 'Rozwoj dziecka okiem fizjoterapeuty' : "Child development through physiotherapist's eyes"}</h2>
           </div>
           <div className={` ${styles.container}`}>
-            <Pagination blogs={blogs} />
+            <Pagination blogs={blogs} blogs1={blogs1} currentLang={lang} />
           </div>
         </div>
       </div>

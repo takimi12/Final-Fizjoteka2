@@ -11,7 +11,7 @@ type PaymentStatus =
   | 'expired'
   | 'error'
   | 'cancelled';
-
+// changing
 interface StatusConfig {
   icon: React.ReactNode;
   title: string;

@@ -12,6 +12,7 @@
     "knip": "knip"
   },
   "dependencies": {
+    "lucide-react": "^0.327.0",
     "@aws-sdk/client-s3": "^3.590.0",
     "@aws-sdk/client-ses": "^3.592.0",
     "@aws-sdk/s3-request-presigner": "^3.590.0",

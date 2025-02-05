@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Five.module.scss";
 import Link from "next/link";
-import circle from "../../../../../..//public/assets/Kurs-Noszenia/Eleven/circle.svg";
+import circle from "../../../../../../public/assets/Kurs-Noszenia/Eleven/circle.svg";
 import Image from "next/image";
 import { getTopics } from "../../../../../../helpers/api/getTopic";
 import { Button } from "../../../../../../components/AdminComponents/Subcomponents/Button";

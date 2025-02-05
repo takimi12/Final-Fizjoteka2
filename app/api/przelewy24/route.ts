@@ -188,7 +188,6 @@ interface Product {
 
 export async function POST(request: NextRequest) {
     try {
-        // 1. Sprawdzenie body requestu
         const body: RequestBody = await request.json();
         console.log('Received body:', body);
 
@@ -199,7 +198,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // 2. Połączenie z bazą danych
         try {
             await dbConnect();
             console.log('Database connected');
@@ -211,7 +209,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // 3. Pobieranie produktów
         const productPromises = body.cartItems.map((el: CartItem) => {
             console.log('Searching for product with ID:', el.id);
             return Topics.findById(el.id);
@@ -227,13 +224,11 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // 4. Obliczanie ceny
         const totalPrice = products.reduce((acc: number, cur: Product) => {
             return acc + Number(cur.price);
         }, 0);
         console.log('Total price:', totalPrice);
 
-        // 5. Tworzenie produktów do transakcji
         const allProducts = products.map((product) => ({
             name: product.title,
             price: product.price,
@@ -241,7 +236,7 @@ export async function POST(request: NextRequest) {
             url: product.pdfFileUrl,
         }));
 
-        // 6. Tworzenie transakcji
+
         const transaction = await Transaction.create({
             status: false,
             products: allProducts,
@@ -254,7 +249,6 @@ export async function POST(request: NextRequest) {
         });
         console.log('Transaction created:', transaction._id);
 
-        // 7. Konfiguracja P24
         const POS_ID = process.env.P24_MERCHANT_ID;
         const CRC = process.env.P24_CRC_KEY;
         const API_KEY = process.env.P24_API_KEY;
@@ -271,10 +265,9 @@ export async function POST(request: NextRequest) {
             sandbox: true,
         });
 
-        // 8. Tworzenie transakcji P24
         const result = await p24.createTransaction({
             sessionId: transaction._id.toString(),
-            amount: Math.round(totalPrice * 100), // Zaokrąglamy do pełnych groszy
+            amount: Math.round(totalPrice * 100), 
             currency: Currency.PLN,
             description: "test order",
             email: body.email,

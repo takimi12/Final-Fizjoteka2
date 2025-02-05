@@ -30,7 +30,6 @@ const Cartpage: React.FC = () => {
     const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
     const [isSubmittingPayment, setIsSubmittingPayment] = useState(false);
 
-    // Main form
     const {
         register: registerMain,
         handleSubmit,
@@ -45,7 +44,6 @@ const Cartpage: React.FC = () => {
         },
     });
 
-    // Discount form
     const {
         register: registerDiscount,
         handleSubmit: handleDiscountSubmit,
@@ -112,7 +110,7 @@ const Cartpage: React.FC = () => {
             });
     
             if (responseData && responseData.url) {
-                dispatch(clearCart()); // Wyczyść koszyk po udanej płatności
+                dispatch(clearCart()); 
                 window.location.href = responseData.url;
             }
         } catch (error) {

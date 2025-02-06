@@ -16,14 +16,35 @@ const customerSchema = new Schema({
 
 const transactionSchema = new Schema({
 	status: { type: Boolean, required: true },
+	p24OrderId: { type: Number },
+	amount: { type: Number },
+	createdAt: { type: Date, default: Date.now },
 	products: [productSchema], 
 	customer: customerSchema,
 });
 
-
 const Transaction = mongoose.models.Transaction || mongoose.model("Transaction", transactionSchema);
 
-export type ITransaction = mongoose.InferSchemaType<typeof transactionSchema>;
+export type ITransaction = {
+    status: boolean;
+    p24OrderId?: number;
+    amount?: number;
+    createdAt?: Date;
+    products: Array<{
+        name: string;
+        price: number;
+        quantity: number;
+        url: string;
+        _id: string;
+    }>;
+    customer: {
+        email: string;
+        nameAndSurname: string;
+        companyName: string;
+        nip: string;
+        _id: string;
+    };
+};
 
 export type IProduct = mongoose.InferSchemaType<typeof productSchema>;
 

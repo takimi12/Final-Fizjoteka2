@@ -228,19 +228,24 @@ export default function ContinuePage() {
                     </div>
                 );
             
-            case 'error':
-                return (
-                    <div className="text-red-600">
-                        <h2 className="text-xl font-semibold mb-4">Błąd płatności</h2>
-                        <p>Wystąpił błąd podczas przetwarzania płatności.</p>
-                        <button
-                            onClick={handleRetryPayment}
-                            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                        >
-                            Spróbuj zapłacić ponownie
-                        </button>
-                    </div>
-                );
+                case 'error':
+                  return (
+                      <div className="text-red-600">
+                          <h2 className="text-xl font-semibold mb-4">Błąd płatności</h2>
+                          {status.p24Status?.error && (
+                              <p className="mb-2">Kod błędu: {status.p24Status.error}</p>
+                          )}
+                          {status.p24Status?.isRejected && (
+                              <p className="mb-2">Płatność została odrzucona</p>
+                          )}
+                          <button
+                              onClick={handleRetryPayment}
+                              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                          >
+                              Spróbuj zapłacić ponownie
+                          </button>
+                      </div>
+                  );
             
             case 'no_payment':
                 return (

@@ -60,7 +60,7 @@
 //         );
 //     }
 // }
-// app/api/przelewy24/status/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import { P24, Currency } from "@ingameltd/node-przelewy24";
 import Transaction from "../../../../backend/models/transactionID";
@@ -107,15 +107,7 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        try {
-            await dbConnect();
-        } catch (dbError) {
-            console.error('Database connection error:', dbError);
-            return NextResponse.json(
-                { error: "Database connection failed" },
-                { status: 500 }
-            );
-        }
+        await dbConnect();
         
         const transaction = await Transaction.findById(orderId);
         
@@ -127,7 +119,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Obliczanie oczekiwanej kwoty
-        const expectedAmount = transaction.products.reduce((acc:any, product:any) => 
+        const expectedAmount = transaction.products.reduce((acc: any, product: any) => 
             acc + (Number(product.price) * Number(product.quantity)), 0
         );
 
@@ -156,7 +148,7 @@ export async function GET(request: NextRequest) {
 
         if (transaction.p24OrderId) {
             try {
-                // Poprawione parametry verifyTransaction zgodnie z interfejsem
+                // Weryfikacja transakcji w Przelewy24
                 const verifyResult = await p24.verifyTransaction({
                     sessionId: orderId,
                     amount: Math.round(expectedAmount * 100),
@@ -164,12 +156,18 @@ export async function GET(request: NextRequest) {
                     orderId: transaction.p24OrderId
                 });
 
-                p24Status = {
-                    orderId: transaction.p24OrderId,
-                    isExpired: !verifyResult && Date.now() > (transaction.createdAt?.getTime() + 15 * 60 * 1000),
-                    isRejected: !verifyResult,
-                    error: verifyResult ? undefined : 'Transaction verification failed'
-                };
+                // Jeśli weryfikacja nie powiodła się, oznacza to błąd
+                if (!verifyResult) {
+                    p24Status.isRejected = true;
+                    p24Status.error = 'Transaction verification failed';
+                }
+
+                // Sprawdzenie, czy transakcja wygasła (np. po 15 minutach)
+                const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 15 * 60 * 1000);
+                if (!verifyResult && transactionExpired) {
+                    p24Status.isExpired = true;
+                }
+
             } catch (p24Error) {
                 console.error('Error verifying P24 transaction:', p24Error);
                 p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
@@ -178,7 +176,7 @@ export async function GET(request: NextRequest) {
 
         // Określanie stanu płatności
         let state: PaymentStatus['state'] = 'pending';
-        
+
         if (transaction.status) {
             state = 'success';
         } else if (p24Status.isRejected) {

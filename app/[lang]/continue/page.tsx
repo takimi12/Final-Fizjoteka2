@@ -128,7 +128,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { PaymentStatus } from '../../api/przelewy24/status/route';
+import type { PaymentStatus } from '../../api/przelewy24/status/route';
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();

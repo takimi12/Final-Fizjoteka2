@@ -1,8 +1,6 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/[lang]/continue/page": "app/[lang]/continue/page.js",
   "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js",
-  "/[lang]/page": "app/[lang]/page.js"
+  "/[lang]/continue/page": "app/[lang]/continue/page.js"
 }

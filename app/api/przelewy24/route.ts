@@ -267,17 +267,18 @@ export async function POST(request: NextRequest) {
 
         const result = await p24.createTransaction({
             sessionId: transaction._id.toString(),
-            amount: Math.round(totalPrice * 100), 
+            amount: Math.round(totalPrice * 100),
             currency: Currency.PLN,
             description: "test order",
             email: body.email,
             country: Country.Poland,
             language: Language.PL,
-            urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/pl/continue?orderId=${transaction._id}`,
+            urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/pl/continue?orderId=${transaction._id}&sessionId=${transaction._id}`, // Zaktualizowane URL
             urlStatus: `${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24/p24callback`,
             timeLimit: 15,
             encoding: Encoding.UTF8,
         });
+        
 
         console.log('P24 transaction created');
         return NextResponse.json({ url: result.link });

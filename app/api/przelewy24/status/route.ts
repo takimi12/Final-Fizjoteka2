@@ -81,32 +81,32 @@ export interface PaymentStatus {
         };
 
         if (transaction.p24OrderId) {
-            try {
-                const verifyResult = await p24.verifyTransaction({
-                    sessionId: orderId,
-                    amount: Math.round(expectedAmount * 100),
-                    currency: Currency.PLN,
-                    orderId: transaction.p24OrderId
-                });
-        
-                if (verifyResult === true) {
-                    p24Status.orderId = transaction.p24OrderId;
-                } else {
-                    p24Status.isRejected = true;
-                    p24Status.error = 'Transaction verification failed';
-                }
-        
-                const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
-                if (!verifyResult && transactionExpired) {
-                    p24Status.isExpired = true;
-                }
-        
-            } catch (p24Error) {
-                console.error('Error verifying P24 transaction:', p24Error);
-                p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
-            }
+    try {
+        const verifyResult = await p24.verifyTransaction({
+            sessionId: orderId,
+            amount: Math.round(expectedAmount * 100),
+            currency: Currency.PLN,
+            orderId: transaction.p24OrderId
+        });
+
+        if (verifyResult === true) {
+            p24Status.orderId = transaction.p24OrderId;
+        } else {
+            p24Status.isRejected = true;
+            p24Status.error = 'Transaction verification failed';
         }
-        
+
+        const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
+        if (!verifyResult && transactionExpired) {
+            p24Status.isExpired = true;
+        }
+
+    } catch (p24Error) {
+        console.error('Error verifying P24 transaction:', p24Error);
+        p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
+    }
+}
+
 
         let state: PaymentStatus['state'] = 'pending';
 

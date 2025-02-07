@@ -1,20 +1,14 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-
 export default function ContinuePage() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [status, setStatus] = useState();
+    const [status, setStatus] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-
-    console.log(status, 'status')
-
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -26,7 +20,8 @@ export default function ContinuePage() {
 
         const checkStatus = async () => {
             try {
-                const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
+                // 🔄 Aktualizujemy ścieżkę API na nową
+                const response = await fetch(`/api/payment/status?orderId=${orderId}`);
                 if (!response.ok) {
                     throw new Error('Błąd podczas sprawdzania statusu');
                 }
@@ -74,7 +69,6 @@ export default function ContinuePage() {
                 <div className="text-center">
                     <h2 className="text-xl font-semibold text-red-600 mb-2">Wystąpił błąd</h2>
                     <p>{error}</p>
-             
                 </div>
             </div>
         );
@@ -97,7 +91,6 @@ export default function ContinuePage() {
                     <div className="text-red-600">
                         <h2 className="text-xl font-semibold mb-4">Błąd płatności</h2>
                         <p>Wystąpił błąd podczas przetwarzania płatności.</p>
-                    
                     </div>
                 );
             
@@ -106,7 +99,6 @@ export default function ContinuePage() {
                     <div className="text-red-600">
                         <h2 className="text-xl font-semibold mb-4">Brak wpłaty</h2>
                         <p>Nie otrzymaliśmy Twojej wpłaty w wyznaczonym czasie.</p>
-                      
                     </div>
                 );
             
@@ -115,7 +107,6 @@ export default function ContinuePage() {
                     <div className="text-red-600">
                         <h2 className="text-xl font-semibold mb-4">Nieprawidłowa kwota</h2>
                         <p>Otrzymana kwota ({status.amount} PLN) nie zgadza się z oczekiwaną ({status.expectedAmount} PLN).</p>
-                    
                     </div>
                 );
             
@@ -127,7 +118,7 @@ export default function ContinuePage() {
                         <div className="mt-6">
                             <h3 className="font-semibold mb-2">Zakupione produkty:</h3>
                             <ul className="list-none">
-                                {status.products.map((product, index) => (
+                                {status.products.map((product: any, index: number) => (
                                     <li key={index} className="mb-2">
                                         {product.name} - {product.price} PLN
                                     </li>

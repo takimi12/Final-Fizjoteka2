@@ -1,3 +1,5 @@
+
+
 import { NextRequest, NextResponse } from "next/server";
 import { P24, Currency } from "@ingameltd/node-przelewy24";
 import Transaction from "../../../../backend/models/transactionID";
@@ -31,26 +33,6 @@ export interface PaymentStatus {
     amount?: number;
     expectedAmount?: number;
 }
-
-// Funkcja do pobierania statusu transakcji bezpośrednio z Przelewy24
-const checkTransactionStatus = async (orderId: string) => {
-    const response = await fetch("https://secure.przelewy24.pl/api/v1/transaction/by/sessionId", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Basic ${Buffer.from(`${process.env.P24_MERCHANT_ID}:${process.env.P24_API_KEY}`).toString("base64")}`
-        },
-        body: JSON.stringify({
-            sessionId: orderId
-        })
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch transaction status: ${response.statusText}`);
-    }
-
-    return response.json();
-};
 
 export async function GET(request: NextRequest) {
     try {
@@ -93,32 +75,55 @@ export async function GET(request: NextRequest) {
             );
         }
 
+        const p24 = new P24(Number(POS_ID), Number(POS_ID), API_KEY, CRC, {
+            sandbox: true,
+        });
+
+        // Sprawdzanie statusu w P24
         let p24Status: P24TransactionStatus = {
             isExpired: false,
             isRejected: false
         };
 
-        // Pobranie statusu transakcji z Przelewy24
-        let transactionInfo;
-        try {
-            transactionInfo = await checkTransactionStatus(orderId);
-            console.log("Transaction Info from P24:", transactionInfo);
-        } catch (error) {
-            console.error("Error fetching P24 transaction status:", error);
-            p24Status.error = error instanceof Error ? error.message : "Unknown P24 error";
+        if (transaction.p24OrderId) {
+            try {
+                // Weryfikacja transakcji w Przelewy24
+                const verifyResult = await p24.verifyTransaction({
+                    sessionId: orderId,
+                    amount: Math.round(expectedAmount * 100),
+                    currency: Currency.PLN,
+                    orderId: transaction.p24OrderId
+                });
+
+
+              
+                // Jeśli weryfikacja nie powiodła się, oznacza to błąd
+                if (!verifyResult) {
+                    p24Status.isRejected = true;
+                    p24Status.error = 'Transaction verification failed';
+                }
+
+                // Sprawdzenie, czy transakcja wygasła (np. po 2 minutach)
+                const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
+                if (!verifyResult && transactionExpired) {
+                    p24Status.isExpired = true;
+                }
+
+            } catch (p24Error) {
+                console.error('Error verifying P24 transaction:', p24Error);
+                p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
+            }
         }
 
-        // Określanie stanu płatności na podstawie statusu z Przelewy24
+        // Określanie stanu płatności
         let state: PaymentStatus['state'] = 'pending';
 
-        if (transactionInfo?.data?.status === 1) {
+        if (transaction.status) {
             state = 'success';
-        } else if (transactionInfo?.data?.status === 2) {
+        } else if (p24Status.isRejected) {
             state = 'error';
-            p24Status.isRejected = true;
-        } else if (transactionInfo?.data?.status === 3) {
+        } else if (p24Status.isExpired) {
             state = 'no_payment';
-            p24Status.isExpired = true;
         } else if (p24Status.error) {
             state = 'error';
         } else if (transaction.amount && transaction.amount !== expectedAmount) {

@@ -47,6 +47,8 @@ export async function GET(request: NextRequest) {
             isRejected: false
         };
 
+        let p24TransactionStatus = "pending";
+
         if (transaction.p24OrderId) {
             try {
                 const signData = `${POS_ID}|${transaction.p24OrderId}|${Math.round(expectedAmount * 100)}|PLN|${CRC}`;
@@ -70,14 +72,17 @@ export async function GET(request: NextRequest) {
                 });
 
                 const verifyResult = await response.json();
+                p24TransactionStatus = verifyResult?.data?.status || "pending";
 
-                if (!verifyResult || !verifyResult.data || verifyResult.data.status !== "success") {
+                if (p24TransactionStatus === "failure" || p24TransactionStatus === "cancelled") {
                     p24Status.isRejected = true;
-                    p24Status.error = 'Transaction verification failed';
+                    p24Status.error = 'Transaction was rejected or cancelled';
+                } else if (p24TransactionStatus !== "success" && p24TransactionStatus !== "waiting") {
+                    p24Status.error = `Unexpected status: ${p24TransactionStatus}`;
                 }
 
                 const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
-                if (!verifyResult && transactionExpired) {
+                if (p24TransactionStatus === "pending" && transactionExpired) {
                     p24Status.isExpired = true;
                 }
             } catch (error) {
@@ -87,14 +92,17 @@ export async function GET(request: NextRequest) {
         }
 
         let state = 'pending';
+        
         if (transaction.status) {
             state = 'success';
         } else if (p24Status.isRejected) {
             state = 'error';
         } else if (p24Status.isExpired) {
             state = 'no_payment';
-        } else if (p24Status.error) {
+        } else if (p24TransactionStatus === "failure" || p24TransactionStatus === "cancelled") {
             state = 'error';
+        } else if (p24TransactionStatus === "waiting") {
+            state = 'pending';
         } else if (transaction.amount && transaction.amount !== expectedAmount) {
             state = 'wrong_amount';
         }
@@ -103,6 +111,7 @@ export async function GET(request: NextRequest) {
             status: transaction.status,
             state,
             p24Status,
+            p24TransactionStatus,
             products: transaction.products,
             customer: transaction.customer,
             amount: transaction.amount,

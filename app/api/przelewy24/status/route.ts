@@ -51,11 +51,27 @@ async function getDetailedP24Status(
     merchantId: string,
     apiKey: string,
     isSandbox: boolean,
-    p24OrderId: number,
+    p24OrderId: number | null,
     sessionId: string,
     amount: number,
     p24: P24
 ): Promise<P24TransactionStatus> {
+    // Jeśli brak p24OrderId, zwracamy status no_payment
+    if (!p24OrderId) {
+        return {
+            isExpired: false,
+            isRejected: false,
+            errorCode: 'NO_P24_ORDER_ID',
+            errorDescription: 'No payment has been initiated',
+            transactionStatus: 'no_payment',
+            detailedStatus: {
+                status: 'NO_PAYMENT',
+                code: 'NO_PAYMENT',
+                description: 'Nie rozpoczęto procesu płatności'
+            }
+        };
+    }
+
     try {
         // Próbujemy zweryfikować transakcję
         const verifyResult = await p24.verifyTransaction({
@@ -69,7 +85,8 @@ async function getDetailedP24Status(
         const status: P24TransactionStatus = {
             orderId: p24OrderId,
             isExpired: false,
-            isRejected: false
+            isRejected: false,
+            transactionStatus: 'pending'
         };
 
         // Sprawdzamy datę utworzenia transakcji (15 minut)
@@ -81,6 +98,7 @@ async function getDetailedP24Status(
             status.isExpired = true;
             status.errorCode = 'EXPIRED';
             status.errorDescription = 'Payment session expired';
+            status.transactionStatus = 'expired';
             status.detailedStatus = {
                 status: 'EXPIRED',
                 code: 'EXPIRED',
@@ -96,42 +114,38 @@ async function getDetailedP24Status(
                 code: 'SUCCESS',
                 description: 'Płatność została zrealizowana pomyślnie'
             };
-        } else {
-            // Spróbujmy uzyskać więcej informacji o statusie transakcji
-            const baseApiUrl = isSandbox ? 
-                'https://sandbox.przelewy24.pl' : 
-                'https://secure.przelewy24.pl';
+            return status;
+        }
 
-            const credentials = Buffer.from(`${merchantId}:${apiKey}`).toString('base64');
+        // Spróbujmy uzyskać więcej informacji o statusie transakcji
+        const baseApiUrl = isSandbox ? 
+            'https://sandbox.przelewy24.pl' : 
+            'https://secure.przelewy24.pl';
+
+        const credentials = Buffer.from(`${merchantId}:${apiKey}`).toString('base64');
+        
+        const response = await fetch(`${baseApiUrl}/api/v1/transaction/by/sessionId/${sessionId}`, {
+            headers: {
+                'Authorization': `Basic ${credentials}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const transactionDetails = await response.json();
             
-            const response = await fetch(`${baseApiUrl}/api/v1/transaction/by/sessionId/${sessionId}`, {
-                headers: {
-                    'Authorization': `Basic ${credentials}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            status.detailedStatus = {
+                status: transactionDetails.status || 'PENDING',
+                code: transactionDetails.code || 'UNKNOWN',
+                description: getStatusDescription(transactionDetails.status)
+            };
 
-            if (response.ok) {
-                const transactionDetails = await response.json();
-                
-                status.detailedStatus = {
-                    status: transactionDetails.status || 'PENDING',
-                    code: transactionDetails.code || 'UNKNOWN',
-                    description: getStatusDescription(transactionDetails.status)
-                };
+            status.transactionStatus = transactionDetails.status?.toLowerCase() || 'pending';
 
-                if (transactionDetails.status === 'REJECTED') {
-                    status.isRejected = true;
-                    status.errorCode = 'REJECTED';
-                    status.errorDescription = 'Payment was rejected';
-                }
-            } else {
-                status.transactionStatus = 'pending';
-                status.detailedStatus = {
-                    status: 'PENDING',
-                    code: 'PENDING',
-                    description: 'Oczekiwanie na realizację płatności'
-                };
+            if (transactionDetails.status === 'REJECTED') {
+                status.isRejected = true;
+                status.errorCode = 'REJECTED';
+                status.errorDescription = 'Payment was rejected';
             }
         }
 
@@ -144,6 +158,7 @@ async function getDetailedP24Status(
             error: error instanceof Error ? error.message : 'Unknown error',
             errorCode: 'P24_API_ERROR',
             errorDescription: 'Could not retrieve payment status',
+            transactionStatus: 'error',
             detailedStatus: {
                 status: 'ERROR',
                 code: 'ERROR',
@@ -164,6 +179,77 @@ function getStatusDescription(status: string): string {
         'PROCESSING': 'Przetwarzanie płatności',
     };
     return statusMap[status] || 'Nieznany status płatności';
+}
+
+function determinePaymentState(
+    transaction: any,
+    p24Status: P24TransactionStatus,
+    expectedAmount: number
+): PaymentStatus['state'] {
+    // Sprawdzamy czy płatność została zainicjowana
+    if (!transaction.p24OrderId) {
+        return 'no_payment';
+    }
+
+    // Sprawdzamy czy transakcja jest zakończona sukcesem
+    if (p24Status.transactionStatus === 'success') {
+        return 'success';
+    }
+
+    // Sprawdzamy pozostałe stany
+    if (p24Status.isExpired) return 'expired';
+    if (p24Status.isRejected) return 'rejected';
+    if (p24Status.error) return 'error';
+    if (p24Status.transactionStatus === 'processing') return 'processing';
+    if (transaction.amount && transaction.amount !== expectedAmount) return 'wrong_amount';
+    
+    return 'pending';
+}
+
+function getErrorDetails(
+    state: PaymentStatus['state'],
+    p24Status: P24TransactionStatus,
+    transaction: any,
+    expectedAmount: number
+): PaymentStatus['errorDetails'] | undefined {
+    switch (state) {
+        case 'expired':
+            return {
+                code: 'PAYMENT_EXPIRED',
+                message: 'Sesja płatności wygasła',
+                timestamp: new Date().toISOString(),
+                details: p24Status.detailedStatus
+            };
+        case 'rejected':
+            return {
+                code: 'PAYMENT_REJECTED',
+                message: p24Status.errorDescription || 'Płatność została odrzucona',
+                timestamp: new Date().toISOString(),
+                details: p24Status.detailedStatus
+            };
+        case 'error':
+            return {
+                code: p24Status.errorCode || 'UNKNOWN_ERROR',
+                message: p24Status.errorDescription || 'Wystąpił nieznany błąd',
+                timestamp: new Date().toISOString(),
+                details: p24Status.detailedStatus
+            };
+        case 'wrong_amount':
+            return {
+                code: 'WRONG_AMOUNT',
+                message: `Oczekiwana kwota: ${expectedAmount} PLN, otrzymano: ${transaction.amount} PLN`,
+                timestamp: new Date().toISOString()
+            };
+        case 'no_payment':
+            return {
+                code: 'NO_PAYMENT',
+                message: 'Nie rozpoczęto procesu płatności',
+                timestamp: new Date().toISOString(),
+                details: p24Status.detailedStatus
+            };
+        default:
+            return undefined;
+    }
 }
 
 export async function GET(request: NextRequest) {
@@ -216,38 +302,27 @@ export async function GET(request: NextRequest) {
             sandbox: IS_SANDBOX,
         });
 
-        let p24Status: P24TransactionStatus;
-        
-        if (transaction.p24OrderId) {
-            p24Status = await getDetailedP24Status(
-                POS_ID,
-                API_KEY,
-                IS_SANDBOX,
-                transaction.p24OrderId,
-                orderId,
-                expectedAmount,
-                p24
-            );
-        } else {
-            p24Status = {
-                isExpired: false,
-                isRejected: false,
-                errorCode: 'NO_P24_ORDER_ID',
-                errorDescription: 'No payment has been initiated',
-                detailedStatus: {
-                    status: 'ERROR',
-                    code: 'NO_PAYMENT',
-                    description: 'Nie rozpoczęto procesu płatności'
-                }
-            };
-        }
+        const p24Status = await getDetailedP24Status(
+            POS_ID,
+            API_KEY,
+            IS_SANDBOX,
+            transaction.p24OrderId || null,
+            orderId,
+            expectedAmount,
+            p24
+        );
 
-        // Reszta kodu pozostaje bez zmian...
         const state = determinePaymentState(transaction, p24Status, expectedAmount);
         const errorDetails = getErrorDetails(state, p24Status, transaction, expectedAmount);
 
+        // Aktualizujemy status transakcji w bazie danych, jeśli płatność jest zakończona sukcesem
+        if (state === 'success' && !transaction.status) {
+            transaction.status = true;
+            await transaction.save();
+        }
+
         const response: PaymentStatus = {
-            status: transaction.status,
+            status: transaction.status || false,
             state,
             p24Status,
             products: transaction.products,
@@ -272,58 +347,5 @@ export async function GET(request: NextRequest) {
             },
             { status: 500 }
         );
-    }
-}
-
-function determinePaymentState(
-    transaction: any,
-    p24Status: P24TransactionStatus,
-    expectedAmount: number
-): PaymentStatus['state'] {
-    if (transaction.status) return 'success';
-    if (p24Status.isExpired) return 'expired';
-    if (p24Status.isRejected) return 'rejected';
-    if (p24Status.error) return 'error';
-    if (p24Status.transactionStatus === 'processing') return 'processing';
-    if (transaction.amount && transaction.amount !== expectedAmount) return 'wrong_amount';
-    return 'pending';
-}
-
-function getErrorDetails(
-    state: PaymentStatus['state'],
-    p24Status: P24TransactionStatus,
-    transaction: any,
-    expectedAmount: number
-): PaymentStatus['errorDetails'] | undefined {
-    switch (state) {
-        case 'expired':
-            return {
-                code: 'PAYMENT_EXPIRED',
-                message: 'Sesja płatności wygasła',
-                timestamp: new Date().toISOString(),
-                details: p24Status.detailedStatus
-            };
-        case 'rejected':
-            return {
-                code: 'PAYMENT_REJECTED',
-                message: p24Status.errorDescription || 'Płatność została odrzucona',
-                timestamp: new Date().toISOString(),
-                details: p24Status.detailedStatus
-            };
-        case 'error':
-            return {
-                code: p24Status.errorCode || 'UNKNOWN_ERROR',
-                message: p24Status.errorDescription || 'Wystąpił nieznany błąd',
-                timestamp: new Date().toISOString(),
-                details: p24Status.detailedStatus
-            };
-        case 'wrong_amount':
-            return {
-                code: 'WRONG_AMOUNT',
-                message: `Oczekiwana kwota: ${expectedAmount} PLN, otrzymano: ${transaction.amount} PLN`,
-                timestamp: new Date().toISOString()
-            };
-        default:
-            return undefined;
     }
 }

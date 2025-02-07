@@ -10,6 +10,11 @@ interface P24TransactionStatus {
     isRejected: boolean;
     errorCode?: string;
     errorDescription?: string;
+    transactionStatus?: string;  // Nowe pole - status transakcji P24
+    transactionCode?: string;    // Nowe pole - kod transakcji P24
+    transactionDate?: string;    // Nowe pole - data transakcji
+    responseCode?: string;      // Nowe pole - kod odpowiedzi z P24
+    additionalDetails?: any;    // Nowe pole - dodatkowe szczegóły zwrócone przez P24
 }
 
 export interface PaymentStatus {
@@ -103,24 +108,31 @@ export async function GET(request: NextRequest) {
                     orderId: transaction.p24OrderId
                 });
 
-                // Sprawdzenie czasu wygaśnięcia (15 minut)
-                const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 15 * 60 * 1000);
-
-                if (!verifyResult) {
-                    if (transactionExpired) {
-                        p24Status.isExpired = true;
-                        p24Status.errorCode = 'EXPIRED';
-                        p24Status.errorDescription = 'Transaction time limit exceeded';
-                    } else {
-                        p24Status.isRejected = true;
-                        p24Status.errorCode = 'REJECTED';
-                        p24Status.errorDescription = 'Payment was rejected';
-                    }
+                if (verifyResult === true) {
+                    // Jeśli transakcja jest zwrócona jako 'true', nie ma szczegółów transakcji
+                    p24Status.transactionStatus = 'success';
+                    p24Status.transactionCode = 'N/A';
+                    p24Status.transactionDate = 'N/A';
+                    p24Status.responseCode = 'N/A';
+                    p24Status.additionalDetails = {};
+                } else if (verifyResult === false) {
+                    // Jeśli odpowiedź to 'false', oznacza to niepowodzenie
+                    p24Status.isRejected = true;
+                    p24Status.errorCode = 'REJECTED';
+                    p24Status.errorDescription = 'Payment was rejected by P24';
                 }
             } catch (p24Error) {
                 p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
                 p24Status.errorCode = 'P24_ERROR';
                 p24Status.errorDescription = p24Error instanceof Error ? p24Error.message : 'Unknown payment processing error';
+            }
+
+            // Sprawdzenie czasu wygaśnięcia (15 minut)
+            const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 15 * 60 * 1000);
+            if (transactionExpired) {
+                p24Status.isExpired = true;
+                p24Status.errorCode = 'EXPIRED';
+                p24Status.errorDescription = 'Transaction time limit exceeded';
             }
         }
 

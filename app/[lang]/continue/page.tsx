@@ -3,12 +3,12 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import type { PaymentStatus } from '../../api/przelewy24/status/route';
+
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [status, setStatus] = useState<PaymentStatus | null>(null);
+    const [status, setStatus] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 

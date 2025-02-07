@@ -32,82 +32,93 @@ export interface PaymentStatus {
     expectedAmount?: number;
 }
 
+// Funkcja do pobierania statusu transakcji bezpośrednio z Przelewy24
+const checkTransactionStatus = async (orderId: string) => {
+    const response = await fetch("https://secure.przelewy24.pl/api/v1/transaction/by/sessionId", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Basic ${Buffer.from(`${process.env.P24_MERCHANT_ID}:${process.env.P24_API_KEY}`).toString("base64")}`
+        },
+        body: JSON.stringify({
+            sessionId: orderId
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch transaction status: ${response.statusText}`);
+    }
+
+    return response.json();
+};
+
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
         const orderId = searchParams.get('orderId');
 
         if (!orderId) {
-            return NextResponse.json({ error: "Order ID is required" }, { status: 400 });
+            return NextResponse.json(
+                { error: "Order ID is required" }, 
+                { status: 400 }
+            );
         }
 
         await dbConnect();
+        
         const transaction = await Transaction.findById(orderId);
-
+        
         if (!transaction) {
-            return NextResponse.json({ error: "Transaction not found" }, { status: 404 });
+            return NextResponse.json(
+                { error: "Transaction not found" }, 
+                { status: 404 }
+            );
         }
 
-        const expectedAmount = transaction.products.reduce((acc: number, product: any) =>
+        // Obliczanie oczekiwanej kwoty
+        const expectedAmount = transaction.products.reduce((acc: any, product: any) => 
             acc + (Number(product.price) * Number(product.quantity)), 0
         );
 
+        // Inicjalizacja P24
         const POS_ID = process.env.P24_MERCHANT_ID;
         const CRC = process.env.P24_CRC_KEY;
         const API_KEY = process.env.P24_API_KEY;
 
         if (!POS_ID || !CRC || !API_KEY) {
             console.error('Missing P24 configuration');
-            return NextResponse.json({ error: "Payment configuration missing" }, { status: 500 });
+            return NextResponse.json(
+                { error: "Payment configuration missing" },
+                { status: 500 }
+            );
         }
-
-        const p24 = new P24(Number(POS_ID), Number(POS_ID), API_KEY, CRC, { sandbox: true });
 
         let p24Status: P24TransactionStatus = {
             isExpired: false,
             isRejected: false
         };
 
+        // Pobranie statusu transakcji z Przelewy24
+        let transactionInfo;
+        try {
+            transactionInfo = await checkTransactionStatus(orderId);
+            console.log("Transaction Info from P24:", transactionInfo);
+        } catch (error) {
+            console.error("Error fetching P24 transaction status:", error);
+            p24Status.error = error instanceof Error ? error.message : "Unknown P24 error";
+        }
+
+        // Określanie stanu płatności na podstawie statusu z Przelewy24
         let state: PaymentStatus['state'] = 'pending';
 
-        if (transaction.p24OrderId) {
-            try {
-                const verifyResult = await p24.verifyTransaction({
-                    sessionId: orderId,
-                    amount: Math.round(expectedAmount * 100),
-                    currency: Currency.PLN,
-                    orderId: transaction.p24OrderId
-                });
-
-                console.log('verifyResult:', verifyResult);
-
-                if (verifyResult) {
-                    transaction.status = true;
-                    await transaction.save();
-                    state = 'success';
-                } else {
-                    p24Status.isRejected = true;
-                    p24Status.error = 'Transaction verification failed';
-                    state = 'error';
-                }
-
-            } catch (p24Error) {
-                console.error('Error verifying P24 transaction:', p24Error);
-                p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
-                state = 'error';
-            }
-        }
-
-        const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
-        if (transactionExpired) {
-            p24Status.isExpired = true;
-            state = 'no_payment';
-        }
-
-        if (p24Status.isRejected) {
+        if (transactionInfo?.data?.status === 1) {
+            state = 'success';
+        } else if (transactionInfo?.data?.status === 2) {
             state = 'error';
-        } else if (p24Status.isExpired) {
+            p24Status.isRejected = true;
+        } else if (transactionInfo?.data?.status === 3) {
             state = 'no_payment';
+            p24Status.isExpired = true;
         } else if (p24Status.error) {
             state = 'error';
         } else if (transaction.amount && transaction.amount !== expectedAmount) {
@@ -129,7 +140,9 @@ export async function GET(request: NextRequest) {
     } catch (error) {
         console.error('Error details:', error);
         return NextResponse.json(
-            { error: error instanceof Error ? error.message : "An unknown error occurred" },
+            { 
+                error: error instanceof Error ? error.message : "An unknown error occurred" 
+            },
             { status: 500 }
         );
     }

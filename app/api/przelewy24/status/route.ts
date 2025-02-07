@@ -32,9 +32,7 @@ export interface PaymentStatus {
     };
     amount?: number;
     expectedAmount?: number;
-}
-
-export async function GET(request: NextRequest) {
+}export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
         const orderId = searchParams.get('orderId');
@@ -57,12 +55,10 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        // Obliczanie oczekiwanej kwoty
         const expectedAmount = transaction.products.reduce((acc: any, product: any) => 
             acc + (Number(product.price) * Number(product.quantity)), 0
         );
 
-        // Inicjalizacja P24
         const POS_ID = process.env.P24_MERCHANT_ID;
         const CRC = process.env.P24_CRC_KEY;
         const API_KEY = process.env.P24_API_KEY;
@@ -79,7 +75,6 @@ export async function GET(request: NextRequest) {
             sandbox: true,
         });
 
-        // Sprawdzanie statusu w P24
         let p24Status: P24TransactionStatus = {
             isExpired: false,
             isRejected: false
@@ -87,35 +82,32 @@ export async function GET(request: NextRequest) {
 
         if (transaction.p24OrderId) {
             try {
-                // Weryfikacja transakcji w Przelewy24
                 const verifyResult = await p24.verifyTransaction({
                     sessionId: orderId,
                     amount: Math.round(expectedAmount * 100),
                     currency: Currency.PLN,
                     orderId: transaction.p24OrderId
                 });
-
-
-              
-                // Jeśli weryfikacja nie powiodła się, oznacza to błąd
-                if (!verifyResult) {
+        
+                if (verifyResult === true) {
+                    p24Status.orderId = transaction.p24OrderId;
+                } else {
                     p24Status.isRejected = true;
                     p24Status.error = 'Transaction verification failed';
                 }
-
-                // Sprawdzenie, czy transakcja wygasła (np. po 2 minutach)
+        
                 const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
                 if (!verifyResult && transactionExpired) {
                     p24Status.isExpired = true;
                 }
-
+        
             } catch (p24Error) {
                 console.error('Error verifying P24 transaction:', p24Error);
                 p24Status.error = p24Error instanceof Error ? p24Error.message : 'Unknown P24 error';
             }
         }
+        
 
-        // Określanie stanu płatności
         let state: PaymentStatus['state'] = 'pending';
 
         if (transaction.status) {

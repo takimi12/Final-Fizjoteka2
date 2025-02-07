@@ -22,7 +22,7 @@ export default function ContinuePage() {
         const checkStatus = async () => {
             try {
                 // 🔄 Aktualizujemy ścieżkę API na nową
-                const response = await fetch(`/api/payment/status?orderId=${orderId}`);
+                const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
                 if (!response.ok) {
                     throw new Error('Błąd podczas sprawdzania statusu');
                 }

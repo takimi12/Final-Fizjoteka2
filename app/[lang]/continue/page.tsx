@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -11,7 +12,10 @@ export default function ContinuePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+
     console.log(status, 'status')
+
+
     useEffect(() => {
         const orderId = searchParams.get('orderId');
         if (!orderId) {
@@ -27,16 +31,15 @@ export default function ContinuePage() {
                     throw new Error('Błąd podczas sprawdzania statusu');
                 }
                 const data = await response.json();
-
                 if (data.status === false) {
-                    const errorMessage = data.p24Status?.errorDescription || 'Nieznany błąd płatności';
-                    const detailedMessage = data.p24Status?.detailedStatus?.description || '';
-                    
-                    setError(`${errorMessage} ${detailedMessage ? `- ${detailedMessage}` : ''}`);
-                    return;
-                }
+                  const errorMessage = data.p24Status?.errorDescription || 'Nieznany błąd płatności';
+                  const detailedMessage = data.p24Status?.detailedStatus?.description || '';
+                  
+                  setError(`${errorMessage} ${detailedMessage ? `- ${detailedMessage}` : ''}`);
+                  return;
+              }
 
-                setStatus(data);
+              setStatus(data);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Wystąpił błąd');
             } finally {
@@ -49,7 +52,9 @@ export default function ContinuePage() {
         
         const intervalId = setInterval(async () => {
             attempts++;
+            
             await checkStatus();
+            
             if (status?.state === 'success' || attempts >= maxAttempts) {
                 clearInterval(intervalId);
             }
@@ -61,6 +66,7 @@ export default function ContinuePage() {
     }, [searchParams]);
 
     const handleRetryPayment = () => {
+        // Tutaj dodaj logikę ponownego rozpoczęcia płatności
         const orderId = searchParams.get('orderId');
         router.push(`/api/przelewy24/retry?orderId=${orderId}`);
     };
@@ -82,9 +88,6 @@ export default function ContinuePage() {
                 <div className="text-center">
                     <h2 className="text-xl font-semibold text-red-600 mb-2">Wystąpił błąd</h2>
                     <p>{error}</p>
-                    {error.includes('No payment has been initiated') ? (
-                        <p className="text-gray-700 mt-2">Nie rozpoczęto procesu płatności. Jeśli problem się powtarza, skontaktuj się z pomocą techniczną.</p>
-                    ) : null}
                     <button
                         onClick={handleRetryPayment}
                         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -107,13 +110,12 @@ export default function ContinuePage() {
                         <p>Twoja płatność jest w trakcie przetwarzania. Prosimy o cierpliwość.</p>
                     </div>
                 );
+            
             case 'error':
-            case 'no_payment':
-            case 'wrong_amount':
                 return (
                     <div className="text-red-600">
                         <h2 className="text-xl font-semibold mb-4">Błąd płatności</h2>
-                        <p>{status.state === 'wrong_amount' ? `Otrzymana kwota (${status.amount} PLN) nie zgadza się z oczekiwaną (${status.expectedAmount} PLN).` : 'Wystąpił błąd podczas przetwarzania płatności.'}</p>
+                        <p>Wystąpił błąd podczas przetwarzania płatności.</p>
                         <button
                             onClick={handleRetryPayment}
                             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -122,6 +124,35 @@ export default function ContinuePage() {
                         </button>
                     </div>
                 );
+            
+            case 'no_payment':
+                return (
+                    <div className="text-red-600">
+                        <h2 className="text-xl font-semibold mb-4">Brak wpłaty</h2>
+                        <p>Nie otrzymaliśmy Twojej wpłaty w wyznaczonym czasie.</p>
+                        <button
+                            onClick={handleRetryPayment}
+                            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                            Spróbuj zapłacić ponownie
+                        </button>
+                    </div>
+                );
+            
+            case 'wrong_amount':
+                return (
+                    <div className="text-red-600">
+                        <h2 className="text-xl font-semibold mb-4">Nieprawidłowa kwota</h2>
+                        <p>Otrzymana kwota ({status.amount} PLN) nie zgadza się z oczekiwaną ({status.expectedAmount} PLN).</p>
+                        <button
+                            onClick={handleRetryPayment}
+                            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                            Spróbuj zapłacić ponownie
+                        </button>
+                    </div>
+                );
+            
             case 'success':
                 return (
                     <div className="text-green-600">

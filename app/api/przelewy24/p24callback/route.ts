@@ -5,95 +5,106 @@ import { dbConnect } from "../../../../backend/config/dbConnect";
 import { sendEmail } from "../../../../libs/emailService";
 
 interface NotificationBody {
-	merchantId: number;
-	posId: number;
-	sessionId: string;
-	amount: number;
-	originAmount: number;
-	currency: string;
-	orderId: number;
-	methodId: number;
-	statement: string;
-	sign: string;
+  merchantId: number;
+  posId: number;
+  sessionId: string;
+  amount: number;
+  originAmount: number;
+  currency: string;
+  orderId: number;
+  methodId: number;
+  statement: string;
+  sign: string;
 }
 
 export async function POST(request: NextRequest) {
-	try {
-		const body: NotificationBody = await request.json();
-		console.log("Received P24 callback:", body);
+  try {
+    const body: NotificationBody = await request.json();
+    console.log("Received P24 callback:", body);
 
-		await dbConnect();
-		const transaction: ITransaction | null = await Transaction.findById(body.sessionId).populate("products");
+    await dbConnect();
+    const transaction: ITransaction | null = await Transaction.findById(body.sessionId).populate("products");
 
-		if (!transaction) {
-			console.error("Transaction not found:", body.sessionId);
-			await Transaction.create({
-				_id: body.sessionId,
-				status: false,
-				p24OrderId: body.orderId,
-				lastUpdated: new Date(),
-				paymentHistory: [{
-					status: "failed",
-					timestamp: new Date(),
-					details: "Transakcja nieznaleziona w bazie",
-				}],
-			});
-			return NextResponse.json({ message: "Transaction not found, logged" }, { status: 404 });
-		}
+    if (!transaction) {
+      console.error("Transaction not found:", body.sessionId);
+      return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
+    }
 
-		const totalPrice = transaction.products.reduce((acc: number, cur) => acc + Number(cur.price), 0);
-		const POS_ID = process.env.P24_MERCHANT_ID!;
-		const CRC = process.env.P24_CRC_KEY!;
-		const API_KEY = process.env.P24_API_KEY!;
+    const totalPrice = transaction.products.reduce((acc: number, cur) => {
+      return acc + Number(cur.price);
+    }, 0);
 
-		const p24 = new P24(Number(POS_ID), Number(POS_ID), API_KEY, CRC, { sandbox: true });
+    const POS_ID = process.env.P24_MERCHANT_ID!;
+    const CRC = process.env.P24_CRC_KEY!;
+    const API_KEY = process.env.P24_API_KEY!;
 
-		const result = await p24.verifyTransaction({
-			sessionId: body.sessionId,
-			amount: totalPrice * 100,
-			currency: Currency.PLN,
-			orderId: body.orderId,
-		});
+    const p24 = new P24(Number(POS_ID), Number(POS_ID), API_KEY, CRC, {
+      sandbox: true,
+    });
 
-		const status = result ? "success" : "failed";
-		const details = result ? "Płatność zakończona sukcesem" : "Weryfikacja transakcji nie powiodła się";
+    const result = await p24.verifyTransaction({
+      sessionId: body.sessionId,
+      amount: totalPrice * 100,
+      currency: Currency.PLN,
+      orderId: body.orderId,
+    });
 
-		await Transaction.findByIdAndUpdate(body.sessionId, {
-			status: result,
-			p24OrderId: body.orderId,
-			lastUpdated: new Date(),
-			$push: {
-				paymentHistory: {
-					status,
-					timestamp: new Date(),
-					details,
-				},
-			},
-		});
+    if (result === true) {
+      // Transakcja zakończona sukcesem
+      await Transaction.findByIdAndUpdate(body.sessionId, {
+        status: true,
+        p24OrderId: body.orderId,
+        lastUpdated: new Date(),
+        $push: {
+          paymentHistory: {
+            status: "success",
+            timestamp: new Date(),
+            details: "Płatność zakończona sukcesem",
+          },
+        },
+      });
 
-		console.log(`Transaction ${status}:`, body.sessionId);
+      console.log("Transaction verified successfully:", body.sessionId);
 
-		if (result && transaction.customer?.email) {
-			const urls = transaction.products.map((el) => el.url);
-			try {
-				await sendEmail({
-					Source: "tomek12olech@gmail.com",
-					Destination: { ToAddresses: [transaction.customer.email] },
-					Message: {
-						Subject: { Data: "Przesyłamy link do pobrania poradnika" },
-						Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
-					},
-				});
-				console.log("Email sent to:", transaction.customer.email);
-			} catch (err) {
-				console.error("Error sending email:", err);
-				return NextResponse.json({ message: "Transaction successful, but email failed" }, { status: 500 });
-			}
-		}
+      const urls = transaction.products.map((el) => el.url);
 
-		return NextResponse.json({ message: `Transaction ${status}` });
-	} catch (err) {
-		console.error("Error in P24 callback:", err);
-		return NextResponse.json({ message: "Internal server error" }, { status: 500 });
-	}
+      try {
+        if (transaction.customer && transaction.customer.email) {
+          await sendEmail({
+            Source: "tomek12olech@gmail.com",
+            Destination: { ToAddresses: [transaction.customer.email] },
+            Message: {
+              Subject: { Data: "Przesyłamy link do pobrania poradnika" },
+              Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
+            },
+          });
+          console.log("Email sent to:", transaction.customer.email);
+        }
+        return NextResponse.json({ message: "Transaction successful, email sent" });
+      } catch (err) {
+        console.error("Error sending email:", err);
+        return NextResponse.json({ message: "Transaction successful, but email failed" }, { status: 500 });
+      }
+    } else {
+      // Weryfikacja transakcji nie powiodła się (jeśli wynik to false)
+      await Transaction.findByIdAndUpdate(body.sessionId, {
+        status: false,
+        p24OrderId: body.orderId,
+        lastUpdated: new Date(),
+        $push: {
+          paymentHistory: {
+            status: "failed",
+            timestamp: new Date(),
+            details: "Weryfikacja transakcji nie powiodła się. Brak szczegółów błędu.",
+          },
+        },
+      });
+
+      console.log("Transaction verification failed:", body.sessionId);
+      return NextResponse.json({ message: "Transaction verification failed" }, { status: 400 });
+    }
+  } catch (err) {
+    console.error("Error in P24 callback:", err);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+  }
 }

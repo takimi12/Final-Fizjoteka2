@@ -42,12 +42,10 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        let p24Status: { isExpired: boolean; isRejected: boolean; error?: string } = {
-            isExpired: false,
-            isRejected: false
+        let p24Response = {
+            status: null,
+            state: null
         };
-
-        let p24TransactionStatus = "pending";
 
         if (transaction.p24OrderId) {
             try {
@@ -72,46 +70,22 @@ export async function GET(request: NextRequest) {
                 });
 
                 const verifyResult = await response.json();
-                p24TransactionStatus = verifyResult?.data?.status || "pending";
-
-                if (p24TransactionStatus === "failure" || p24TransactionStatus === "cancelled") {
-                    p24Status.isRejected = true;
-                    p24Status.error = 'Transaction was rejected or cancelled';
-                } else if (p24TransactionStatus !== "success" && p24TransactionStatus !== "waiting") {
-                    p24Status.error = `Unexpected status: ${p24TransactionStatus}`;
-                }
-
-                const transactionExpired = Date.now() > (transaction.createdAt?.getTime() + 2 * 60 * 1000);
-                if (p24TransactionStatus === "pending" && transactionExpired) {
-                    p24Status.isExpired = true;
-                }
+                p24Response = {
+                    status: verifyResult?.data?.status || null,
+                    state: verifyResult?.data?.state || null
+                };
             } catch (error) {
                 console.error('Error verifying P24 transaction:', error);
-                p24Status.error = error instanceof Error ? error.message : 'Unknown P24 error';
+                return NextResponse.json(
+                    { error: error instanceof Error ? error.message : 'P24 verification error' },
+                    { status: 500 }
+                );
             }
         }
 
-        let state = 'pending';
-        
-        if (transaction.status) {
-            state = 'success';
-        } else if (p24Status.isRejected) {
-            state = 'error';
-        } else if (p24Status.isExpired) {
-            state = 'no_payment';
-        } else if (p24TransactionStatus === "failure" || p24TransactionStatus === "cancelled") {
-            state = 'error';
-        } else if (p24TransactionStatus === "waiting") {
-            state = 'pending';
-        } else if (transaction.amount && transaction.amount !== expectedAmount) {
-            state = 'wrong_amount';
-        }
-
         const response = {
-            status: transaction.status,
-            state,
-            p24Status,
-            p24TransactionStatus,
+            p24Status: p24Response.status,
+            state: p24Response.state,
             products: transaction.products,
             customer: transaction.customer,
             amount: transaction.amount,

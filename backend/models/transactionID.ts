@@ -29,7 +29,9 @@ const transactionSchema = new Schema({
     attempts: { type: Number, default: 0 },
     products: [productSchema],
     customer: customerSchema,
-    paymentHistory: [paymentHistoryEntrySchema]
+    paymentHistory: [paymentHistoryEntrySchema],
+    errorMessage: { type: String },   // Nowe pole na komunikat błędu
+    errorCode: { type: String },      // Nowe pole na kod błędu
 });
 
 const Transaction = mongoose.models.Transaction || mongoose.model("Transaction", transactionSchema);
@@ -60,6 +62,8 @@ export type ITransaction = {
         timestamp: Date;
         details?: string;
     }>;
+    errorMessage?: string;  // Typ dla errorMessage
+    errorCode?: string;     // Typ dla errorCode
 };
 
 export type IProduct = mongoose.InferSchemaType<typeof productSchema>;

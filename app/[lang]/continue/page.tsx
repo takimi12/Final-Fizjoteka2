@@ -70,38 +70,9 @@ export default function ContinuePage() {
         return <p>Błąd: {error}</p>;
     }
 
-    // Handle different states based on the transaction status
-    let statusMessage = '';
-    switch (status?.state) {
-        case 'success':
-            statusMessage = 'Transakcja zakończona sukcesem';
-            break;
-        case 'error':
-            statusMessage = 'Wystąpił błąd przy transakcji';
-            break;
-        case 'no_payment':
-            statusMessage = 'Transakcja wygasła';
-            break;
-        case 'wrong_amount':
-            statusMessage = 'Nieprawidłowa kwota';
-            break;
-        default:
-            statusMessage = 'Sprawdzanie statusu...';
-    }
+
 
     return (
-        <div>
-            <h1>{statusMessage}</h1>
-            {status && status.products && (
-                <div>
-                    <h2>Produkty:</h2>
-                    <ul>
-                        {status.products.map((product: any) => (
-                            <li key={product.id}>{product.name} - {product.quantity} szt. - {product.price} PLN</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
+ <p>d</p>
     );
 }

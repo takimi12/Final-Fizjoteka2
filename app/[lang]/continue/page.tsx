@@ -1,16 +1,25 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+
+interface Product {
+    name: string;
+    price: number;
+    url: string;
+}
+
+interface Status {
+    status: boolean;
+    state: string;
+    products: Product[];
+}
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();
-    const router = useRouter();
-    const [status, setStatus] = useState<any>();
+    const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    console.log(status, 'status')
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -22,19 +31,14 @@ export default function ContinuePage() {
 
         const checkStatus = async () => {
             try {
-                // Make the API request to fetch the transaction status from your backend
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
-                
                 if (!response.ok) {
                     throw new Error('Błąd podczas sprawdzania statusu');
                 }
-
-                const data = await response.json();
+                const data: Status = await response.json();
                 setStatus(data);
-
-                // Check for errors in the response
-                if (data.error) {
-                    setError(data.error);
+                if (!data.status) {
+                    setError('Wystąpił błąd. Proszę o kontakt mejlowy z obsługą sklepu.');
                 }
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Wystąpił błąd');
@@ -43,22 +47,8 @@ export default function ContinuePage() {
             }
         };
 
-        const maxAttempts = 100;
-        let attempts = 0;
-        
-        const intervalId = setInterval(async () => {
-            attempts++;
-
-            await checkStatus();
-            
-            // Check if the status is success or if we hit the max attempts
-            if (status?.state === 'success' || attempts >= maxAttempts) {
-                clearInterval(intervalId);
-            }
-        }, 3000);
-
         checkStatus();
-
+        const intervalId = setInterval(checkStatus, 3000);
         return () => clearInterval(intervalId);
     }, [searchParams]);
 
@@ -67,12 +57,20 @@ export default function ContinuePage() {
     }
 
     if (error) {
-        return <p>Błąd: {error}</p>;
+        return <p style={{ color: 'red' }}>{error}</p>;
     }
 
+    if (status && status.state === 'success') {
+        return (
+            <div>
+                <h2 style={{ color: 'green' }}>Płatność zakończona sukcesem!</h2>
+                <h3>Produkt:</h3>
+                <p>Nazwa: {status.products[0].name}</p>
+                <p>Cena: {status.products[0].price} PLN</p>
+                <p><a href={status.products[0].url} target="_blank" rel="noopener noreferrer">Pobierz produkt</a></p>
+            </div>
+        );
+    }
 
-
-    return (
- <p>d</p>
-    );
+    return <p style={{ color: 'red' }}>Wystąpił błąd. Proszę o kontakt mejlowy z obsługą sklepu.</p>;
 }

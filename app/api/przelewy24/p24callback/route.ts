@@ -1,4 +1,3 @@
-// p24callback/route.ts
 import { Currency, P24 } from "@ingameltd/node-przelewy24";
 import { NextRequest, NextResponse } from "next/server";
 import Transaction, { ITransaction } from "../../../../backend/models/transactionID";
@@ -43,72 +42,127 @@ export async function POST(request: NextRequest) {
             sandbox: true,
         });
 
-        const result = await p24.verifyTransaction({
-            sessionId: body.sessionId,
-            amount: totalPrice * 100,
-            currency: Currency.PLN,
-            orderId: body.orderId,
-        });
+        try {
+            const result = await p24.verifyTransaction({
+                sessionId: body.sessionId,
+                amount: totalPrice * 100,
+                currency: Currency.PLN,
+                orderId: body.orderId,
+            });
 
-        if (result) {
-            await Transaction.findOneAndUpdate(
-                { _id: body.sessionId },
-                {
-                    status: true,
-                    state: "success",
-                    p24OrderId: body.orderId,
-                    lastUpdated: new Date(),
-                    $push: {
-                        paymentHistory: {
-                            status: "success",
-                            timestamp: new Date(),
-                            details: "Płatność zweryfikowana pomyślnie"
+            if (result) {
+                // Aktualizacja transakcji w przypadku sukcesu
+                await Transaction.findOneAndUpdate(
+                    { _id: body.sessionId },
+                    {
+                        status: true,
+                        state: "success",
+                        p24OrderId: body.orderId,
+                        lastUpdated: new Date(),
+                        $push: {
+                            paymentHistory: {
+                                status: "success",
+                                timestamp: new Date(),
+                                details: "Płatność zweryfikowana pomyślnie"
+                            }
                         }
                     }
-                }
-            );
+                );
 
-            const urls = transaction.products.map((el) => el.url);
-
-            try {
-                if(transaction.customer && transaction.customer.email) {
-                    await sendEmail({
-                        Source: "tomek12olech@gmail.com",
-                        Destination: { ToAddresses: [transaction.customer.email] },
-                        Message: {
-                            Subject: { Data: "Przesyłamy link do pobrania poradnika" },
-                            Body: { Html: { Data: `Kliknij <a href="${urls[0]}">tutaj</a> aby pobrać poradnik.` } },
-                        },
-                    });
+                // Wysyłka maila
+                if (transaction.customer?.email) {
+                    try {
+                        await sendEmail({
+                            Source: "tomek12olech@gmail.com",
+                            Destination: { ToAddresses: [transaction.customer.email] },
+                            Message: {
+                                Subject: { Data: "Przesyłamy link do pobrania poradnika" },
+                                Body: { 
+                                    Html: { 
+                                        Data: `Kliknij <a href="${transaction.products[0]?.url}">tutaj</a> aby pobrać poradnik.` 
+                                    } 
+                                },
+                            },
+                        });
+                    } catch (emailError) {
+                        console.error("Email sending failed:", emailError);
+                        // Kontynuujemy mimo błędu wysyłki maila
+                    }
                 }
-            } catch (err) {
-                console.log("Email sending error:", err);
+
+                return NextResponse.redirect(
+                    `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${body.sessionId}`
+                );
+            } else {
+                // Aktualizacja transakcji w przypadku błędu weryfikacji
+                await Transaction.findOneAndUpdate(
+                    { _id: body.sessionId },
+                    {
+                        status: false,
+                        state: "verification_failed",
+                        lastUpdated: new Date(),
+                        $push: {
+                            paymentHistory: {
+                                status: "error",
+                                timestamp: new Date(),
+                                details: "Weryfikacja płatności nie powiodła się"
+                            }
+                        }
+                    }
+                );
+
+                return NextResponse.redirect(
+                    `${process.env.NEXT_PUBLIC_APP_URL}/error?message=verification_failed&orderId=${body.sessionId}`
+                );
+            }
+        } catch (p24Error: any) {
+            // Obsługa błędów P24
+            let errorCode = 'unknown_error';
+            let state = 'error';
+
+            if (p24Error.code) {
+                switch (p24Error.code) {
+                    case 'err51':
+                        errorCode = 'invalid_amount';
+                        state = 'wrong_amount';
+                        break;
+                    case 'err4':
+                        errorCode = 'invalid_transaction';
+                        state = 'error';
+                        break;
+                    case 'err6':
+                        errorCode = 'canceled';
+                        state = 'canceled';
+                        break;
+                    case 'err7':
+                        errorCode = 'rejected';
+                        state = 'rejected';
+                        break;
+                }
             }
 
-            return NextResponse.redirect(
-                `${process.env.NEXT_PUBLIC_APP_URL}/continue?orderId=${body.sessionId}`
-            );
-        } else {
+            // Aktualizacja transakcji w przypadku błędu P24
             await Transaction.findOneAndUpdate(
                 { _id: body.sessionId },
                 {
                     status: false,
-                    state: "payment_failed",
+                    state: state,
                     lastUpdated: new Date(),
                     $push: {
                         paymentHistory: {
                             status: "error",
                             timestamp: new Date(),
-                            details: "Weryfikacja płatności nie powiodła się"
+                            details: p24Error.message || "Błąd przetwarzania płatności"
                         }
                     }
                 }
             );
 
             return NextResponse.redirect(
-                `${process.env.NEXT_PUBLIC_APP_URL}/continue?orderId=${body.sessionId}`
+                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=${errorCode}&orderId=${body.sessionId}`
             );
         }
+
     } catch (error) {
         console.error("Callback processing error:", error);
         return NextResponse.redirect(

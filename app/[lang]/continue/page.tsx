@@ -21,13 +21,11 @@ interface Status {
     customer: Customer;
 }
 
-
 export default function ContinuePage() {
     const searchParams = useSearchParams();
     const [status, setStatus] = useState<Status | null>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
 
     console.log(status)
 
@@ -67,19 +65,25 @@ export default function ContinuePage() {
     }
 
     if (error) {
-        return <p style={{ color: 'red' }}>{error}</p>;
+        return (
+            <div className={styles.wrapper}>
+                <div className={`Container ${styles.container}`}>
+                    <p style={{ color: 'red' }}>{error}</p>
+                </div>
+            </div>
+        );
     }
 
     if (status && status.state === 'success') {
         return (
             <div className={styles.wrapper}>
-                <div className={`Container ${styles.container} {#}`}>
-                <h2 style={{ color: 'green' }}>Płatność zakończona sukcesem!</h2>
-                <h3>Złozone zamówienie:</h3>
-                <p>Nazwa: {status.products[0].name}</p>
-                <p>Cena: {status.products[0].price} PLN</p>
-                <p>Na podany e-mail: {status.customer.email} zostało wysłane zamówienie. W przypadku, gdyby e-mail nie dotarł prosimy o kontakt telefoniczny.</p>
-            </div>
+                <div className={`Container ${styles.container}`}>
+                    <h2 style={{ color: 'green' }}>Płatność zakończona sukcesem!</h2>
+                    <h3>Złożone zamówienie:</h3>
+                    <p>Nazwa: {status.products[0].name}</p>
+                    <p>Cena: {status.products[0].price} PLN</p>
+                    <p>Na podany e-mail: {status.customer.email} zostało wysłane zamówienie. W przypadku, gdyby e-mail nie dotarł, prosimy o kontakt telefoniczny.</p>
+                </div>
             </div>
         );
     }
@@ -91,4 +95,5 @@ export default function ContinuePage() {
                 <p>Proszę o kontakt mejlowy z obsługą sklepu.</p>
             </div>
         </div>
-    );}
+    );
+}

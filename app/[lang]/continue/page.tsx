@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import styles from "./Page.module.scss"
 
 interface Product {
     name: string;
@@ -20,11 +21,15 @@ interface Status {
     customer: Customer;
 }
 
+
 export default function ContinuePage() {
     const searchParams = useSearchParams();
-    const [status, setStatus] = useState<Status | null>(null);
+    const [status, setStatus] = useState<Status | null>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+
+    console.log(status)
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -67,13 +72,14 @@ export default function ContinuePage() {
 
     if (status && status.state === 'success') {
         return (
-            <div>
+            <div className={styles.wrapper}>
+                <div className={`Container ${styles.container} {#}`}>
                 <h2 style={{ color: 'green' }}>Płatność zakończona sukcesem!</h2>
-                <h3>Produkt:</h3>
+                <h3>Złozone zamówienie:</h3>
                 <p>Nazwa: {status.products[0].name}</p>
                 <p>Cena: {status.products[0].price} PLN</p>
-                <p><a href={status.products[0].url} target="_blank" rel="noopener noreferrer">Pobierz produkt</a></p>
-                <p>Na podanego mejla: {status.customer.email} zostało właśnie wysłane zamówienie. W przypadku gdyby link do pobrania nie dotarł prosimy o kontakt telefoniczny.</p>
+                <p>Na podanego mejla: {status.customer.email}</p>
+            </div>
             </div>
         );
     }

@@ -41,8 +41,13 @@ export default function ContinuePage() {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
                 
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Błąd ${response.status}: ${errorText}`);
+                    let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
+                    if (response.status === 404) {
+                        errorMessage = 'Nie znaleziono zamówienia. Sprawdź poprawność identyfikatora.';
+                    } else if (response.status === 500) {
+                        errorMessage = 'Problem techniczny po stronie serwera. Proszę spróbować ponownie później.';
+                    }
+                    throw new Error(errorMessage);
                 }
 
                 const data: Status = await response.json();
@@ -60,7 +65,7 @@ export default function ContinuePage() {
                 }
             } catch (err) {
                 if (isMounted) {
-                    setError(err instanceof Error ? err.message : 'Wystąpił błąd');
+                    setError(err instanceof Error ? err.message : 'Wystąpił błąd. Proszę spróbować ponownie później.');
                 }
             } finally {
                 if (isMounted) {

@@ -80,7 +80,6 @@ export async function POST(request: NextRequest) {
             url: product.pdfFileUrl,
         }));
 
-
         const transaction = await Transaction.create({
             status: false,
             products: allProducts,
@@ -111,13 +110,13 @@ export async function POST(request: NextRequest) {
 
         const result = await p24.createTransaction({
             sessionId: transaction._id.toString(),
-            amount: Math.round(totalPrice * 100), 
+            amount: Math.round(totalPrice * 100),
             currency: Currency.PLN,
             description: "test order",
             email: body.email,
             country: Country.Poland,
             language: Language.PL,
-            urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/continue?orderId=${transaction._id}`,
+            urlReturn: `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${transaction._id}`,
             urlStatus: `${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24/p24callback`,
             timeLimit: 15,
             encoding: Encoding.UTF8,

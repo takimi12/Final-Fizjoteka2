@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import styles from "./Page.module.scss"
+import styles from "./Page.module.scss";
 
 interface Product {
     name: string;
@@ -23,11 +23,9 @@ interface Status {
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();
-    const [status, setStatus] = useState<Status | null>();
+    const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    console.log(status)
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -37,27 +35,46 @@ export default function ContinuePage() {
             return;
         }
 
+        let isMounted = true;
         const checkStatus = async () => {
             try {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
+                
                 if (!response.ok) {
-                    throw new Error('Błąd podczas sprawdzania statusu');
+                    const errorText = await response.text();
+                    throw new Error(`Błąd ${response.status}: ${errorText}`);
                 }
+
                 const data: Status = await response.json();
-                setStatus(data);
-                if (!data.status) {
-                    setError('Wystąpił błąd. Proszę o kontakt mejlowy z obsługą sklepu.');
+                
+                if (!data || !data.status) {
+                    throw new Error('Wystąpił błąd. Proszę o kontakt mejlowy z obsługą sklepu.');
+                }
+                
+                if (!data.products || data.products.length === 0) {
+                    throw new Error("Brak produktów w zamówieniu.");
+                }
+                
+                if (isMounted) {
+                    setStatus(data);
                 }
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'Wystąpił błąd');
+                if (isMounted) {
+                    setError(err instanceof Error ? err.message : 'Wystąpił błąd');
+                }
             } finally {
-                setLoading(false);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         };
 
         checkStatus();
         const intervalId = setInterval(checkStatus, 3000);
-        return () => clearInterval(intervalId);
+        return () => {
+            isMounted = false;
+            clearInterval(intervalId);
+        };
     }, [searchParams]);
 
     if (loading) {

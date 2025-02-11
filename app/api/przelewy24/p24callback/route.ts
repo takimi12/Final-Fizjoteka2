@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
                 }
 
                 return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/success/?orderId=${body.sessionId}`
+                    `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${body.sessionId}`
                 );
             } else {
                 // Aktualizacja transakcji w przypadku błędu weryfikacji

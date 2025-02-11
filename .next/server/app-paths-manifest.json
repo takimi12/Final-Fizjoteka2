@@ -1,7 +1,6 @@
 {
-  "/api/przelewy24/status/route": "app/api/przelewy24/status/route.js",
-  "/api/przelewy24/route": "app/api/przelewy24/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js",
+  "/[lang]/page": "app/[lang]/page.js",
   "/[lang]/continue/page": "app/[lang]/continue/page.js"
 }

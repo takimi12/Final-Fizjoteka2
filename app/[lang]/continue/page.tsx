@@ -27,6 +27,9 @@ export default function ContinuePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+
+    console.log(status, 'added console log')
+
     useEffect(() => {
         const orderId = searchParams.get('orderId');
         if (!orderId) {

@@ -78,11 +78,17 @@ export default function ContinuePage() {
                 <h3>Złozone zamówienie:</h3>
                 <p>Nazwa: {status.products[0].name}</p>
                 <p>Cena: {status.products[0].price} PLN</p>
-                <p>Na podanego mejla: {status.customer.email}</p>
+                <p>Na podany e-mail: {status.customer.email} zostało wysłane zamówienie. W przypadku, gdyby e-mail nie dotarł prosimy o kontakt telefoniczny.</p>
             </div>
             </div>
         );
     }
 
-    return <p style={{ color: 'red' }}>Wystąpił błąd. Proszę o kontakt mejlowy z obsługą sklepu.</p>;
-}
+    return (
+        <div className={styles.wrapper}>
+            <div className={`Container ${styles.container}`}>
+                <h2 style={{ color: 'red' }}>Wystąpił błąd</h2>
+                <p>Proszę o kontakt mejlowy z obsługą sklepu.</p>
+            </div>
+        </div>
+    );}

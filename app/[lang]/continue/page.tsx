@@ -41,12 +41,10 @@ export default function ContinuePage() {
         const checkStatus = async () => {
             try {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
-                
                 const data: Status = await response.json();
 
                 if (isMounted) {
-                    setStatus(data); // Zawsze zapisujemy status, nawet jeśli nie jest sukcesem
-
+                    setStatus(data);
                     if (!response.ok) {
                         let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
                         if (response.status === 404) {
@@ -78,14 +76,12 @@ export default function ContinuePage() {
         };
     }, [searchParams]);
 
-    if (loading) {
-        return <p>Ładowanie...</p>;
-    }
-
     return (
         <div className={styles.wrapper}>
             <div className={`Container ${styles.container}`}>
-                {error ? (
+                {loading ? (
+                    <p>Ładowanie...</p>
+                ) : error ? (
                     <>
                         <h2 style={{ color: 'red' }}>Wystąpił błąd</h2>
                         <p>{error}</p>

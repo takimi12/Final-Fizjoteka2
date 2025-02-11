@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import styles from "./Page.module.scss";
 
 interface Product {
@@ -19,15 +19,20 @@ interface Status {
     state: string;
     products: Product[];
     customer: Customer;
+    p24Status: {
+        error?: string;
+        processingStatus?: string;
+    };
 }
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    console.log(status, 'added console log');
+    const [attempts, setAttempts] = useState(0);
+    const MAX_ATTEMPTS = 40; // 2 minuty (40 * 3 sekundy)
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -45,6 +50,26 @@ export default function ContinuePage() {
 
                 if (isMounted) {
                     setStatus(data);
+                    setAttempts(prev => prev + 1);
+
+                    if (data.state === 'success') {
+                        router.push('/success');
+                        return;
+                    }
+
+                    if (data.state === 'error' || 
+                        data.state === 'expired' || 
+                        data.state === 'canceled' || 
+                        data.state === 'verification_failed') {
+                        router.push('/error');
+                        return;
+                    }
+
+                    if (attempts >= MAX_ATTEMPTS) {
+                        router.push('/error?message=timeout');
+                        return;
+                    }
+
                     if (!response.ok) {
                         let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
                         if (response.status === 404) {
@@ -53,8 +78,6 @@ export default function ContinuePage() {
                             errorMessage = 'Problem techniczny po stronie serwera. Proszę spróbować ponownie później.';
                         }
                         setError(errorMessage);
-                    } else if (!data.status || !data.products || data.products.length === 0) {
-                        setError("Błąd w zamówieniu. Sprawdź szczegóły lub skontaktuj się z obsługą.");
                     }
                 }
             } catch (err) {
@@ -70,11 +93,27 @@ export default function ContinuePage() {
 
         checkStatus();
         const intervalId = setInterval(checkStatus, 3000);
+
         return () => {
             isMounted = false;
             clearInterval(intervalId);
         };
-    }, [searchParams]);
+    }, [searchParams, attempts, router]);
+
+    const getStatusMessage = () => {
+        if (!status) return '';
+        
+        switch (status.state) {
+            case 'pending':
+                return 'Oczekiwanie na rozpoczęcie płatności...';
+            case 'processing':
+                return 'Przetwarzanie płatności...';
+            case 'success':
+                return 'Płatność zakończona sukcesem!';
+            default:
+                return status.p24Status?.error || 'Sprawdzanie statusu płatności...';
+        }
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -89,13 +128,13 @@ export default function ContinuePage() {
                 ) : (
                     status && (
                         <>
-                            <h2 style={{ color: status.state === 'success' ? 'green' : 'red' }}>
-                                {status.state === 'success' ? 'Płatność zakończona sukcesem!' : 'Zamówienie w toku lub nieudane'}
-                            </h2>
-                            <h3>Złożone zamówienie:</h3>
-                            <p>Nazwa: {status.products[0]?.name || 'Brak danych'}</p>
-                            <p>Cena: {status.products[0]?.price || 'Brak danych'} PLN</p>
-                            <p>Na podany e-mail: {status.customer?.email || 'Brak danych'} zostało wysłane zamówienie.</p>
+                            <h2>{getStatusMessage()}</h2>
+                            <div className={styles.statusInfo}>
+                                <h3>Szczegóły zamówienia:</h3>
+                                <p>Nazwa: {status.products[0]?.name || 'Brak danych'}</p>
+                                <p>Cena: {status.products[0]?.price || 'Brak danych'} PLN</p>
+                                <p>Email: {status.customer?.email || 'Brak danych'}</p>
+                            </div>
                         </>
                     )
                 )}

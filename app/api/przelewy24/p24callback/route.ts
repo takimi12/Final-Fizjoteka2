@@ -1,3 +1,4 @@
+// p24callback/route.ts
 import { Currency, P24 } from "@ingameltd/node-przelewy24";
 import { NextRequest, NextResponse } from "next/server";
 import Transaction, { ITransaction } from "../../../../backend/models/transactionID";
@@ -25,12 +26,8 @@ export async function POST(request: NextRequest) {
         const transaction: ITransaction = await Transaction.findById(body.sessionId).populate("products");
 
         if (!transaction) {
-            return NextResponse.json(
-                { 
-                    message: "Transaction not found",
-                    redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/error`
-                }, 
-                { status: 404 }
+            return NextResponse.redirect(
+                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=transaction_not_found`
             );
         }
 
@@ -55,10 +52,19 @@ export async function POST(request: NextRequest) {
 
         if (result) {
             await Transaction.findOneAndUpdate(
-                { _id: body.sessionId }, 
-                { 
+                { _id: body.sessionId },
+                {
                     status: true,
-                    state: "success"
+                    state: "success",
+                    p24OrderId: body.orderId,
+                    lastUpdated: new Date(),
+                    $push: {
+                        paymentHistory: {
+                            status: "success",
+                            timestamp: new Date(),
+                            details: "Płatność zweryfikowana pomyślnie"
+                        }
+                    }
                 }
             );
 
@@ -75,38 +81,38 @@ export async function POST(request: NextRequest) {
                         },
                     });
                 }
-                
-                return NextResponse.json({ 
-                    message: "Payment successful",
-                    redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/success`
-                });
             } catch (err) {
                 console.log("Email sending error:", err);
-                // Still redirect to success even if email fails
-                return NextResponse.json({ 
-                    message: "Payment successful but email failed",
-                    redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/success`
-                });
             }
+
+            return NextResponse.redirect(
+                `${process.env.NEXT_PUBLIC_APP_URL}/continue?orderId=${body.sessionId}`
+            );
         } else {
             await Transaction.findOneAndUpdate(
                 { _id: body.sessionId },
-                { 
+                {
                     status: false,
-                    state: "payment_failed"
+                    state: "payment_failed",
+                    lastUpdated: new Date(),
+                    $push: {
+                        paymentHistory: {
+                            status: "error",
+                            timestamp: new Date(),
+                            details: "Weryfikacja płatności nie powiodła się"
+                        }
+                    }
                 }
             );
 
-            return NextResponse.json({ 
-                message: "Payment verification failed",
-                redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/error`
-            });
+            return NextResponse.redirect(
+                `${process.env.NEXT_PUBLIC_APP_URL}/continue?orderId=${body.sessionId}`
+            );
         }
     } catch (error) {
         console.error("Callback processing error:", error);
-        return NextResponse.json({ 
-            message: "Internal server error",
-            redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/error`
-        }, { status: 500 });
+        return NextResponse.redirect(
+            `${process.env.NEXT_PUBLIC_APP_URL}/error?message=internal_error`
+        );
     }
 }

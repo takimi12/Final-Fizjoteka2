@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import styles from "./Success.module.scss";
+import styles from "./Error.module.scss";
 
 interface Product {
     name: string;

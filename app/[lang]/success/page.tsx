@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../Redux/Cartslice'; 
 import styles from "./Success.module.scss";
 
 interface Product {
@@ -28,10 +30,12 @@ interface Status {
 export default function ContinuePage() {
     const searchParams = useSearchParams();
     const router = useRouter();
+    const dispatch = useDispatch();
     const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [attempts, setAttempts] = useState(0);
+    const [cartCleared, setCartCleared] = useState(false);
     const MAX_ATTEMPTS = 40; // 2 minuty (40 * 3 sekundy)
 
     useEffect(() => {
@@ -52,12 +56,10 @@ export default function ContinuePage() {
                     setStatus(data);
                     setAttempts(prev => prev + 1);
 
-                    if (data.state === 'success') {
-                        return;
-                    }
-
-                    if (data.state === 'success') {
-                        router.push('/error');
+                    // Clear cart when payment is successful and cart hasn't been cleared yet
+                    if (data.state === 'success' && !cartCleared) {
+                        dispatch(clearCart());
+                        setCartCleared(true);
                         return;
                     }
 
@@ -94,7 +96,7 @@ export default function ContinuePage() {
             isMounted = false;
             clearInterval(intervalId);
         };
-    }, [searchParams, attempts, router]);
+    }, [searchParams, attempts, router, dispatch, cartCleared]);
 
     const getStatusMessage = () => {
         if (!status) return '';

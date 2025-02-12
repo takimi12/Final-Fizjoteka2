@@ -268,8 +268,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Przekierowanie na stronę błędu w przypadku innych stanów
-        if (state === 'error' || state === 'expired' || state === 'canceled' || 
-            state === 'verification_failed' || state === 'wrong_amount') {
+        if (state === 'no_payment' ) {
             const errorUrl = `${process.env.NEXT_PUBLIC_APP_URL}/error?message=${state}&orderId=${orderId}`;
             return NextResponse.redirect(errorUrl);
         }

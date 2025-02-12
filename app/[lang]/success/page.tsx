@@ -56,6 +56,7 @@ export default function ContinuePage() {
             try {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
                 const data: Status = await response.json();
+                console.log(data)
 
                 if (isMounted) {
                     setStatus(data);

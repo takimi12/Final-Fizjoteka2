@@ -202,7 +202,6 @@ function determinePaymentState(
     
     return 'pending';
 }
-
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
@@ -274,7 +273,18 @@ export async function GET(request: NextRequest) {
             paymentHistory: [...(transactionData.paymentHistory || []), newHistoryEntry]
         };
 
-        return NextResponse.json(response);
+        // Pobranie wartości URL z env i ustawienie domyślnej wartości, jeśli nie jest dostępna
+        const APP_URL = process.env.NEXT_PUBLIC_APP_URL 
+
+        let redirectUrl = `${APP_URL}/payment-error`; // Domyślna strona błędu
+
+        if (state === 'success') {
+            redirectUrl = `${APP_URL}/success`;
+        } else if (state === 'error' ) {
+            redirectUrl = `${APP_URL}/error`;
+        } 
+
+        return NextResponse.redirect(redirectUrl);
 
     } catch (error) {
         console.error('Error details:', error);

@@ -43,15 +43,16 @@ export async function POST(request: NextRequest) {
         });
 
         try {
-            const result = await p24.verifyTransaction({
+            const verificationResult = await p24.verifyTransaction({
                 sessionId: body.sessionId,
                 amount: totalPrice * 100,
                 currency: Currency.PLN,
                 orderId: body.orderId,
             });
 
-            if (result) {
-                // Aktualizacja transakcji w przypadku sukcesu
+            // Sprawdzanie wyniku weryfikacji i statusu płatności
+            if (verificationResult && body.methodId > 0) {
+                // Płatność udana
                 await Transaction.findOneAndUpdate(
                     { _id: body.sessionId },
                     {
@@ -69,7 +70,7 @@ export async function POST(request: NextRequest) {
                     }
                 );
 
-                // Wysyłka maila
+                // Wysyłka maila tylko przy udanej płatności
                 if (transaction.customer?.email) {
                     try {
                         await sendEmail({
@@ -85,8 +86,7 @@ export async function POST(request: NextRequest) {
                             },
                         });
                     } catch (emailError) {
-                        console.error("Email sending failed:", emailError);
-                        // Kontynuujemy mimo błędu wysyłki maila
+                        console.error("Błąd wysyłki maila:", emailError);
                     }
                 }
 
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
                     `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${body.sessionId}`
                 );
             } else {
-                // Aktualizacja transakcji w przypadku błędu weryfikacji
+                // Weryfikacja płatności nie powiodła się
                 await Transaction.findOneAndUpdate(
                     { _id: body.sessionId },
                     {
@@ -141,7 +141,6 @@ export async function POST(request: NextRequest) {
                 }
             }
 
-            // Aktualizacja transakcji w przypadku błędu P24
             await Transaction.findOneAndUpdate(
                 { _id: body.sessionId },
                 {
@@ -164,7 +163,7 @@ export async function POST(request: NextRequest) {
         }
 
     } catch (error) {
-        console.error("Callback processing error:", error);
+        console.error("Błąd przetwarzania callbacku:", error);
         return NextResponse.redirect(
             `${process.env.NEXT_PUBLIC_APP_URL}/error?message=internal_error`
         );

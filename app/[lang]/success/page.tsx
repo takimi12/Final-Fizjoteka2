@@ -36,6 +36,7 @@ export default function ContinuePage() {
     const [error, setError] = useState<string | null>(null);
     const [attempts, setAttempts] = useState(0);
 
+
     useEffect(() => {
         dispatch(clearCart());
     }, [dispatch]);
@@ -109,7 +110,7 @@ export default function ContinuePage() {
         <div className={styles.wrapper}>
             <div className={`Container ${styles.container}`}>
                 {loading ? (
-                    <p>Ładowanie...</p>
+                    <p>Pobieranie informacji o statusie transakcji, proszę czekać...</p>
                 ) : error ? (
                     <>
                         <h2 style={{ color: 'red' }}>Wystąpił błąd</h2>

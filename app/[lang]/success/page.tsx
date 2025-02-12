@@ -35,8 +35,10 @@ export default function ContinuePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [attempts, setAttempts] = useState(0);
-    const [cartCleared, setCartCleared] = useState(false);
-    const MAX_ATTEMPTS = 40; // 2 minuty (40 * 3 sekundy)
+
+    useEffect(() => {
+        dispatch(clearCart());
+    }, [dispatch]);
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -56,17 +58,7 @@ export default function ContinuePage() {
                     setStatus(data);
                     setAttempts(prev => prev + 1);
 
-                    // Clear cart when payment is successful and cart hasn't been cleared yet
-                    if (data.state === 'success' && !cartCleared) {
-                        dispatch(clearCart());
-                        setCartCleared(true);
-                        return;
-                    }
-
-                    if (attempts >= MAX_ATTEMPTS) {
-                        router.push('/error?message=timeout');
-                        return;
-                    }
+               
 
                     if (!response.ok) {
                         let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
@@ -96,7 +88,7 @@ export default function ContinuePage() {
             isMounted = false;
             clearInterval(intervalId);
         };
-    }, [searchParams, attempts, router, dispatch, cartCleared]);
+    }, [searchParams, attempts, router]);
 
     const getStatusMessage = () => {
         if (!status) return '';

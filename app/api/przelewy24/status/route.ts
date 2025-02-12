@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { P24, Currency } from "@ingameltd/node-przelewy24";
 import Transaction from "../../../../backend/models/transactionID";
 import { dbConnect } from "../../../../backend/config/dbConnect";
-import { sendEmail } from "../../../../libs/emailService";
 
 interface P24TransactionStatus {
     orderId?: number;
@@ -165,7 +164,7 @@ function determinePaymentState(
     p24Status: P24TransactionStatus, 
     expectedAmount: number
 ): PaymentStatus['state'] {
-    if (p24Status.verificationStatus === 'verified' && p24Status.processingStatus === 'completed') {
+    if (transactionData.status) {
         return 'success';
     }
     
@@ -210,8 +209,9 @@ export async function GET(request: NextRequest) {
         const orderId = searchParams.get('orderId');
 
         if (!orderId) {
-            return NextResponse.redirect(
-                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=missing_order_id`
+            return NextResponse.json(
+                { error: "Order ID is required" }, 
+                { status: 400 }
             );
         }
 
@@ -220,8 +220,9 @@ export async function GET(request: NextRequest) {
         const transactionData = await Transaction.findById(orderId);
         
         if (!transactionData) {
-            return NextResponse.redirect(
-                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=transaction_not_found`
+            return NextResponse.json(
+                { error: "Transaction not found" }, 
+                { status: 404 }
             );
         }
 
@@ -235,8 +236,9 @@ export async function GET(request: NextRequest) {
 
         if (!POS_ID || !CRC || !API_KEY) {
             console.error('Missing P24 configuration');
-            return NextResponse.redirect(
-                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=payment_configuration_missing`
+            return NextResponse.json(
+                { error: "Payment configuration missing" },
+                { status: 500 }
             );
         }
 
@@ -253,73 +255,35 @@ export async function GET(request: NextRequest) {
             details: p24Status.error
         };
 
-        // Aktualizacja transakcji w bazie danych
-        const updatedTransaction = await Transaction.findByIdAndUpdate(
-            orderId,
-            {
-                status: state === 'success',
-                state: state,
-                p24OrderId: p24Status.orderId,
-                lastUpdated: new Date(),
-                $push: { paymentHistory: newHistoryEntry },
-                $inc: { attempts: 1 }
-            },
-            { new: true }
-        );
+        await Transaction.findByIdAndUpdate(orderId, {
+            $push: { paymentHistory: newHistoryEntry },
+            lastUpdated: new Date(),
+            $inc: { attempts: 1 }
+        });
 
-        // Jeśli płatność jest udana, wysyłamy email z linkiem do pobrania
-        if (state === 'success' && !transactionData.status) {
-            try {
-                await sendEmail({
-                    Source: "tomek12olech@gmail.com",
-                    Destination: { ToAddresses: [transactionData.customer.email] },
-                    Message: {
-                        Subject: { Data: "Przesyłamy link do pobrania poradnika" },
-                        Body: { 
-                            Html: { 
-                                Data: `Kliknij <a href="${transactionData.products[0]?.url}">tutaj</a> aby pobrać poradnik.` 
-                            } 
-                        },
-                    },
-                });
-            } catch (emailError) {
-                console.error("Błąd wysyłki maila:", emailError);
-            }
-        }
+        const response: PaymentStatus = {
+            status: transactionData.status,
+            state: state,
+            p24Status: p24Status,
+            products: transactionData.products,
+            customer: transactionData.customer,
+            amount: transactionData.amount,
+            expectedAmount: expectedAmount,
+            lastUpdated: new Date(),
+            attempts: (transactionData.attempts || 0) + 1,
+            paymentHistory: [...(transactionData.paymentHistory || []), newHistoryEntry]
+        };
 
-        // Przekierowanie w zależności od stanu płatności
-        switch (state) {
-            case 'success':
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${orderId}`
-                );
-            
-            case 'pending':
-            case 'processing':
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/pending?orderId=${orderId}`
-                );
-            
-            case 'expired':
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/error?message=payment_expired&orderId=${orderId}`
-                );
-            
-            case 'canceled':
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/error?message=payment_canceled&orderId=${orderId}`
-                );
-            
-            default:
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/error?message=${p24Status.errorCode}&orderId=${orderId}`
-                );
-        }
+        return NextResponse.json(response);
 
     } catch (error) {
         console.error('Error details:', error);
-        return NextResponse.redirect(
-            `${process.env.NEXT_PUBLIC_APP_URL}/error?message=internal_error`
+        return NextResponse.json(
+            { 
+                error: error instanceof Error ? error.message : "An unknown error occurred",
+                errorCode: error instanceof Error ? error.name : 'UNKNOWN_ERROR'
+            },
+            { status: 500 }
         );
     }
 }

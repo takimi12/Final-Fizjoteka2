@@ -90,31 +90,33 @@ export async function POST(request: NextRequest) {
                     }
                 }
 
+                // Tylko w przypadku sukcesu przekierowujemy na success
                 return NextResponse.redirect(
                     `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${body.sessionId}`
                 );
-            } else {
-                // Weryfikacja płatności nie powiodła się
-                await Transaction.findOneAndUpdate(
-                    { _id: body.sessionId },
-                    {
-                        status: false,
-                        state: "verification_failed",
-                        lastUpdated: new Date(),
-                        $push: {
-                            paymentHistory: {
-                                status: "error",
-                                timestamp: new Date(),
-                                details: "Weryfikacja płatności nie powiodła się"
-                            }
+            }
+
+            // We wszystkich innych przypadkach przekierowujemy na error
+            await Transaction.findOneAndUpdate(
+                { _id: body.sessionId },
+                {
+                    status: false,
+                    state: "verification_failed",
+                    lastUpdated: new Date(),
+                    $push: {
+                        paymentHistory: {
+                            status: "error",
+                            timestamp: new Date(),
+                            details: "Weryfikacja płatności nie powiodła się"
                         }
                     }
-                );
+                }
+            );
 
-                return NextResponse.redirect(
-                    `${process.env.NEXT_PUBLIC_APP_URL}/error?message=verification_failed&orderId=${body.sessionId}`
-                );
-            }
+            return NextResponse.redirect(
+                `${process.env.NEXT_PUBLIC_APP_URL}/error?message=verification_failed&orderId=${body.sessionId}`
+            );
+
         } catch (p24Error: any) {
             // Obsługa błędów P24
             let errorCode = 'unknown_error';

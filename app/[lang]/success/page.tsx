@@ -34,7 +34,6 @@ export default function ContinuePage() {
     const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [attempts, setAttempts] = useState(0);
 
 
     console.log(status, 'status')
@@ -60,7 +59,6 @@ export default function ContinuePage() {
 
                 if (isMounted) {
                     setStatus(data);
-                    setAttempts(prev => prev + 1);
 
                
 
@@ -86,13 +84,13 @@ export default function ContinuePage() {
         };
 
         checkStatus();
-        const intervalId = setInterval(checkStatus, 3000);
+        const intervalId = setInterval(checkStatus, 10000);
 
         return () => {
             isMounted = false;
             clearInterval(intervalId);
         };
-    }, [searchParams, attempts, router]);
+    }, [searchParams, router]);
 
     const getStatusMessage = () => {
         if (!status) return '';

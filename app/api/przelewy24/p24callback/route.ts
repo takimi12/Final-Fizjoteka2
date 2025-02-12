@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
                 { _id: body.sessionId },
                 {
                     status: false,
-                    state: "verification_failed",
+                    state: "no_payment",
                     lastUpdated: new Date(),
                     $push: {
                         paymentHistory: {

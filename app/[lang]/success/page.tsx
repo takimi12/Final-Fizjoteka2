@@ -37,6 +37,8 @@ export default function ContinuePage() {
     const [attempts, setAttempts] = useState(0);
 
 
+    console.log(status, 'status')
+
     useEffect(() => {
         dispatch(clearCart());
     }, [dispatch]);

@@ -261,19 +261,6 @@ export async function GET(request: NextRequest) {
             $inc: { attempts: 1 }
         });
 
-        // Obsługa przekierowania dla sukcesu płatności
-        if (state === 'success') {
-            const successUrl = `${process.env.NEXT_PUBLIC_APP_URL}/success?orderId=${orderId}`;
-            return NextResponse.redirect(successUrl);
-        }
-
-        // Przekierowanie na stronę błędu w przypadku innych stanów
-        if (state === 'no_payment' ) {
-            const errorUrl = `${process.env.NEXT_PUBLIC_APP_URL}/error?message=${state}&orderId=${orderId}`;
-            return NextResponse.redirect(errorUrl);
-        }
-
-        // Dla pozostałych stanów zwracamy JSON z informacjami o statusie
         const response: PaymentStatus = {
             status: transactionData.status,
             state: state,

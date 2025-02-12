@@ -53,14 +53,10 @@ export default function ContinuePage() {
                     setAttempts(prev => prev + 1);
 
                     if (data.state === 'success') {
-                        router.push('/success');
                         return;
                     }
 
-                    if (data.state === 'error' || 
-                        data.state === 'expired' || 
-                        data.state === 'canceled' || 
-                        data.state === 'verification_failed') {
+                    if (data.state === 'success') {
                         router.push('/error');
                         return;
                     }

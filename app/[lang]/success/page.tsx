@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../../Redux/Cartslice'; 
 import styles from "./Success.module.scss";
 
 interface Product {
@@ -30,77 +28,79 @@ interface Status {
 export default function ContinuePage() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const dispatch = useDispatch();
     const [status, setStatus] = useState<Status | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [attempts, setAttempts] = useState(0);
-    const [cartCleared, setCartCleared] = useState(false);
-    const MAX_ATTEMPTS = 40;
+    // const [attempts, setAttempts] = useState(0);
+    // const MAX_ATTEMPTS = 40; // 2 minuty (40 * 3 sekundy)
 
-    useEffect(() => {
-        const orderId = searchParams.get('orderId');
-        if (!orderId) {
-            setError('Brak identyfikatora zamówienia');
-            setLoading(false);
-            return;
-        }
+console.log(searchParams, 'serach params')
 
-        let isMounted = true;
-        const checkStatus = async () => {
-            try {
-                const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
-                const data: Status = await response.json();
+    // useEffect(() => {
+    //     const orderId = searchParams.get('orderId');
+    //     if (!orderId) {
+    //         setError('Brak identyfikatora zamówienia');
+    //         setLoading(false);
+    //         return;
+    //     }
 
-                if (isMounted) {
-                    setStatus(data);
-                    setAttempts(prev => prev + 1);
+    //     let isMounted = true;
+    //     const checkStatus = async () => {
+    //         try {
+    //             const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
+    //             const data: Status = await response.json();
 
-                    // Clear cart when payment is successful and cart hasn't been cleared yet
-                    if (data.state === 'success' && !cartCleared) {
-                        dispatch(clearCart());
-                        setCartCleared(true);
-                    }
+    //             if (isMounted) {
+    //                 setStatus(data);
+    //                 setAttempts(prev => prev + 1);
 
-                    if (data.state !== 'success' && attempts >= MAX_ATTEMPTS) {
-                        router.push('/error');
-                        return;
-                    }
+    //                 if (data.state === 'success') {
+    //                     router.push('/success');
+    //                     return;
+    //                 }
 
-                    if (attempts >= MAX_ATTEMPTS) {
-                        router.push('/error?message=timeout');
-                        return;
-                    }
+    //                 if (data.state === 'error' || 
+    //                     data.state === 'expired' || 
+    //                     data.state === 'canceled' || 
+    //                     data.state === 'verification_failed') {
+    //                     router.push('/error');
+    //                     return;
+    //                 }
 
-                    if (!response.ok) {
-                        let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
-                        if (response.status === 404) {
-                            errorMessage = 'Nie znaleziono zamówienia. Sprawdź poprawność identyfikatora.';
-                        } else if (response.status === 500) {
-                            errorMessage = 'Problem techniczny po stronie serwera. Proszę spróbować ponownie później.';
-                        }
-                        setError(errorMessage);
-                    }
-                }
-            } catch (err) {
-                if (isMounted) {
-                    setError(err instanceof Error ? err.message : 'Wystąpił błąd. Proszę spróbować ponownie później.');
-                }
-            } finally {
-                if (isMounted) {
-                    setLoading(false);
-                }
-            }
-        };
+    //                 if (attempts >= MAX_ATTEMPTS) {
+    //                     router.push('/error?message=timeout');
+    //                     return;
+    //                 }
 
-        checkStatus();
-        const intervalId = setInterval(checkStatus, 3000);
+    //                 if (!response.ok) {
+    //                     let errorMessage = 'Wystąpił błąd. Proszę spróbować ponownie później.';
+    //                     if (response.status === 404) {
+    //                         errorMessage = 'Nie znaleziono zamówienia. Sprawdź poprawność identyfikatora.';
+    //                     } else if (response.status === 500) {
+    //                         errorMessage = 'Problem techniczny po stronie serwera. Proszę spróbować ponownie później.';
+    //                     }
+    //                     setError(errorMessage);
+    //                 }
+    //             }
+    //         } catch (err) {
+    //             if (isMounted) {
+    //                 setError(err instanceof Error ? err.message : 'Wystąpił błąd. Proszę spróbować ponownie później.');
+    //             }
+    //         } finally {
+    //             if (isMounted) {
+    //                 setLoading(false);
+    //             }
+    //         }
+    //     };
 
-        return () => {
-            isMounted = false;
-            clearInterval(intervalId);
-        };
-    }, [searchParams, attempts, router, dispatch, cartCleared]);
+    //     checkStatus();
+    //     const intervalId = setInterval(checkStatus, 3000);
+
+    //     return () => {
+    //         isMounted = false;
+    //         clearInterval(intervalId);
+    //     };
+    // }, [searchParams, attempts, router]);
 
     const getStatusMessage = () => {
         if (!status) return '';

@@ -276,13 +276,13 @@ export async function GET(request: NextRequest) {
         // Pobranie wartości URL z env i ustawienie domyślnej wartości, jeśli nie jest dostępna
         const APP_URL = process.env.NEXT_PUBLIC_APP_URL 
 
-        let redirectUrl = `${APP_URL}/payment-error`; // Domyślna strona błędu
+        let redirectUrl = `${APP_URL}/error`; // Domyślna strona błędu
 
         if (state === 'success') {
-            redirectUrl = `${APP_URL}/success`;
-        } else if (state === 'error' ) {
-            redirectUrl = `${APP_URL}/error`;
-        } 
+            redirectUrl = `${APP_URL}/success?orderId=${orderId}`;
+        } else if (state === 'error') {
+            redirectUrl = `${APP_URL}/error?orderId=${orderId}`;
+        }
 
         return NextResponse.redirect(redirectUrl);
 

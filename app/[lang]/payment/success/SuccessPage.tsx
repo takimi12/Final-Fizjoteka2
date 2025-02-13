@@ -21,10 +21,12 @@ export default function SuccessPage({ orderId, productName, productPrice, email 
         <div className={styles.Container}>
             <div className={` ${styles.inner} Container`}>
                 <h2 className={styles.title}>Płatność zakończona sukcesem!</h2>
-                <p> <b>Numer zamówienia:</b> {orderId}</p>
-                <p><b>Produkt:</b> {productName}</p>
-                <p><b>Cena:</b> {productPrice} PLN</p>
-                <p><b>Email:</b> {email}</p> 
+                <div>
+                <p> <span className={styles.span}>Numer zamówienia:</span> {orderId}</p>
+                <p><span className={styles.span}>Produkt:</span> {productName}</p>
+                <p><span className={styles.span}>Cena:</span> {productPrice} PLN</p>
+                <p><span className={styles.span}>Email:</span> {email}</p> 
+                </div>
             </div>
         </div>
     );

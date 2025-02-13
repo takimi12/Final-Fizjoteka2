@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../Redux/Cartslice";
+import styles from "./Success.module.scss"
 
 interface SuccessPageProps {
     orderId: string;
@@ -16,8 +17,8 @@ export default function SuccessPage({ orderId, productName, productPrice }: Succ
         dispatch(clearCart());
     }, [dispatch]);
     return (
-        <div className="Container">
-            <div>
+        <div className={styles.Container}>
+            <div className={` ${styles.inner} Container`}>
             <h1>Płatność zakończona sukcesem!</h1>
             <p>Numer zamówienia: {orderId}</p>
             <p>Produkt: {productName}</p>

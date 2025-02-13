@@ -14,10 +14,15 @@
                 }
               .title{
                 color: var(--primary);
-           
+                @media (max-width: 900px) {
+                    font-size: 34px;
+                    }
               }
               .span{
                 font-weight: bold;
+              }
+              .details{
+                margin-top: 50px;
               }
     }
 

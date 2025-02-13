@@ -18,6 +18,9 @@ export default function ContinuePage() {
     const [loading, setLoading] = useState(true);
 
 
+    const [test, setTest] = useState();
+
+    console.log(test)
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -31,7 +34,7 @@ export default function ContinuePage() {
             try {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
                 const data = await response.json();
-                
+                setTest(data)
                 if (data.state === 'success') {
                     setOrderData({
                         orderId,

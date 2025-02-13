@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../../Redux/Cartslice';
 import SuccessPage from './success/SuccessPage';
 import ErrorPage from './error/ErrorPage';
 
@@ -15,14 +13,11 @@ interface OrderData {
 
 export default function ContinuePage() {
     const searchParams = useSearchParams();
-    const dispatch = useDispatch();
     const [orderData, setOrderData] = useState<OrderData | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        dispatch(clearCart());
-    }, [dispatch]);
+
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');

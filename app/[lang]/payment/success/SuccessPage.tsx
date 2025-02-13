@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../../Redux/Cartslice";
 
 interface SuccessPageProps {
     orderId: string;
@@ -6,6 +9,12 @@ interface SuccessPageProps {
 }
 
 export default function SuccessPage({ orderId, productName, productPrice }: SuccessPageProps) {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clearCart());
+    }, [dispatch]);
     return (
         <div>
             <h1>Płatność zakończona sukcesem!</h1>

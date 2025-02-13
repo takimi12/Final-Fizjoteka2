@@ -1,6 +1,6 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/topics/route": "app/api/topics/route.js",
+  "/api/category/route": "app/api/category/route.js",
   "/[lang]/page": "app/[lang]/page.js",
-  "/[lang]/continue/page": "app/[lang]/continue/page.js"
+  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js"
 }

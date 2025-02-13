@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SuccessPage from './success/SuccessPage';
 import ErrorPage from './error/ErrorPage';
+import styles from "./Payment.module.scss"
 
 interface OrderData {
     orderId: string;
@@ -51,7 +52,14 @@ export default function ContinuePage() {
         checkStatus();
     }, [searchParams]);
 
-    if (loading) return <p>Ładowanie...</p>;
+    if (loading) return
+    ( 
+        <div className={styles.Container}>
+        <div className={`Container ${styles.inner}`}>
+    <p>Ładowanie...</p>
+    </div>
+    </div>
+    );
 
     return orderData ? <SuccessPage {...orderData} /> : <ErrorPage message={errorMessage || 'Nieznany błąd'} />;
 }

@@ -4,11 +4,13 @@ import NotFoundImage from "../public/assets/NotFound/background.svg"
 import Image from 'next/image';
 
 
+
 const PageNotFound: React.FC = () => {
   return (
     <div className={` Container ${styles.container}`}>
       <div className={styles.iconBox}>
         <Image
+        className={styles.Image}
          src={NotFoundImage} 
          alt='imagenotfound'
         />

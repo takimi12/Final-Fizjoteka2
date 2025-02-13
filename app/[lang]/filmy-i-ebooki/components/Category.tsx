@@ -19,7 +19,7 @@ const Category1 = ({ categories }: CategoryListProps) => {
           <div className={styles.productPhoto}>
             <Image src={product.imageFileUrl} alt="product" width={300} height={300} />
           </div>
-          <div className={`${styles.textWraper} w-full`}>
+          <div className={`${styles.textWraper} `}>
             <div className={styles.cardTitle}>
               <Link className={styles.anchor} href="">
                 <h4>{product.title}</h4>
@@ -33,8 +33,7 @@ const Category1 = ({ categories }: CategoryListProps) => {
               <Image src={Circle} width={15} height={15} alt="circle" />
               <p>Produkt dostępny</p>
             </div>
-            <div className={`${styles.priceParent} flex items-center justify-end`}>
-              <p className={`${styles.amount} font-bold`}>{product.price} zł</p>
+            <div className={`${styles.priceParent} `}>
               <Link
                 href={`/filmy-i-ebooki/${replacePolishChars(product.category.replace(/\s+/g, "-"))}`}
               >

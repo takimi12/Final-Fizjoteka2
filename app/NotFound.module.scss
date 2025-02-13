@@ -1,3 +1,4 @@
+
 .section {
     min-height: 100vh;
     display: flex;
@@ -11,13 +12,20 @@
   
   .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Opcjonalnie, półprzezroczyste tło dla czytelności */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 20px;
     border-radius: 8px;
   }
   
   .iconBox {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    .Image{
+      @media (max-width: 900px) {
+        max-width: 400px;
+        }
+    }
   }
   
   .heading {
@@ -34,4 +42,16 @@
     gap: 20px;
     display: flex;
     flex-direction: column;
+  }
+
+  .button{
+    background-color: #24596a;
+    color: white;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    max-width: 300px;
+    margin: auto;
   }

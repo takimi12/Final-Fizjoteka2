@@ -16,11 +16,13 @@ export default function SuccessPage({ orderId, productName, productPrice }: Succ
         dispatch(clearCart());
     }, [dispatch]);
     return (
-        <div>
+        <div className="Container">
+            <div>
             <h1>Płatność zakończona sukcesem!</h1>
             <p>Numer zamówienia: {orderId}</p>
             <p>Produkt: {productName}</p>
             <p>Cena: {productPrice} PLN</p>
+        </div>
         </div>
     );
 }

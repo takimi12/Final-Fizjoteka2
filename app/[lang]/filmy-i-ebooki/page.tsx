@@ -8,10 +8,12 @@ import { getTopics } from "../../../helpers/api/getTopic";
 import { getCategories } from "../../../helpers/api/getCategory";
 
 const MainPage = async () => {
-	const { topics } = await getTopics();
-	const  {categories}  = await getCategories();
-
-
+	const topicsResponse = await getTopics();
+	
+	const categoriesResponse = await getCategories();
+  
+	const { topics = [] } = topicsResponse || {};
+	const { categories = [] } = categoriesResponse || {};
 	return (
 		<>
 			<div className={`Container ${styles.Container}`}>

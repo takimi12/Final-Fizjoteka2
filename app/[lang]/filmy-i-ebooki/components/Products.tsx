@@ -10,7 +10,9 @@ interface TopicsListProps {
 }
 
 export default function Products({ topics }: TopicsListProps) {
-  
+  if (!topics || topics.length === 0) {
+    return <div>Brak dostępnych produktów</div>;
+  }
   return (
     <>
       {topics.map((product) => (

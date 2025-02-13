@@ -9,6 +9,7 @@ interface OrderData {
     orderId: string;
     productName: string;
     productPrice: number;
+    email: string;
 }
 
 export default function ContinuePage() {
@@ -16,11 +17,6 @@ export default function ContinuePage() {
     const [orderData, setOrderData] = useState<OrderData | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
-
-
-    const [test, setTest] = useState();
-
-    console.log(test)
 
     useEffect(() => {
         const orderId = searchParams.get('orderId');
@@ -34,12 +30,13 @@ export default function ContinuePage() {
             try {
                 const response = await fetch(`/api/przelewy24/status?orderId=${orderId}`);
                 const data = await response.json();
-                setTest(data)
+
                 if (data.state === 'success') {
                     setOrderData({
                         orderId,
                         productName: data.products[0]?.name || 'Brak danych',
                         productPrice: data.products[0]?.price || 0,
+                        email: data.customer?.email || 'Brak emaila',
                     });
                 } else {
                     setErrorMessage('Płatność nie powiodła się.');

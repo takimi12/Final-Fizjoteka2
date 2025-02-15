@@ -23,6 +23,7 @@ const Cartpage: React.FC = () => {
     const [discountError, setDiscountError] = useState<string>("");
     const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
 
+    // Obliczanie końcowej ceny po rabacie
     const finalPrice = totalPrice * (1 - appliedDiscount / 100);
 
     const validateDiscountCode = async () => {
@@ -84,21 +85,29 @@ const Cartpage: React.FC = () => {
         }
 
         try {
-            const discountedPrice = totalPrice * (1 - appliedDiscount / 100);
-            
+            // Przygotowanie produktów z uwzględnieniem rabatu
+            const discountedCartItems = cartItems.map(item => ({
+                id: item._id,
+                quantity: item.quantity,
+                // Zaokrąglamy cenę do 2 miejsc po przecinku
+                price: Number((item.price * (1 - appliedDiscount / 100)).toFixed(2))
+            }));
+
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, {
-                cartItems: cartItems.map((el) => ({
-                    id: el._id,
-                    quantity: el.quantity,
-                    price: el.price * (1 - appliedDiscount / 100)
-                })),
+                cartItems: discountedCartItems,
                 email,
                 nameAndSurname,
                 companyName: isCompany ? companyName : "",
                 nip: isCompany ? nip : "",
                 appliedDiscount,
-                totalPrice: discountedPrice,
-                originalPrice: totalPrice
+                // Wysyłamy zarówno cenę końcową jak i oryginalną
+                totalPrice: Number(finalPrice.toFixed(2)), // Zaokrąglamy do 2 miejsc po przecinku
+                originalPrice: totalPrice,
+                // Dodatkowe informacje o rabacie
+                discountInfo: appliedDiscount > 0 ? {
+                    discountPercentage: appliedDiscount,
+                    amountSaved: Number((totalPrice - finalPrice).toFixed(2))
+                } : null
             });
 
             if (data && data.url) {
@@ -130,7 +139,19 @@ const Cartpage: React.FC = () => {
                                                 <div>
                                                     <h5 className={styles.topText}>{item.title}</h5>
                                                     <p className={styles.bottomText}>
-                                                        {item.price} zł <span className={styles.normalFont}>(zawiera vat)</span>
+                                                        {appliedDiscount > 0 ? (
+                                                            <>
+                                                                <span className={styles.originalPrice}>
+                                                                    {item.price} zł
+                                                                </span>
+                                                                <span className={styles.discountedPrice}>
+                                                                    {(item.price * (1 - appliedDiscount / 100)).toFixed(2)} zł
+                                                                </span>
+                                                            </>
+                                                        ) : (
+                                                            `${item.price} zł`
+                                                        )}
+                                                        <span className={styles.normalFont}>(zawiera vat)</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -142,10 +163,12 @@ const Cartpage: React.FC = () => {
                             <div className={styles.totalAmount}>
                                 {appliedDiscount > 0 && (
                                     <div className={styles.originalPrice}>
-                                        Cena przed rabatem: {totalPrice.toFixed(2)} zł
+                                        <div>Cena przed rabatem: {totalPrice.toFixed(2)} zł</div>
+                                        <div>Wysokość rabatu: {appliedDiscount}%</div>
+                                        <div>Zaoszczędzono: {(totalPrice - finalPrice).toFixed(2)} zł</div>
                                     </div>
                                 )}
-                                <span>
+                                <span className={styles.finalPrice}>
                                     Całkowita należność:{" "}
                                     {finalPrice > 0 ? <strong>{finalPrice.toFixed(2)}</strong> : "0"} zł
                                 </span>

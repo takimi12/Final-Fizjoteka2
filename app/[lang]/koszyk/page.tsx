@@ -23,7 +23,8 @@ const Cartpage: React.FC = () => {
     const [discountError, setDiscountError] = useState<string>("");
     const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
 
-    // Obliczanie końcowej ceny po rabacie
+
+
     const finalPrice = totalPrice * (1 - appliedDiscount / 100);
 
     const validateDiscountCode = async () => {
@@ -85,36 +86,34 @@ const Cartpage: React.FC = () => {
         }
 
         try {
-            // Przygotowanie produktów z uwzględnieniem rabatu
             const discountedCartItems = cartItems.map(item => ({
                 id: item._id,
                 quantity: item.quantity,
-                // Zaokrąglamy cenę do 2 miejsc po przecinku
                 price: Number((item.price * (1 - appliedDiscount / 100)).toFixed(2))
             }));
 
-            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, {
+            const paymentData = {
                 cartItems: discountedCartItems,
                 email,
                 nameAndSurname,
                 companyName: isCompany ? companyName : "",
                 nip: isCompany ? nip : "",
                 appliedDiscount,
-                // Wysyłamy zarówno cenę końcową jak i oryginalną
-                totalPrice: Number(finalPrice.toFixed(2)), // Zaokrąglamy do 2 miejsc po przecinku
+                totalPrice: Number(finalPrice.toFixed(2)),
                 originalPrice: totalPrice,
-                // Dodatkowe informacje o rabacie
                 discountInfo: appliedDiscount > 0 ? {
                     discountPercentage: appliedDiscount,
                     amountSaved: Number((totalPrice - finalPrice).toFixed(2))
                 } : null
-            });
+            };
+
+
+            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, paymentData);
 
             if (data && data.url) {
                 window.location.href = data.url;
             }
         } catch (error) {
-            console.error("Błąd płatności:", error);
             alert("Wystąpił błąd podczas przetwarzania płatności. Spróbuj ponownie.");
         }
     };
@@ -135,7 +134,7 @@ const Cartpage: React.FC = () => {
                                 {cartItems.map((item) => (
                                     <React.Fragment key={item._id}>
                                         <div className={styles.orders}>
-                                            <div>
+                                            <div className={styles.orderContent}>
                                                 <div>
                                                     <h5 className={styles.topText}>{item.title}</h5>
                                                     <p className={styles.bottomText}>
@@ -154,6 +153,13 @@ const Cartpage: React.FC = () => {
                                                         <span className={styles.normalFont}>(zawiera vat)</span>
                                                     </p>
                                                 </div>
+                                                <button 
+                                                    onClick={() => handleRemoveFromCart(item)}
+                                                    className={styles.removeButton}
+                                                    aria-label="Usuń produkt"
+                                                >
+                                                    ✕
+                                                </button>
                                             </div>
                                         </div>
                                     </React.Fragment>

@@ -23,6 +23,11 @@
 				padding: 10px;
 				margin-bottom: 20px;
 				border-radius: 4px;
+				.orderContent{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
 				.parentWrapper{
 
 						display: flex;

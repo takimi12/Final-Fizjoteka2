@@ -30,8 +30,12 @@ const transactionSchema = new Schema({
     products: [productSchema],
     customer: customerSchema,
     paymentHistory: [paymentHistoryEntrySchema],
-    errorMessage: { type: String },   
-    errorCode: { type: String },      
+    errorMessage: { type: String },
+    errorCode: { type: String },
+    discountInfo: {
+        discountPercentage: { type: Number },
+        amountSaved: { type: Number }
+    }
 });
 
 const Transaction = mongoose.models.Transaction || mongoose.model("Transaction", transactionSchema);

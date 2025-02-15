@@ -1,8 +1,5 @@
 {
   "/api/discountCode/route": "app/api/discountCode/route.js",
-  "/[lang]/login/page": "app/[lang]/login/page.js",
-  "/[lang]/blog/[...id]/page": "app/[lang]/blog/[...id]/page.js",
-  "/[lang]/blog/page": "app/[lang]/blog/page.js",
-  "/[lang]/page": "app/[lang]/page.js",
+  "/api/przelewy24/route": "app/api/przelewy24/route.js",
   "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js"
 }

@@ -13,6 +13,7 @@ import mongoose from "mongoose";
 
 interface CartItem {
     id: string;
+    price: number; 
 }
 
 interface RequestBody {
@@ -21,6 +22,13 @@ interface RequestBody {
     nameAndSurname: string;
     companyName: string;
     nip: string;
+    appliedDiscount: number;
+    totalPrice: number;
+    originalPrice: number;
+    discountInfo?: {
+        discountPercentage: number;
+        amountSaved: number;
+    };
 }
 
 interface Product {
@@ -53,32 +61,26 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        const allProducts = body.cartItems.map(item => ({
+            name: "", 
+            price: item.price, 
+            quantity: 1,
+            url: "", 
+        }));
+
         const productPromises = body.cartItems.map((el: CartItem) => {
             console.log('Searching for product with ID:', el.id);
             return Topics.findById(el.id);
         });
 
         const products: Product[] = await Promise.all(productPromises);
-        console.log('Found products:', products);
 
-        if (products.some(product => !product)) {
-            return NextResponse.json(
-                { error: "Some products not found" },
-                { status: 404 }
-            );
-        }
-
-        const totalPrice = products.reduce((acc: number, cur: Product) => {
-            return acc + Number(cur.price);
-        }, 0);
-        console.log('Total price:', totalPrice);
-
-        const allProducts = products.map((product) => ({
-            name: product.title,
-            price: product.price,
-            quantity: 1,
-            url: product.pdfFileUrl,
-        }));
+        products.forEach((product, index) => {
+            if (product) {
+                allProducts[index].name = product.title;
+                allProducts[index].url = product.pdfFileUrl;
+            }
+        });
 
         const transaction = await Transaction.create({
             status: false,
@@ -89,8 +91,9 @@ export async function POST(request: NextRequest) {
                 companyName: body.companyName,
                 nip: body.nip,
             },
+            amount: body.totalPrice,
+            discountInfo: body.discountInfo,
         });
-        console.log('Transaction created:', transaction._id);
 
         const POS_ID = process.env.P24_MERCHANT_ID;
         const CRC = process.env.P24_CRC_KEY;
@@ -110,7 +113,7 @@ export async function POST(request: NextRequest) {
 
         const result = await p24.createTransaction({
             sessionId: transaction._id.toString(),
-            amount: Math.round(totalPrice * 100),
+            amount: Math.round(body.totalPrice * 100), 
             currency: Currency.PLN,
             description: "test order",
             email: body.email,

@@ -5,21 +5,21 @@ import styles from "./Seven.module.scss";
 async function Seven() {
 	return (
 		<>
-			<section className={`${styles.Ebook} d-flex flex-center`}>
-				<div className={`Container m-auto`}>
-					<div className={`${styles.topSection} flex flex-col items-center `}>
+			<section className={styles.Ebook}>
+				<div className={styles.Container}>
+					<div className={styles.topSection}>
 						<h2>Jak konkretnie mogę Ci pomóc?</h2>
 						<h3>Przygotowałam zestaw filmów o noszeniu i opiece nad niemowlakiem</h3>
 					</div>
-					<div className={`${styles.bottomSection} mt-20  flex items-center`}>
-						<div className={`${styles.inner} flex w-full items-center gap-10`}>
-							<div className={`${styles.leftSection} w-full`}>
-								<div className={`${styles.image} flex justify-center`}>
+					<div className={styles.bottomSection}>
+						<div className={styles.inner}>
+							<div className={styles.leftSection}>
+								<div className={styles.image}>
 									<Image src={Photo} alt="moj pierwszy ebook" width={361} height={322} />
 								</div>
 							</div>
-							<div className={`${styles.rightSection} flex w-full flex-col justify-center gap-3`}>
-								<div className={`${styles.text} flex flex-col gap-3`}>
+							<div className={styles.rightSection}>
+								<div className={styles.text}>
 									<div>
 										<h6>Jak podnosić niemowlę?</h6>
 										<ul>

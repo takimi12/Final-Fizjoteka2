@@ -19,6 +19,53 @@ const Cartpage: React.FC = () => {
     const [nip, setNip] = useState<string>("");
     const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
     const [discountCode, setDiscountCode] = useState<string>("");
+    const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
+    const [discountError, setDiscountError] = useState<string>("");
+    const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
+
+    const finalPrice = totalPrice * (1 - appliedDiscount / 100);
+
+    const validateDiscountCode = async () => {
+        if (!discountCode) {
+            setDiscountError("Wprowadź kod rabatowy");
+            return;
+        }
+
+        if (discountCode.length < 3) {
+            setDiscountError("Kod musi mieć minimum 3 znaki");
+            return;
+        }
+
+        if (!/^[A-Za-z0-9]+$/.test(discountCode)) {
+            setDiscountError("Kod może zawierać tylko litery i cyfry");
+            return;
+        }
+
+        setIsSubmittingDiscount(true);
+        setDiscountError("");
+
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL}/api/discountCode`);
+            const codes = response.data.data;
+            
+            const foundCode = codes.find((code: { code: string }) => 
+                code.code.toLowerCase() === discountCode.toLowerCase()
+            );
+
+            if (foundCode) {
+                setAppliedDiscount(foundCode.discount);
+                setDiscountCode("");
+            } else {
+                setDiscountError("Nieprawidłowy kod rabatowy");
+                setAppliedDiscount(0);
+            }
+        } catch (error) {
+            setDiscountError("Błąd podczas weryfikacji kodu");
+            setAppliedDiscount(0);
+        } finally {
+            setIsSubmittingDiscount(false);
+        }
+    };
 
     const handlePayment = async (): Promise<void> => {
         if (!nameAndSurname || !email) {
@@ -37,15 +84,21 @@ const Cartpage: React.FC = () => {
         }
 
         try {
+            const discountedPrice = totalPrice * (1 - appliedDiscount / 100);
+            
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, {
                 cartItems: cartItems.map((el) => ({
                     id: el._id,
                     quantity: el.quantity,
+                    price: el.price * (1 - appliedDiscount / 100)
                 })),
                 email,
                 nameAndSurname,
                 companyName: isCompany ? companyName : "",
                 nip: isCompany ? nip : "",
+                appliedDiscount,
+                totalPrice: discountedPrice,
+                originalPrice: totalPrice
             });
 
             if (data && data.url) {
@@ -63,7 +116,7 @@ const Cartpage: React.FC = () => {
 
     return (
         <>
-            <div className={`Container ${styles.container} m-auto flex`}>
+            <div className={`Container ${styles.container} `}>
                 <Breadcrumbs />
                 <div className={styles.wrapper}>
                     <div className={` ${styles.cart}`}>
@@ -87,9 +140,14 @@ const Cartpage: React.FC = () => {
                             </div>
 
                             <div className={styles.totalAmount}>
+                                {appliedDiscount > 0 && (
+                                    <div className={styles.originalPrice}>
+                                        Cena przed rabatem: {totalPrice.toFixed(2)} zł
+                                    </div>
+                                )}
                                 <span>
                                     Całkowita należność:{" "}
-                                    {totalPrice > 0 ? <strong>{totalPrice.toFixed(2)}</strong> : "0"}
+                                    {finalPrice > 0 ? <strong>{finalPrice.toFixed(2)}</strong> : "0"} zł
                                 </span>
                             </div>
 
@@ -102,9 +160,34 @@ const Cartpage: React.FC = () => {
                                         name="discount"
                                         value={discountCode}
                                         onChange={(e) => setDiscountCode(e.target.value)}
+                                        className={discountError ? styles.errorInput : ''}
                                     />
-                                    <button type="button">Dodaj rabat</button>
+                                    <button 
+                                        type="button" 
+                                        onClick={validateDiscountCode}
+                                        disabled={isSubmittingDiscount}
+                                        className={styles.discountButton}
+                                    >
+                                        {isSubmittingDiscount ? (
+                                            <span className="flex items-center">
+                                                <span className={styles.spinner}></span>
+                                                Weryfikacja...
+                                            </span>
+                                        ) : (
+                                            "Dodaj rabat"
+                                        )}
+                                    </button>
                                 </div>
+                                {discountError && (
+                                    <span className={styles.errorText}>
+                                        {discountError}
+                                    </span>
+                                )}
+                                {appliedDiscount > 0 && (
+                                    <p className={styles.discountApplied}>
+                                        Rabat {appliedDiscount}% został naliczony
+                                    </p>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -160,19 +243,22 @@ const Cartpage: React.FC = () => {
                                     </label>
                                 </>
                             )}
-                            <label className={styles.checkboxContainer}>
-                                <input
-                                    className={styles.input}
-                                    type="checkbox"
-                                    checked={isTermsAccepted}
-                                    onChange={(e) => setIsTermsAccepted(e.target.checked)}
-                                    required
-                                />
-                                <span>
-                                    Zapoznałem się z polityką prywatności oraz regulaminem sklepu. Dobrowolnie zrzekam
-                                    się z prawa do odstąpienia od produktu w terminie 14 dni od zakupu - Wymagane
-                                </span>
-                            </label>
+
+                            <fieldset className={styles.fieldset}>
+                                <label>
+                                    <input
+                                        className={styles.input}
+                                        type="checkbox"
+                                        checked={isTermsAccepted}
+                                        onChange={(e) => setIsTermsAccepted(e.target.checked)}
+                                        required
+                                    />
+                                    <span>
+                                        Zapoznałem się z polityką prywatności oraz regulaminem sklepu. Dobrowolnie zrzekam się z prawa do odstąpienia od produktu w terminie 14 dni od zakupu - Wymagane
+                                    </span>
+                                </label>
+                            </fieldset>
+
                             <button className={`button`} onClick={handlePayment}>
                                 Kupuję i płacę
                             </button>

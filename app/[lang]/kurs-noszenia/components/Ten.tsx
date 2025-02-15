@@ -38,7 +38,7 @@ const Ten = () => {
 							height={125}
 						/>
 					</div>
-					<div className={` ${styles.bubbleWrapper1} `}>
+					<div className={` ${styles.bubbleWrapper1} ${styles.bubbleWrapper2} `}>
 						<Image
 							className={`${styles.buble2} `}
 							src={Buble2}
@@ -57,7 +57,7 @@ const Ten = () => {
 						/>
 					</div>
 				</div>
-				<div className={styles.container}>
+				<div className={`${styles.container} Container`}>
 					<h2 className={styles.title}>Znajdziesz odpowiedzi na najczęstsze pytania rodziców</h2>
 					<div className={styles.wrapper}>
 						{data.map((item, index) => (

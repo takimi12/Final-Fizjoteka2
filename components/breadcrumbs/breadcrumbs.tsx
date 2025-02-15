@@ -30,7 +30,7 @@ function Breadcrumbs() {
 	});
 
 	return (
-		<section className={`flex flex-col items-center`}>
+		<section className={``}>
 			<div className={`${styles.locations} Container`}>
 				<p className={`${styles.color}`}>
 					<Link className={`body-small ${styles.color}`} href={hasEnPrefix ? "/en" : "/"}>
@@ -42,7 +42,7 @@ function Breadcrumbs() {
 						<span className={styles.breadcrumb}>/</span>
 						<p className={` `}>
 							&nbsp;
-							<Link className={`body-small ${styles.color}`} href={`${pathname}`}>
+							<Link className={`${styles.color}`} href={`${pathname}`}>
 								{crumb.text}
 							</Link>
 							{index < breadcrumbs.length - 2 ? " / " : ""}

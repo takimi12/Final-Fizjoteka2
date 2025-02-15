@@ -32,6 +32,10 @@
 	margin-bottom: 40px;
 	position: relative;
 	background: #f7f7f7;
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+		gap: 50px;
+	}
 
 	.availableTop {
 		position: absolute;
@@ -56,6 +60,13 @@
 	.textWraper {
 		width: calc(100% - 215px);
 		margin-left: 30px;
+		@media only screen and (max-width: 768px) {
+		
+			width: 100%;
+			padding: 30px;
+			margin: 0;
+		
+	}
 
 		.mainText {
 			color: #1e4450;

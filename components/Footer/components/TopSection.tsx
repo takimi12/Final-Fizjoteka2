@@ -13,12 +13,12 @@ const TopFooter = () => {
 				</div>
 
 				<div className={` ${styles.container} Container `}>
-					<div className={`${styles.left} flex flex-col `}>
-						<div className={`${styles.top} flex items-center gap-3`}>
+					<div className={`${styles.left}  `}>
+						<div className={`${styles.top} `}>
 							<Image src={check} width={50} height={50} alt="logo" />
 							<h3>Wszystkie produkty objęte są gwarancją jakości.</h3>
 						</div>
-						<div className={`${styles.bottom} flex flex-col`}>
+						<div className={`${styles.bottom} `}>
 							<p>Jestem pewna jakości opracowanych przeze mnie materiałów.</p>
 							<p>
 								Jeśli jednak po zakupie nie spełnią one Twoich indywidualnych oczekiwań wystarczy,

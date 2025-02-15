@@ -1,6 +1,8 @@
 {
-  "/api/topics/route": "app/api/topics/route.js",
-  "/api/category/route": "app/api/category/route.js",
+  "/api/discountCode/route": "app/api/discountCode/route.js",
+  "/[lang]/login/page": "app/[lang]/login/page.js",
+  "/[lang]/blog/[...id]/page": "app/[lang]/blog/[...id]/page.js",
+  "/[lang]/blog/page": "app/[lang]/blog/page.js",
   "/[lang]/page": "app/[lang]/page.js",
-  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js"
+  "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js"
 }

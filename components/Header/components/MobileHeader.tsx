@@ -12,6 +12,9 @@ import Image from "next/image";
 import Link from "next/link";
 import ActiveLink from "../../ActiveLink/ActiveLink";
 import { useEffect, useState } from "react";
+import search from "../../../public/assets/Header/Search.svg";
+import LocaleSwitcher from "./LocaleSwitcher";
+
 
 const Header = () => {
 	const [isSticky, setIsSticky] = useState(false);
@@ -57,9 +60,9 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className={` ${styles.topHeader} py-2`}>
-				<div className={` flex justify-center gap-8 `}>
-					<div className={` flex justify-center gap-10`}>
+			<div className={` ${styles.topHeader} `}>
+				<div className={` ${styles.inner} `}>
+					<div className={` `}>
 						<Image
 							src={youTubeIcon}
 							className={styles.headerImage}
@@ -124,7 +127,7 @@ const Header = () => {
 				<div className={styles.modalBackdrop} onClick={closeModal}>
 					<div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
 						<div className={styles.modalHeaderWraper}>
-							<div className={`${styles.modalHeader} flex`}>
+							<div className={`${styles.modalHeader} `}>
 								<div className={styles.logo}>
 									<Link className={styles.logos} href="/">
 										<Image src={Logo} width={200} height={200} alt="Logo" />
@@ -134,7 +137,7 @@ const Header = () => {
 									×
 								</button>
 							</div>
-							<div className={`${styles.links} flex flex-col items-center`}>
+							<div className={`${styles.links}`}>
 								<ActiveLink
 									href="/"
 									className={styles.anchor}
@@ -158,7 +161,10 @@ const Header = () => {
 								<Link className={styles.anchor} href="/wizyta" onClick={closeModal}>
 									Wizyta
 								</Link>
-								<button className={` button w-full`}>En</button>
+								<LocaleSwitcher />
+								<Link href="/search" className={styles.anchor}>
+								<Image src={search} width={20} height={20} alt="search" />
+							</Link>
 							</div>
 						</div>
 					</div>

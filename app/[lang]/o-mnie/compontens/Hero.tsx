@@ -7,7 +7,7 @@ function Hero() {
 	return (
 		<>
 			<section className={`${styles.Hero}`}>
-				<div className={`Container ${`Container`}`}>
+				<div className={`Container `}>
 					<Breadcrumbs />
 					<div className={`${styles.Inner}`}>
 						<div className={` ${styles.leftSection}`}>

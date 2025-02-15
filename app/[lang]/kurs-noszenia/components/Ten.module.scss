@@ -60,11 +60,28 @@
 	position: absolute;
 	left: 0;
 	z-index: 0;
+	@media screen and (max-width: 1350px) {
+		left: -60px;
+	}
+	@media screen and (max-width: 1250px) {
+		left: -120px;
+	}
+	@media screen and (max-width: 1150px) {
+		left: -180px;
+	}
+	@media screen and (max-width: 1050px) {
+		left: -240px;
+	}
 }
 .bubbleWrapper1 {
 	position: relative;
 	left: 0;
 	z-index: 9;
+}
+@media screen and (max-width: 1050px) {
+	.bubbleWrapper2 {
+		left: 150px;
+	}
 }
 .buble1 {
 	position: relative;

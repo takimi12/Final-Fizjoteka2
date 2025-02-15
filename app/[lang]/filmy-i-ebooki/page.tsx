@@ -1,13 +1,11 @@
 
 import styles from "./FilmyEbooki.module.scss";
-import Products from "./components/Products";
-import Categories from "./components/Category";
-import FilterComponent from "./components/subcomponents/Filters";
 import Breadcrumbs from "../../../components/breadcrumbs/breadcrumbs";
 import { getTopics } from "../../../helpers/api/getTopic";
 import { getCategories } from "../../../helpers/api/getCategory";
+import MainPage from "./components/MainPage";
 
-const MainPage = async () => {
+ const FilmyEbooki = async () => {
 	const topicsResponse = await getTopics();
 	
 	const categoriesResponse = await getCategories();
@@ -18,19 +16,10 @@ const MainPage = async () => {
 		<>
 			<div className={`Container ${styles.Container}`}>
 				<Breadcrumbs />
-				<div className={`${styles.mainWrapper} ${styles.localContainer}`}>
-					<div className={styles.fitlersGroup}>
-						<FilterComponent categories={categories} topics={topics} />
-					</div>
-					<div>
-						<Categories categories={categories} />
-						<Products topics={topics} />
-
-					</div>
-				</div>
+				<MainPage categories={categories} topics={topics} />
 			</div>
 		</>
 	);
 };
 
-export default MainPage;
+export default FilmyEbooki

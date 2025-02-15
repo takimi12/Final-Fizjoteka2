@@ -5,7 +5,6 @@ import styles from "./TopicList.module.scss";
 import TopicCategory from "./Subcomponents/CategoryList";
 import TopicList from "./Subcomponents/TopicsList";
 import AddCategory from "./Components/AddCategory";
-import AddCode from "../../app/[lang]/admin/kodyRabatowe/page";
 
 export default async function TopicsList() {
 	const { topics } = await getTopics();

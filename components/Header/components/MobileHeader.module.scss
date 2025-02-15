@@ -1,5 +1,13 @@
 .topHeader {
 	background-color: #d7ede8;
+	.inner{
+		display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    align-items: center;
+	padding: 10px;
+	}
 }
 
 @media (min-width: 900px) {
@@ -60,6 +68,12 @@
 	display: flex;
 	flex-direction: column;
 	padding: 0 0 0 15px;
+	.links{
+		display: flex;
+    flex-direction: column;
+    align-items: center;
+	padding-bottom: 50px;
+	}
 }
 .sticky {
 	position: fixed;
@@ -75,8 +89,4 @@
 	text-decoration-color: rgba(37, 90, 107, 0.4);
 	margin: 20px;
 	font-size: 24px;
-}
-
-.links {
-	padding-bottom: 50px;
 }

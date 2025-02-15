@@ -31,7 +31,7 @@ async function Hero() {
 				<div className={`Container`}>
 					<div className={`${styles.topSection}`}>
 						<h2>Jak mogę Ci pomóc?</h2>
-						<p className={` mb-5`}>
+						<p className={` `}>
 							Na e-fizjotece znajdziesz artykuły oraz filmy i e-booki z poradami fizjoterapeuty.
 						</p>
 					</div>
@@ -41,7 +41,7 @@ async function Hero() {
 								<h4>{item.title}</h4>
 								<div className={` ${styles.longText}`}>
 									<p>{item.paragraph}</p>
-									{item.paragraphbold && <p className={`font-bold`}>{item.paragraphbold}</p>}
+									{item.paragraphbold && <p >{item.paragraphbold}</p>}
 								</div>
 								<Button link={item.link} link1="" />
 							</div>

@@ -5,6 +5,9 @@
 	display: flex;
 	margin-top: 50px;
 	margin-bottom: 100px;
+	@media (max-width: 900px) {
+		flex-direction: column;
+		}
 
 .cart {
 	width: 100%;
@@ -116,11 +119,6 @@
 	margin: auto;
 	padding: 20px;
 
-	.checkboxContainer {
-		display: flex;
-		align-items: center;
-		margin-bottom: 16px; 
-	}
 	
 	
 	.inputWithText {
@@ -211,4 +209,8 @@
         align-items: center;
         justify-content: center;
     }
+}
+
+.fieldset{
+	margin-bottom: 30px;
 }

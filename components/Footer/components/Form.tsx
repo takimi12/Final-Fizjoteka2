@@ -70,7 +70,7 @@ function NewsletterForm() {
 
 	return (
 		<div className={styles.right}>
-			<div className={`${styles.form} flex flex-col gap-3`}>
+			<div className={`${styles.form} `}>
 				<p>
 					Zapisz się na newsletter a otrzymasz w prezencie kalendarz rozwoju dziecka w pierwszym
 					roku życia
@@ -90,7 +90,7 @@ function NewsletterForm() {
 						</div>
 					</div>
 				)}
-				<form onSubmit={handleSubmit} className="newsletter-form animate-fade-in-3">
+				<form onSubmit={handleSubmit} className="">
 					<div>
 						<div className={styles.inputWraper}>
 							<fieldset>

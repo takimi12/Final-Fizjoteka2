@@ -4,7 +4,6 @@ import styles from "./LocalSwitcher.module.scss";
 import { i18n } from "../../../i18n";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { BlogList } from "../../../app/[lang]/blog/components/BlogList";
 
 type Locale = (typeof i18n.locales)[number];
 
@@ -39,32 +38,21 @@ export default function LocaleSwitcher() {
 
         let newPath = "";
 
-        // Handling blog-specific paths
         if (pathname.startsWith("/blog") || pathname.startsWith("/en/blog")) {
-            // Case 1: /blog -> /en/blog
             if (pathname === "/blog") {
                 newPath = "/en/blog";
-            }
-            // Case 2: /en/blog -> /blog
-            else if (pathname === "/en/blog") {
+            } else if (pathname === "/en/blog") {
                 newPath = "/blog";
-            }
-            // Case 3: /en/blog/[id] -> /en/blog
-            else if (pathname.startsWith("/en/blog/")) {
-                newPath = "/en/blog";
-            }
-            // Case 4: /blog/[id] -> /blog
-            else if (pathname.startsWith("/blog/")) {
-                newPath = "/blog";
+            } else if (pathname.startsWith("/en/blog/")) {
+                newPath = ( "/blog");
+            } else if (pathname.startsWith("/blog/")) {
+                newPath = ( "/en/blog");
             }
         } else {
-            // Handle non-blog paths as before
-            const hasLocale = i18n.locales.some(
-                (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-            );
+            const pathParts = pathname.split("/");
+            const hasLocale = i18n.locales.includes(pathParts[1] as Locale);
 
             if (hasLocale) {
-                const pathParts = pathname.split("/");
                 if (newLocale === i18n.defaultLocale) {
                     pathParts.splice(1, 1);
                     newPath = pathParts.join("/") || "/";
@@ -73,27 +61,20 @@ export default function LocaleSwitcher() {
                     newPath = pathParts.join("/");
                 }
             } else {
-                if (newLocale === i18n.defaultLocale) {
-                    newPath = pathname;
-                } else {
-                    newPath = `/${newLocale}${pathname}`;
-                }
+                newPath = newLocale === i18n.defaultLocale ? pathname : `/${newLocale}${pathname}`;
             }
         }
 
         router.push(newPath);
     };
 
-    // Determine button text based on URL
-    const isEnglishPath = pathname.includes("/en/");
+    const isEnglishPath = pathname.startsWith("/en");
     const buttonText = isEnglishPath ? "pl" : "en";
-    
-    // Set the opposite locale based on the current path
     const oppositeLocale = isEnglishPath ? "pl" : "en" as Locale;
 
     return (
         <div className={styles.wrapper}>
-            <button onClick={() => handleLocaleChange(oppositeLocale)} className="">
+            <button onClick={() => handleLocaleChange(oppositeLocale)} className={styles.button}>
                 {buttonText}
             </button>
         </div>

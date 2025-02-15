@@ -26,14 +26,14 @@ interface CategoryListProps {
 
 export default async function CategoryList({ categories }: CategoryListProps) {
 	return (
-		<div className={` mx-auto py-8 ${styles.localContainer}`}>
+		<div className={` ${styles.localContainer}`}>
 			{categories.map((product) => (
 				<div key={product._id} className={styles.singleProduct}>
 					<span className={styles.availableTop}>FIZJOTERAPEUTA POLECA</span>
 					<div className={styles.productPhoto}>
 						<Image src={product.imageFileUrl} alt="product" width={300} height={300} />
 					</div>
-					<div className={`${styles.textWraper} w-full`}>
+					<div className={`${styles.textWraper}`}>
 						<div className={styles.cardTitle}>
 							<Link className={styles.anchor} href="">
 								<h4>{product.title}</h4>
@@ -48,8 +48,8 @@ export default async function CategoryList({ categories }: CategoryListProps) {
 							<p>Produkt dostępny</p>
 						</div>
 						<div className={styles.circle}></div>
-						<div className={`${styles.priceParent} flex items-center justify-end`}>
-							<p className={`${styles.amount} font-bold`}>{product.price} zł</p>
+						<div className={`${styles.priceParent} `}>
+							<p className={`${styles.amount} `}>{product.price} zł</p>
 						</div>
 					</div>
 					<div className={styles.actionGroup}>

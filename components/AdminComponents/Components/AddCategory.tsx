@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import styles from "./AddCategory.module.scss";
 
-// Definiowanie typu dla danych formularza
 interface FormData {
 	title: string;
 	subtitle1: string;
@@ -23,7 +22,6 @@ const AddCategory = () => {
 
 	const router = useRouter();
 
-	// Typ dla zdarzenia zmiany pliku
 	const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 		if (file && file.name.includes(" ")) {
@@ -34,7 +32,6 @@ const AddCategory = () => {
 		setImageFile(file || null);
 	};
 
-	// Typ dla danych formularza
 	const onSubmit = async (data: FormData) => {
 		if (!imageFile) {
 			alert("Proszę wybrać plik obrazu.");

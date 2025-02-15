@@ -58,8 +58,8 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 	return (
 		<header>
-			<div className={` ${styles.topHeader} py-2`}>
-				<div className={`${styles.inner} flex justify-center gap-8`}>
+			<div className={` ${styles.topHeader} `}>
+				<div className={`${styles.inner}`}>
 					<Image src={youTubeIcon} className={styles.headerImage} alt="YouTube" width={15} height={15} />
 					<Image src={instagramIcon} className={styles.headerImage} alt="Instagram" width={15} height={15} />
 					<Image src={facebookIcon} className={styles.headerImage} alt="Facebook" width={15} height={15} />
@@ -130,7 +130,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 															</button>
 														</div>
 													))}
-													<div className={`flex ${styles.sum}`}>
+													<div className={` ${styles.sum}`}>
 														<p className={styles.text}>Liczba: {item.length}</p>
 														<p className={styles.text}>Suma: {totalPrice.toFixed(2)} zł</p>
 													</div>

@@ -31,7 +31,7 @@ export const Button: React.FC<TopicsListProps> = ({ product }) => {
       imageFileUrl: product.imageFileUrl,
     };
     dispatch(addToCart(productWithConvertedPrice));
-    setShowPopup(true);  // Show popup after adding to cart
+    setShowPopup(true); 
   };
 
   const closePopup = () => {

@@ -12,7 +12,6 @@
     "knip": "knip"
   },
   "dependencies": {
-    "lucide-react": "^0.327.0",
     "@aws-sdk/client-s3": "^3.590.0",
     "@aws-sdk/client-ses": "^3.592.0",
     "@aws-sdk/s3-request-presigner": "^3.590.0",
@@ -22,6 +21,7 @@
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "graphql-request": "^7.1.2",
+    "lucide-react": "^0.327.0",
     "mongoose": "^8.4.1",
     "mongose": "^0.0.2-security",
     "next": "14.2.3",
@@ -46,6 +46,6 @@
     "postcss": "^8",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.8.3"
   }
 }

@@ -1,17 +1,9 @@
 import { Pagination } from "./components/Paginate";
 import styles from "./Blog.module.scss";
 import Breadcrumbs from "../../../components/breadcrumbs/breadcrumbs";
+import { Blog } from "../../types/Blog/types";
 
-interface Blog {
-  author: string;
-  id: string;
-  publishedAt: string;
-  tytul: string;
-  slugs: string[];
-  richText: {
-    raw: string | Record<string, string>;
-  };
-}
+
 
 export default async function Page({
   params,

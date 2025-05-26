@@ -13,10 +13,10 @@ import Link from "next/link";
 import ActiveLink from "../../ActiveLink/ActiveLink";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, selectTotalPrice, CartItem } from "../../../app/Redux/Cartslice";
+import { addToCart, removeFromCart, selectTotalPrice, CartItem } from "../../../Redux/Cartslice";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { Locale } from "../../../i18n";
-import { RootState } from "../../../app/Redux/Store" 
+import { RootState } from "../../../Redux/Store" 
 
 type Navigation = {
 	home: string;
@@ -30,6 +30,7 @@ type Navigation = {
 
 const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) => {
 	const [isSticky, setIsSticky] = useState(false);
+	const [isCartHidden, setIsCartHidden] = useState(false);
 
 	const item: CartItem[] = useSelector((state: RootState) => state.cart);
 	const totalPrice: number = useSelector(selectTotalPrice);
@@ -39,6 +40,14 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 	const handleRemoveFromCart = (item: CartItem) => {
 		dispatch(removeFromCart({ _id: item._id }));
+	};
+
+	const handlePaymentClick = () => {
+		setIsCartHidden(true);
+		// Reset po krótkiej chwili, żeby hover mógł znów działać
+		setTimeout(() => {
+			setIsCartHidden(false);
+		}, 500);
 	};
 
 	useEffect(() => {
@@ -70,7 +79,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 				<div className={`${styles.bottomContainer} Container`}>
 					<div className={styles.bottomContainerInner}>
 						<div className={styles.logo}>
-							<Link href="/" className={styles.logos}>
+							<Link href="/" className={styles.logoss}>
 								<Image src={Logo} width={200} height={200} alt="Logo" />
 							</Link>
 						</div>
@@ -96,7 +105,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 							<LocaleSwitcher />
 
-							<div className={styles.cart}>
+							<div className={`${styles.cart} ${isCartHidden ? styles.cartHidden : ''}`}>
 								<div>
 									{item.length > 0 && <span className={styles.numberCart}>{item.length}</span>}
 									<Image src={cart} width={20} height={20} alt="cart" />
@@ -136,7 +145,12 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 													</div>
 													<div className={styles.payment}>
 														<Link href="/koszyk">
-															<button className="button">Zapłać</button>
+															<button 
+																className="button"
+																onClick={handlePaymentClick}
+															>
+																Zapłać
+															</button>
 														</Link>
 													</div>
 												</>

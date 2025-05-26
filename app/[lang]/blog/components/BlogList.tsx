@@ -4,31 +4,9 @@ import styles from "./BlogList.module.scss";
 import Etiquette from "../../../../public/assets/Blog/etiquette.svg";
 import Calendar from "../../../../public/assets/Blog/calendar.svg";
 import Arrow from "../../../../public/assets/Blog/arrow.svg";
+import { BlogListProps, RichTextContent } from "../../../types/Blog/types";
 
-interface Blog {
-  id: string;
-  publishedAt: string;
-  tytul: string;
-  slugs: string[];
-  richText: {
-    raw: string | Record<string, unknown>;
-  };
-}
 
-interface BlogListProps {
-  blogs: Blog[];
-  currentLang: string;
-}
-
-interface RichTextChild {
-  type: string;
-  src?: string;
-  children?: RichTextChild[];
-}
-
-interface RichTextContent {
-  children?: RichTextChild[];
-}
 
 const getFirstImageSrc = (rawContent: string | Record<string, unknown>): string | undefined => {
   const content = typeof rawContent === 'string' ? JSON.parse(rawContent) as RichTextContent : rawContent as RichTextContent;

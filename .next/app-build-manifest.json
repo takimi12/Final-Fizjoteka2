@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/[lang]/koszyk/page": [
+    "/[lang]/filmy-i-ebooki/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/[lang]/koszyk/page.css",
-      "static/chunks/app/[lang]/koszyk/page.js"
+      "static/css/app/[lang]/filmy-i-ebooki/page.css",
+      "static/chunks/app/[lang]/filmy-i-ebooki/page.js"
     ],
     "/[lang]/layout": [
       "static/chunks/webpack.js",
@@ -22,6 +22,12 @@
       "static/chunks/main-app.js",
       "static/css/app/not-found.css",
       "static/chunks/app/not-found.js"
+    ],
+    "/[lang]/koszyk/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/koszyk/page.css",
+      "static/chunks/app/[lang]/koszyk/page.js"
     ],
     "/[lang]/page": [
       "static/chunks/webpack.js",

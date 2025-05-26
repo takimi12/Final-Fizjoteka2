@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../app/Redux/Cartslice";
-import { RootState } from "../../../app/Redux/Store";
+import { addToCart } from "../../../Redux/Cartslice";
+import { RootState } from "../../../Redux/Store";
 import { ITopic } from "../../../backend/models/topics";
 import Popup from "../../PopUp/PopUp";
 

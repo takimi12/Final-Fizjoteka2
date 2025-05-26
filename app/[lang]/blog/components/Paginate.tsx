@@ -2,22 +2,8 @@
 import { useState } from "react";
 import { BlogList } from "./BlogList";
 import styles from "./Paginate.module.scss";
+import { PaginationProps } from "../../../types/Blog/types";
 
-interface Blog {
-  id: string;
-  publishedAt: string;
-  tytul: string;
-  slugs: string[];
-  richText: {
-    raw: string | Record<string, string>;
-  };
-}
-
-interface PaginationProps {
-  blogs: Blog[];
-  blogs1: Blog[];
-  currentLang: string;
-}
 
 export const Pagination = ({ blogs, blogs1, currentLang }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);

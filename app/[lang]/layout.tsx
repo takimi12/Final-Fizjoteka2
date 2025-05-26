@@ -4,7 +4,7 @@ import Header from "../../components/Header/page";
 import Footer from "../../components/Footer/Footer";
 import "./globals.scss";
 import { Poppins } from "../fonts";
-import Provider from "../Redux/Provider";
+import Provider from "../../Redux/Provider";
 import { Locale, i18n } from "../../i18n";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../../helpers/SessionProvider"

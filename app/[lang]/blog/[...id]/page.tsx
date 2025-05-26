@@ -8,21 +8,10 @@ import Person from "../../../../public/assets/Blog/person.svg";
 import Facebook from "../../../../public/assets/Blog/blogpost/facebook.svg";
 import WhatsUpp from "../../../../public/assets/Blog/blogpost/whatsUp.svg";
 import Author from "../../../../public/assets/Blog/blogpost/author (1).webp";
+import { BlogIdPage, BlogId } from "../../../types/Blog/types";
 
-interface Blog {
-  id: string;
-  createdAt: string;
-  author: string;
-  tytul: string;
-  slugs: string[];
-  richText: {
-    html: string;
-  };
-}
 
-interface BlogId {
-  id: string;
-}
+
 
 export default async function BlogPage({ params }: { params: { lang: string; id: string[] } }) {
   const { lang } = params;
@@ -45,7 +34,7 @@ export default async function BlogPage({ params }: { params: { lang: string; id:
     return <div>Error: Failed to fetch data</div>;
   }
 
-  const blog: Blog = await blogResponse.json();
+  const blog: BlogIdPage = await blogResponse.json();
   const blogs: BlogId[] = await blogsResponse.json();
 
   if (!blog) {

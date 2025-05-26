@@ -3,25 +3,12 @@
 import React, { useState } from "react";
 import styles from "./BlogSearch.module.scss";
 import Link from "next/link";
+import { Blogsearch, BlogSearchProps } from "../../../types/Blog/types";
 
-interface Blog {
-	author: string;
-	id: string;
-	publishedAt: string;
-	tytul: string;
-	slugs: string;
-	richText: {
-		raw: object;
-	};
-}
-
-interface BlogSearchProps {
-	blogs: Blog[];
-}
 
 const BlogSearch: React.FC<BlogSearchProps> = ({ blogs }) => {
 	const [searchQuery, setSearchQuery] = useState<string>("");
-	const [filteredBlogs, setFilteredBlogs] = useState<Blog[]>([]);
+	const [filteredBlogs, setFilteredBlogs] = useState<Blogsearch[]>([]);
 
 	const handleSearch = (query: string): void => {
 		setSearchQuery(query);

@@ -1,302 +1,242 @@
 "use client";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, selectTotalPrice } from "../../Redux/Cartslice";
+import { addToCart, removeFromCart, selectTotalPrice } from "../../../Redux/Cartslice";
 import Breadcrumbs from "../../../components/breadcrumbs/breadcrumbs";
 import styles from "./koszyk.module.scss";
 import axios from "axios";
-import { RootState } from "../../Redux/Store";
+import { RootState } from "../../../Redux/Store";
+
+type FormData = {
+  nameAndSurname: string;
+  email: string;
+  companyName?: string;
+  nip?: string;
+  isCompany: boolean;
+  isTermsAccepted: boolean;
+};
 
 const Cartpage: React.FC = () => {
-    const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart);
-    const totalPrice = useSelector(selectTotalPrice);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart);
+  const totalPrice = useSelector(selectTotalPrice);
 
-    const [isCompany, setIsCompany] = useState<boolean>(false);
-    const [nameAndSurname, setNameAndSurname] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [companyName, setCompanyName] = useState<string>("");
-    const [nip, setNip] = useState<string>("");
-    const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
-    const [discountCode, setDiscountCode] = useState<string>("");
-    const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
-    const [discountError, setDiscountError] = useState<string>("");
-    const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
+  const [discountCode, setDiscountCode] = useState<string>("");
+  const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
+  const [discountError, setDiscountError] = useState<string>("");
+  const [isSubmittingDiscount, setIsSubmittingDiscount] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm<FormData>({
+    defaultValues: {
+      isCompany: false,
+      isTermsAccepted: false
+    }
+  });
 
+  const isCompany = watch("isCompany");
+  const isTermsAccepted = watch("isTermsAccepted");
 
-    const finalPrice = totalPrice * (1 - appliedDiscount / 100);
+  const finalPrice = totalPrice * (1 - appliedDiscount / 100);
 
-    const validateDiscountCode = async () => {
-        if (!discountCode) {
-            setDiscountError("Wprowadź kod rabatowy");
-            return;
-        }
+  const validateDiscountCode = async () => {
+    if (!discountCode || discountCode.length < 3 || !/^[A-Za-z0-9]+$/.test(discountCode)) {
+      setDiscountError("Nieprawidłowy kod rabatowy");
+      return;
+    }
 
-        if (discountCode.length < 3) {
-            setDiscountError("Kod musi mieć minimum 3 znaki");
-            return;
-        }
+    setIsSubmittingDiscount(true);
+    setDiscountError("");
 
-        if (!/^[A-Za-z0-9]+$/.test(discountCode)) {
-            setDiscountError("Kod może zawierać tylko litery i cyfry");
-            return;
-        }
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL}/api/discountCode`);
+      const codes = response.data.data;
+      const foundCode = codes.find((code: { code: string }) => code.code.toLowerCase() === discountCode.toLowerCase());
 
-        setIsSubmittingDiscount(true);
-        setDiscountError("");
+      if (foundCode) {
+        setAppliedDiscount(foundCode.discount);
+        setDiscountCode("");
+      } else {
+        setDiscountError("Nieprawidłowy kod rabatowy");
+        setAppliedDiscount(0);
+      }
+    } catch {
+      setDiscountError("Błąd podczas weryfikacji kodu");
+      setAppliedDiscount(0);
+    } finally {
+      setIsSubmittingDiscount(false);
+    }
+  };
 
-        try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL}/api/discountCode`);
-            const codes = response.data.data;
-            
-            const foundCode = codes.find((code: { code: string }) => 
-                code.code.toLowerCase() === discountCode.toLowerCase()
-            );
+  const onSubmit = async (data: FormData) => {
+    if (!isTermsAccepted) {
+      alert("Proszę zaakceptować regulamin");
+      return;
+    }
 
-            if (foundCode) {
-                setAppliedDiscount(foundCode.discount);
-                setDiscountCode("");
-            } else {
-                setDiscountError("Nieprawidłowy kod rabatowy");
-                setAppliedDiscount(0);
-            }
-        } catch (error) {
-            setDiscountError("Błąd podczas weryfikacji kodu");
-            setAppliedDiscount(0);
-        } finally {
-            setIsSubmittingDiscount(false);
-        }
-    };
+    try {
+      const discountedCartItems = cartItems.map(item => ({
+        id: item._id,
+        quantity: item.quantity,
+        price: Number((item.price * (1 - appliedDiscount / 100)).toFixed(2))
+      }));
 
-    const handlePayment = async (): Promise<void> => {
-        if (!nameAndSurname || !email) {
-            alert("Proszę wypełnić imię, nazwisko oraz email");
-            return;
-        }
+      const paymentData = {
+        cartItems: discountedCartItems,
+        email: data.email,
+        nameAndSurname: data.nameAndSurname,
+        companyName: data.isCompany ? data.companyName : "",
+        nip: data.isCompany ? data.nip : "",
+        appliedDiscount,
+        totalPrice: Number(finalPrice.toFixed(2)),
+        originalPrice: totalPrice,
+        discountInfo: appliedDiscount > 0 ? {
+          discountPercentage: appliedDiscount,
+          amountSaved: Number((totalPrice - finalPrice).toFixed(2))
+        } : null
+      };
 
-        if (isCompany && (!companyName || !nip)) {
-            alert("Proszę wypełnić dane firmowe");
-            return;
-        }
+      const { data: paymentResponse } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, paymentData);
 
-        if (!isTermsAccepted) {
-            alert("Proszę zaakceptować regulamin");
-            return;
-        }
+      if (paymentResponse?.url) {
+        window.location.href = paymentResponse.url;
+      }
+    } catch {
+      alert("Wystąpił błąd podczas przetwarzania płatności. Spróbuj ponownie.");
+    }
+  };
 
-        try {
-            const discountedCartItems = cartItems.map(item => ({
-                id: item._id,
-                quantity: item.quantity,
-                price: Number((item.price * (1 - appliedDiscount / 100)).toFixed(2))
-            }));
+  const handleRemoveFromCart = (item: { _id: string }) => {
+    dispatch(removeFromCart(item));
+  };
 
-            const paymentData = {
-                cartItems: discountedCartItems,
-                email,
-                nameAndSurname,
-                companyName: isCompany ? companyName : "",
-                nip: isCompany ? nip : "",
-                appliedDiscount,
-                totalPrice: Number(finalPrice.toFixed(2)),
-                originalPrice: totalPrice,
-                discountInfo: appliedDiscount > 0 ? {
-                    discountPercentage: appliedDiscount,
-                    amountSaved: Number((totalPrice - finalPrice).toFixed(2))
-                } : null
-            };
-
-
-            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/przelewy24`, paymentData);
-
-            if (data && data.url) {
-                window.location.href = data.url;
-            }
-        } catch (error) {
-            alert("Wystąpił błąd podczas przetwarzania płatności. Spróbuj ponownie.");
-        }
-    };
-
-    const handleRemoveFromCart = (item: { _id: string }) => {
-        dispatch(removeFromCart(item));
-    };
-
-    return (
-        <>
-            <div className={`Container ${styles.container} `}>
-                <Breadcrumbs />
-                <div className={styles.wrapper}>
-                    <div className={` ${styles.cart}`}>
-                        <div className={styles.orderSummary}>
-                            <h2>PODSUMOWANIE ZAMÓWIENIA:</h2>
-                            <div className={styles.order}>
-                                {cartItems.map((item) => (
-                                    <React.Fragment key={item._id}>
-                                        <div className={styles.orders}>
-                                            <div className={styles.orderContent}>
-                                                <div>
-                                                    <h5 className={styles.topText}>{item.title}</h5>
-                                                    <p className={styles.bottomText}>
-                                                        {appliedDiscount > 0 ? (
-                                                            <>
-                                                                <span className={styles.originalPrice}>
-                                                                    {item.price} zł
-                                                                </span>
-                                                                <span className={styles.discountedPrice}>
-                                                                    {(item.price * (1 - appliedDiscount / 100)).toFixed(2)} zł
-                                                                </span>
-                                                            </>
-                                                        ) : (
-                                                            `${item.price} zł`
-                                                        )}
-                                                        <span className={styles.normalFont}>(zawiera vat)</span>
-                                                    </p>
-                                                </div>
-                                                <button 
-                                                    onClick={() => handleRemoveFromCart(item)}
-                                                    className={styles.removeButton}
-                                                    aria-label="Usuń produkt"
-                                                >
-                                                    ✕
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </React.Fragment>
-                                ))}
-                            </div>
-
-                            <div className={styles.totalAmount}>
-                                {appliedDiscount > 0 && (
-                                    <div className={styles.originalPrice}>
-                                        <div>Cena przed rabatem: {totalPrice.toFixed(2)} zł</div>
-                                        <div>Wysokość rabatu: {appliedDiscount}%</div>
-                                        <div>Zaoszczędzono: {(totalPrice - finalPrice).toFixed(2)} zł</div>
-                                    </div>
-                                )}
-                                <span className={styles.finalPrice}>
-                                    Całkowita należność:{" "}
-                                    {finalPrice > 0 ? <strong>{finalPrice.toFixed(2)}</strong> : "0"} zł
-                                </span>
-                            </div>
-
-                            <div className={styles.discountCode}>
-                                <label htmlFor="discount">Kod rabatowy</label>
-                                <div className={styles.inputContainer}>
-                                    <input
-                                        type="text"
-                                        id="discount"
-                                        name="discount"
-                                        value={discountCode}
-                                        onChange={(e) => setDiscountCode(e.target.value)}
-                                        className={discountError ? styles.errorInput : ''}
-                                    />
-                                    <button 
-                                        type="button" 
-                                        onClick={validateDiscountCode}
-                                        disabled={isSubmittingDiscount}
-                                        className={styles.discountButton}
-                                    >
-                                        {isSubmittingDiscount ? (
-                                            <span className="flex items-center">
-                                                <span className={styles.spinner}></span>
-                                                Weryfikacja...
-                                            </span>
-                                        ) : (
-                                            "Dodaj rabat"
-                                        )}
-                                    </button>
-                                </div>
-                                {discountError && (
-                                    <span className={styles.errorText}>
-                                        {discountError}
-                                    </span>
-                                )}
-                                {appliedDiscount > 0 && (
-                                    <p className={styles.discountApplied}>
-                                        Rabat {appliedDiscount}% został naliczony
-                                    </p>
-                                )}
-                            </div>
-                        </div>
+  return (
+    <div className={`Container ${styles.container}`}>
+      <Breadcrumbs />
+      <div className={styles.wrapper}>
+        <div className={styles.cart}>
+          <div className={styles.orderSummary}>
+            <h2>PODSUMOWANIE ZAMÓWIENIA:</h2>
+            <div className={styles.order}>
+              {cartItems.map(item => (
+                <div key={item._id} className={styles.orders}>
+                  <div className={styles.orderContent}>
+                    <div>
+                      <h5 className={styles.topText}>{item.title}</h5>
+                      <p className={styles.bottomText}>
+                        {appliedDiscount > 0 ? (
+                          <>
+                            <span className={styles.originalPrice}>{item.price} zł</span>
+                            <span className={styles.discountedPrice}>
+                              {(item.price * (1 - appliedDiscount / 100)).toFixed(2)} zł
+                            </span>
+                          </>
+                        ) : (
+                          `${item.price} zł`
+                        )}
+                        <span className={styles.normalFont}>(zawiera vat)</span>
+                      </p>
                     </div>
-                    <div className={styles.orderFormSecond}>
-                        <label className={styles.checkboxContainer}>
-                            <input
-                                type="checkbox"
-                                checked={isCompany}
-                                onChange={() => setIsCompany(!isCompany)}
-                            />
-                            <span>Zamówienie jako firma</span>
-                        </label>
-
-                        <div className={styles.paymentDetails}>
-                            <h2>DANE PŁATNOŚCI</h2>
-                            <label className={styles.label}>
-                                Imię i nazwisko
-                                <input
-                                    type="text"
-                                    value={nameAndSurname}
-                                    onChange={(e) => setNameAndSurname(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            <label className={styles.label}>
-                                Email
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            {isCompany && (
-                                <>
-                                    <label className={styles.label}>
-                                        Nazwa firmy
-                                        <input
-                                            type="text"
-                                            value={companyName}
-                                            onChange={(e) => setCompanyName(e.target.value)}
-                                            required
-                                        />
-                                    </label>
-                                    <label className={styles.label}>
-                                        NIP
-                                        <input
-                                            type="text"
-                                            value={nip}
-                                            onChange={(e) => setNip(e.target.value)}
-                                            required
-                                        />
-                                    </label>
-                                </>
-                            )}
-
-                            <fieldset className={styles.fieldset}>
-                                <label>
-                                    <input
-                                        className={styles.input}
-                                        type="checkbox"
-                                        checked={isTermsAccepted}
-                                        onChange={(e) => setIsTermsAccepted(e.target.checked)}
-                                        required
-                                    />
-                                    <span>
-                                        Zapoznałem się z polityką prywatności oraz regulaminem sklepu. Dobrowolnie zrzekam się z prawa do odstąpienia od produktu w terminie 14 dni od zakupu - Wymagane
-                                    </span>
-                                </label>
-                            </fieldset>
-
-                            <button className={`button`} onClick={handlePayment}>
-                                Kupuję i płacę
-                            </button>
-                        </div>
-                    </div>
+                    <button onClick={() => handleRemoveFromCart(item)} className={styles.removeButton}>✕</button>
+                  </div>
                 </div>
+              ))}
             </div>
-        </>
-    );
+
+            <div className={styles.totalAmount}>
+              {appliedDiscount > 0 && (
+                <div className={styles.originalPrice}>
+                  <div>Cena przed rabatem: {totalPrice.toFixed(2)} zł</div>
+                  <div>Wysokość rabatu: {appliedDiscount}%</div>
+                  <div>Zaoszczędzono: {(totalPrice - finalPrice).toFixed(2)} zł</div>
+                </div>
+              )}
+              <span className={styles.finalPrice}>
+                Całkowita należność: <strong>{finalPrice.toFixed(2)}</strong> zł
+              </span>
+            </div>
+
+            <div className={styles.discountCode}>
+              <label htmlFor="discount">Kod rabatowy</label>
+              <div className={styles.inputContainer}>
+                <input
+                  type="text"
+                  id="discount"
+                  value={discountCode}
+                  onChange={(e) => setDiscountCode(e.target.value)}
+                  className={discountError ? styles.errorInput : ""}
+                />
+                <button
+                  type="button"
+                  onClick={validateDiscountCode}
+                  disabled={isSubmittingDiscount}
+                  className={styles.discountButton}
+                >
+                  {isSubmittingDiscount ? "Weryfikacja..." : "Dodaj rabat"}
+                </button>
+              </div>
+              {discountError && <span className={styles.errorText}>{discountError}</span>}
+              {appliedDiscount > 0 && <p className={styles.discountApplied}>Rabat {appliedDiscount}% został naliczony</p>}
+            </div>
+          </div>
+        </div>
+
+        <form className={styles.orderFormSecond} onSubmit={handleSubmit(onSubmit)}>
+          <label className={styles.checkboxContainer}>
+            <input type="checkbox" {...register("isCompany")} />
+            <span>Zamówienie jako firma</span>
+          </label>
+
+          <div className={styles.paymentDetails}>
+            <h2>DANE PŁATNOŚCI</h2>
+            <label className={styles.label}>
+              Imię i nazwisko
+              <input type="text" {...register("nameAndSurname", { required: true })} />
+              {errors.nameAndSurname && <span className={styles.errorText}>To pole jest wymagane</span>}
+            </label>
+
+            <label className={styles.label}>
+              Email
+              <input type="email" {...register("email", { required: true })} />
+              {errors.email && <span className={styles.errorText}>To pole jest wymagane</span>}
+            </label>
+
+            {isCompany && (
+              <>
+                <label className={styles.label}>
+                  Nazwa firmy
+                  <input type="text" {...register("companyName", { required: true })} />
+                  {errors.companyName && <span className={styles.errorText}>To pole jest wymagane</span>}
+                </label>
+                <label className={styles.label}>
+                  NIP
+                  <input type="text" {...register("nip", { required: true })} />
+                  {errors.nip && <span className={styles.errorText}>To pole jest wymagane</span>}
+                </label>
+              </>
+            )}
+
+            <fieldset className={styles.fieldset}>
+              <label>
+                <input type="checkbox" {...register("isTermsAccepted", { required: true })} />
+                <span>Zapoznałem się z polityką prywatności oraz regulaminem sklepu...</span>
+              </label>
+              {errors.isTermsAccepted && <span className={styles.errorText}>Akceptacja jest wymagana</span>}
+            </fieldset>
+
+            <button className="button" type="submit">
+              Kupuję i płacę
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Cartpage;

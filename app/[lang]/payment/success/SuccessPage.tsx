@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { clearCart } from "../../../Redux/Cartslice";
+import { clearCart } from "../../../../Redux/Cartslice";
 import styles from "./Success.module.scss";
 
 interface SuccessPageProps {

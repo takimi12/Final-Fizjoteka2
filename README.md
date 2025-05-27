@@ -22,11 +22,11 @@ The project was created as a practical implementation of modern e-commerce using
 
 ## Architektura projektu
 
-![Technologie uzyte w projekcie](public/assets//ReadMe//flow.png)
+![Technologie uzyte w projekcie](public/assets//readMe//flow.png)
 
 ## TechStack
-![Techstack](public/assests//ReadMe//plTechStack.png)
-![Techstack](public/assests//ReadMe//engTechStack.png)
+![Techstack](public/assets//readMe//plTechStack.png)
+![Techstack](public/assets//readMe//engTechStack.png)
 
 
 ## Wymagania wstępne / Prerequisites

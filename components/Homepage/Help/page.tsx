@@ -41,7 +41,7 @@ async function Hero() {
 								<h4>{item.title}</h4>
 								<div className={` ${styles.longText}`}>
 									<p>{item.paragraph}</p>
-									{item.paragraphbold && <p >{item.paragraphbold}</p>}
+									{item.paragraphbold && <p>{item.paragraphbold}</p>}
 								</div>
 								<Button link={item.link} link1="" />
 							</div>

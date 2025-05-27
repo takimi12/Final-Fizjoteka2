@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart, selectTotalPrice, CartItem } from "../../../Redux/Cartslice";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { Locale } from "../../../i18n";
-import { RootState } from "../../../Redux/Store" 
+import { RootState } from "../../../Redux/Store";
 
 type Navigation = {
 	home: string;
@@ -69,10 +69,34 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 		<header>
 			<div className={` ${styles.topHeader} `}>
 				<div className={`${styles.inner}`}>
-					<Image src={youTubeIcon} className={styles.headerImage} alt="YouTube" width={15} height={15} />
-					<Image src={instagramIcon} className={styles.headerImage} alt="Instagram" width={15} height={15} />
-					<Image src={facebookIcon} className={styles.headerImage} alt="Facebook" width={15} height={15} />
-					<Image src={tikTokIcon} className={styles.headerImage} alt="TikTok" width={15} height={15} />
+					<Image
+						src={youTubeIcon}
+						className={styles.headerImage}
+						alt="YouTube"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={instagramIcon}
+						className={styles.headerImage}
+						alt="Instagram"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={facebookIcon}
+						className={styles.headerImage}
+						alt="Facebook"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={tikTokIcon}
+						className={styles.headerImage}
+						alt="TikTok"
+						width={15}
+						height={15}
+					/>
 				</div>
 			</div>
 			<div className={`${isSticky ? styles.sticky : ""} ${styles.bottom}`}>
@@ -105,7 +129,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 							<LocaleSwitcher />
 
-							<div className={`${styles.cart} ${isCartHidden ? styles.cartHidden : ''}`}>
+							<div className={`${styles.cart} ${isCartHidden ? styles.cartHidden : ""}`}>
 								<div>
 									{item.length > 0 && <span className={styles.numberCart}>{item.length}</span>}
 									<Image src={cart} width={20} height={20} alt="cart" />
@@ -145,10 +169,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 													</div>
 													<div className={styles.payment}>
 														<Link href="/koszyk">
-															<button 
-																className="button"
-																onClick={handlePaymentClick}
-															>
+															<button className="button" onClick={handlePaymentClick}>
 																Zapłać
 															</button>
 														</Link>

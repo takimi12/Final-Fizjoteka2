@@ -5,7 +5,6 @@ import RemoveTopic from "../Components/RemoveTopic";
 import EditTopic from "../Components/EditTopic";
 import Circle from "../../../public/assets/Filmy-i-ebooki/circle.svg";
 
-
 type Topic = {
 	_id: string;
 	title: string;

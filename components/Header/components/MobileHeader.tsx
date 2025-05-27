@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import search from "../../../public/assets/Header/Search.svg";
 import LocaleSwitcher from "./LocaleSwitcher";
 
-
 const Header = () => {
 	const [isSticky, setIsSticky] = useState(false);
 
@@ -163,8 +162,8 @@ const Header = () => {
 								</Link>
 								<LocaleSwitcher />
 								<Link href="/search" className={styles.anchor}>
-								<Image src={search} width={20} height={20} alt="search" />
-							</Link>
+									<Image src={search} width={20} height={20} alt="search" />
+								</Link>
 							</div>
 						</div>
 					</div>

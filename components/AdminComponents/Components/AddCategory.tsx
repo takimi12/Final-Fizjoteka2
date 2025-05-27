@@ -15,7 +15,11 @@ interface FormData {
 }
 
 const AddCategory = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>();
 	const [imageFile, setImageFile] = useState<File | null>(null);
 	const [showPopup, setShowPopup] = useState(false);
 	const [uploading, setUploading] = useState(false);
@@ -138,7 +142,10 @@ const AddCategory = () => {
 							{errors.category && <p>{errors.category.message?.toString()}</p>}
 
 							<input
-								{...register("price", { required: "Price is required", pattern: { value: /^\d+$/, message: "Invalid price" } })}
+								{...register("price", {
+									required: "Price is required",
+									pattern: { value: /^\d+$/, message: "Invalid price" },
+								})}
 								className={styles.input}
 								type="text"
 								placeholder="Price"

@@ -34,7 +34,7 @@
 		flex-direction: column;
 		@media screen and (max-width: 1199px) {
 			width: 100%;
-			}
+		}
 
 		.available {
 			position: absolute;
@@ -45,7 +45,6 @@
 			color: #fff;
 			font-size: 12px;
 			text-transform: uppercase;
-		
 		}
 
 		.date {
@@ -81,8 +80,8 @@
 				margin-top: 24px;
 				min-height: 450px;
 				@media screen and (max-width: 1199px) {
-						min-height: 250px;
-					}
+					min-height: 250px;
+				}
 
 				.list {
 					list-style-type: disc;
@@ -121,7 +120,3 @@
 		}
 	}
 }
-
-
-
-

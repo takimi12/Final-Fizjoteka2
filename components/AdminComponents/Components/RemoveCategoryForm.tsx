@@ -35,8 +35,7 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 					method: "DELETE",
 					body: JSON.stringify({ fileName: imageName }),
 				});
-			} catch (err) {
-			}
+			} catch (err) {}
 
 			router.refresh();
 		} catch (error) {

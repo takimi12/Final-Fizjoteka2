@@ -5,7 +5,6 @@ import styles from "./BlogSearch.module.scss";
 import Link from "next/link";
 import { Blogsearch, BlogSearchProps } from "../../../types/Blog/types";
 
-
 const BlogSearch: React.FC<BlogSearchProps> = ({ blogs }) => {
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	const [filteredBlogs, setFilteredBlogs] = useState<Blogsearch[]>([]);

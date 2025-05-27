@@ -1,12 +1,12 @@
 .topHeader {
 	background-color: #d7ede8;
-	.inner{
+	.inner {
 		display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 30px;
-    align-items: center;
-	padding: 10px;
+		justify-content: center;
+		width: 100%;
+		gap: 30px;
+		align-items: center;
+		padding: 10px;
 	}
 }
 
@@ -68,11 +68,11 @@
 	display: flex;
 	flex-direction: column;
 	padding: 0 0 0 15px;
-	.links{
+	.links {
 		display: flex;
-    flex-direction: column;
-    align-items: center;
-	padding-bottom: 50px;
+		flex-direction: column;
+		align-items: center;
+		padding-bottom: 50px;
 	}
 }
 .sticky {

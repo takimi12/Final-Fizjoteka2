@@ -1,13 +1,12 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-
 export interface ITopic extends Document {
 	_id: string;
 	title: string;
 	subtitle: string;
 	description: string;
 	categories: string[];
-	price: number; 
+	price: number;
 	imageFileUrl: string;
 	pdfFileUrl: string;
 	createdAt: Date;
@@ -47,7 +46,7 @@ const topicSchema = new Schema(
 			type: Number,
 			required: [true, "Price is required"],
 			min: [0, "Price cannot be negative"],
-			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)), 
+			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)),
 		},
 		imageFileUrl: {
 			type: String,
@@ -81,7 +80,6 @@ const topicSchema = new Schema(
 		},
 	},
 );
-
 
 topicSchema.index({ categories: 1 });
 topicSchema.index({ title: 1 });

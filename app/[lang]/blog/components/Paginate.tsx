@@ -4,48 +4,47 @@ import { BlogList } from "./BlogList";
 import styles from "./Paginate.module.scss";
 import { PaginationProps } from "../../../types/Blog/types";
 
-
 export const Pagination = ({ blogs, blogs1, currentLang }: PaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 4;
+	const [currentPage, setCurrentPage] = useState(1);
+	const postsPerPage = 4;
 
-  const currentBlogs = currentLang === 'pl' ? blogs : blogs1;
-  
-  const totalPages = Math.ceil(currentBlogs.length / postsPerPage);
+	const currentBlogs = currentLang === "pl" ? blogs : blogs1;
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = currentBlogs.slice(indexOfFirstPost, indexOfLastPost);
+	const totalPages = Math.ceil(currentBlogs.length / postsPerPage);
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = currentBlogs.slice(indexOfFirstPost, indexOfLastPost);
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+	const handlePrevPage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	};
 
-  return (
-    <div className={styles.paginationContainer}>
-      <BlogList blogs={currentPosts} currentLang={currentLang} />
+	const handleNextPage = () => {
+		if (currentPage < totalPages) {
+			setCurrentPage(currentPage + 1);
+		}
+	};
 
-      <div className={styles.paginationControls}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          {currentLang === 'pl' ? 'Poprzednia strona' : 'Previous page'}
-        </button>
-        <span>
-          {currentLang === 'pl' 
-            ? `strona ${currentPage} z ${totalPages}` 
-            : `page ${currentPage} of ${totalPages}`}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          {currentLang === 'pl' ? 'Następna strona' : 'Next page'}
-        </button>
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.paginationContainer}>
+			<BlogList blogs={currentPosts} currentLang={currentLang} />
+
+			<div className={styles.paginationControls}>
+				<button onClick={handlePrevPage} disabled={currentPage === 1}>
+					{currentLang === "pl" ? "Poprzednia strona" : "Previous page"}
+				</button>
+				<span>
+					{currentLang === "pl"
+						? `strona ${currentPage} z ${totalPages}`
+						: `page ${currentPage} of ${totalPages}`}
+				</span>
+				<button onClick={handleNextPage} disabled={currentPage === totalPages}>
+					{currentLang === "pl" ? "Następna strona" : "Next page"}
+				</button>
+			</div>
+		</div>
+	);
 };

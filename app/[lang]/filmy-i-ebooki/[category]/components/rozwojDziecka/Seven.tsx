@@ -11,7 +11,6 @@ const Seven = async () => {
 	try {
 		const response = await getTopics();
 
-
 		if (!response || !Array.isArray(response.topics)) {
 			return <div>Error loading topics</div>;
 		}

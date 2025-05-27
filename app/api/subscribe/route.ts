@@ -4,7 +4,7 @@ const AWS_S3_REGION = process.env.AWS_S3_REGION;
 const AWS_S3_ACCESS_KEY_ID = process.env.AWS_S3_ACCESS_KEY_ID;
 const AWS_S3_SECRET_ACCESS_KEY = process.env.AWS_S3_SECRET_ACCESS_KEY;
 const AWS_S3_BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME!;
-const OBJECT_NAME =process.env.OBJECT_NAME!;
+const OBJECT_NAME = process.env.OBJECT_NAME!;
 
 AWS.config.update({
 	region: AWS_S3_REGION,

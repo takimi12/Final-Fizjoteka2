@@ -14,15 +14,8 @@ type Navigation = {
 	wizyta: string;
 };
 
-export const HeaderComponent = ({
-	navigation,
-	lang,
-}: {
-	navigation: Navigation;
-	lang: Locale;
-}) => {
+export const HeaderComponent = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) => {
 	const [isMobile, setIsMobile] = useState(false);
-
 
 	useEffect(() => {
 		const handleResize = () => {

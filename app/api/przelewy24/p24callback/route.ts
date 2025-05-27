@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 	const body: NotificationBody = await request.json();
 
 	await dbConnect();
-	const transaction:ITransaction = await Transaction.findById(body.sessionId).populate("products");
+	const transaction: ITransaction = await Transaction.findById(body.sessionId).populate("products");
 
 	if (!transaction) {
 		return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
 		sandbox: true,
 	});
 
-
 	const result = await p24.verifyTransaction({
 		sessionId: body.sessionId,
 		amount: totalPrice * 100,
@@ -47,14 +46,13 @@ export async function POST(request: NextRequest) {
 		orderId: body.orderId,
 	});
 
-
 	if (result) {
 		await Transaction.findOneAndUpdate({ _id: body.sessionId }, { status: true });
 
 		const urls = transaction.products.map((el) => el.url);
 
 		try {
-			if(transaction.customer && transaction.customer.email){
+			if (transaction.customer && transaction.customer.email) {
 				await sendEmail({
 					Source: "tomek12olech@gmail.com",
 					Destination: { ToAddresses: [transaction.customer.email] },

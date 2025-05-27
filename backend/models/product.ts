@@ -46,7 +46,7 @@ const productSchema = new Schema(
 			type: Number,
 			required: [true, "Price is required"],
 			min: [0, "Price cannot be negative"],
-			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)), 
+			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)),
 		},
 		imageFileUrl: {
 			type: String,

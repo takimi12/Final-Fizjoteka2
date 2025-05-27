@@ -37,7 +37,11 @@ export default function EditTopicForm({
 	description,
 	imageFileUrl,
 }: EditTopicFormProps) {
-	const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>({
 		defaultValues: {
 			newTitle: title,
 			newSubtitle1: subtitle1,
@@ -86,7 +90,7 @@ export default function EditTopicForm({
 				const newFileUrl = await res.json();
 				newImageUrl = newFileUrl.fileUrl;
 			} catch (err) {
-				return null
+				return null;
 			}
 		}
 
@@ -108,8 +112,7 @@ export default function EditTopicForm({
 			} else {
 				throw new Error("Failed to update the topic");
 			}
-		} catch (error) {
-		}
+		} catch (error) {}
 	};
 
 	return (
@@ -156,7 +159,9 @@ export default function EditTopicForm({
 								type="text"
 								placeholder="Description"
 							/>
-							{errors.newDescription && <p className={styles.error}>{errors.newDescription.message}</p>}
+							{errors.newDescription && (
+								<p className={styles.error}>{errors.newDescription.message}</p>
+							)}
 
 							<input
 								{...register("newCategory", { required: "Category is required" })}

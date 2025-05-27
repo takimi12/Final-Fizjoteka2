@@ -1,221 +1,213 @@
-.container{
+.container {
 	margin: auto;
 }
-.wrapper{
+.wrapper {
 	display: flex;
 	margin-top: 50px;
 	margin-bottom: 100px;
 	@media (max-width: 900px) {
 		flex-direction: column;
-		}
+	}
 
-.cart {
-	width: 100%;
-	.orderSummary {
-		padding: 20px;
+	.cart {
 		width: 100%;
-		text-align: left;
-		max-width: 500px;
-		background-color: #faf8f6;
-		.order {
-			.orders {
+		.orderSummary {
+			padding: 20px;
+			width: 100%;
+			text-align: left;
+			max-width: 500px;
+			background-color: #faf8f6;
+			.order {
+				.orders {
+					background-color: #f0f0f0;
+					padding: 10px;
+					margin-bottom: 20px;
+					border-radius: 4px;
+					.orderContent {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+					}
+					.parentWrapper {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+					}
+				}
+				.topText {
+					color: #265969;
+					font-size: 18px;
+					margin: 0;
+				}
+				.bottomText {
+					font-weight: 600;
+					.normalFont {
+						font-weight: 300;
+					}
+				}
+			}
+			h2 {
+				margin-bottom: 20px;
+				font-size: 1.5em;
+				color: #333;
+			}
+
+			.totalAmount {
 				background-color: #f0f0f0;
 				padding: 10px;
 				margin-bottom: 20px;
 				border-radius: 4px;
-				.orderContent{
+
+				span {
+					font-size: 1.2em;
+					color: #2d6872;
+				}
+
+				strong {
+					font-size: 1.2em;
+					color: #2d6872;
+				}
+			}
+
+			.discountCode {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+
+				form {
+					width: 100%;
+				}
+
+				label {
+					margin-bottom: 8px;
+					font-size: 1em;
+					color: #333;
+				}
+
+				.inputContainer {
 					display: flex;
+					width: 100%;
 					justify-content: space-between;
 					align-items: center;
-				}
-				.parentWrapper{
+					margin-top: 20px;
 
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-				}
-			}
-			.topText {
-				color: #265969;
-				font-size: 18px;
-				margin: 0;
-			}
-			.bottomText {
-				font-weight: 600;
-				.normalFont {
-					font-weight: 300;
-				}
-			}
-		}
-		h2 {
-			margin-bottom: 20px;
-			font-size: 1.5em;
-			color: #333;
-		}
+					input {
+						padding: 10px;
+						margin-right: 10px;
+						flex-grow: 1;
+						border: 1px solid #ccc;
+						border-radius: 4px;
+						font-size: 1em;
+					}
 
-		.totalAmount {
-			background-color: #f0f0f0;
-			padding: 10px;
-			margin-bottom: 20px;
-			border-radius: 4px;
+					button {
+						padding: 10px 20px;
+						background-color: #2d6872;
+						color: #fff;
+						border: none;
+						border-radius: 4px;
+						cursor: pointer;
+						white-space: nowrap;
 
-			span {
-				font-size: 1.2em;
-				color: #2d6872;
-			}
-
-			strong {
-				font-size: 1.2em;
-				color: #2d6872;
-			}
-		}
-
-		.discountCode {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-
-			form {
-				width: 100%;
-			}
-
-			label {
-				margin-bottom: 8px;
-				font-size: 1em;
-				color: #333;
-			}
-
-			.inputContainer {
-				display: flex;
-				width: 100%;
-				justify-content: space-between;
-				align-items: center;
-				margin-top: 20px;
-
-				input {
-					padding: 10px;
-					margin-right: 10px;
-					flex-grow: 1;
-					border: 1px solid #ccc;
-					border-radius: 4px;
-					font-size: 1em;
-				}
-
-				button {
-					padding: 10px 20px;
-					background-color: #2d6872;
-					color: #fff;
-					border: none;
-					border-radius: 4px;
-					cursor: pointer;
-					white-space: nowrap;
-
-					&:hover {
-						background-color: #245a63;
+						&:hover {
+							background-color: #245a63;
+						}
 					}
 				}
 			}
 		}
 	}
-}
 
-.orderFormSecond {
-	width: 100%;
-	margin: auto;
-	padding: 20px;
+	.orderFormSecond {
+		width: 100%;
+		margin: auto;
+		padding: 20px;
 
-	
-	
-	.inputWithText {
-		display: flex;
-	}
-	
-	.inputAccept {
-	    margin-right: 10px;
-    min-width: 20px;
-    min-height: 20px;
-    margin-top: 4px;
-	}
-	
-	.labelText {
-		display: inline-block;
-	}
-	
-
-	
-	
-	.paymentDetails {
-		display: flex;
-		flex-direction: column;
-		.checkboxContainerbottom{
+		.inputWithText {
 			display: flex;
-			flex-direction: column;
-			margin-bottom: 30px;
 		}
-		.label {
+
+		.inputAccept {
+			margin-right: 10px;
+			min-width: 20px;
+			min-height: 20px;
+			margin-top: 4px;
+		}
+
+		.labelText {
+			display: inline-block;
+		}
+
+		.paymentDetails {
 			display: flex;
 			flex-direction: column;
-			margin-bottom: 20px;
-			font-size: 14px;
-			color: #555;
+			.checkboxContainerbottom {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 30px;
+			}
+			.label {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 20px;
+				font-size: 14px;
+				color: #555;
 
-			input {
-				margin-top: 5px;
-				padding: 10px;
-				font-size: 16px;
-				border: 1px solid #ccc;
-				border-radius: 4px;
+				input {
+					margin-top: 5px;
+					padding: 10px;
+					font-size: 16px;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+				}
+			}
+
+			h2 {
+				margin-bottom: 20px;
+				font-size: 18px;
+				color: #333;
 			}
 		}
-
-		h2 {
-			margin-bottom: 20px;
-			font-size: 18px;
-			color: #333;
-		}
 	}
-}
 }
 .errorText {
 	color: red;
 	font-size: 12px;
-	margin-top: 5px; 
+	margin-top: 5px;
 }
 
-
-
 .spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-    margin-right: 8px;
-    vertical-align: middle;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	border-top-color: #fff;
+	animation: spin 1s ease-in-out infinite;
+	margin-right: 8px;
+	vertical-align: middle;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .discountButton,
 .paymentButton {
-    &:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-    }
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
 
-    span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+	span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
-.fieldset{
+.fieldset {
 	margin-bottom: 30px;
 }

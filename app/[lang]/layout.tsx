@@ -7,7 +7,7 @@ import { Poppins } from "../fonts";
 import Provider from "../../Redux/Provider";
 import { Locale, i18n } from "../../i18n";
 import { getServerSession } from "next-auth";
-import SessionProvider from "../../helpers/SessionProvider"
+import SessionProvider from "../../helpers/SessionProvider";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -29,12 +29,11 @@ export default async function RootLayout({
 		<html lang={lang}>
 			<body className={Poppins.className}>
 				<Provider>
-				<SessionProvider session={session}>
-
+					<SessionProvider session={session}>
 						<Header lang={lang} />
 						{children}
 						<Footer />
-						</SessionProvider>
+					</SessionProvider>
 				</Provider>
 			</body>
 		</html>

@@ -18,7 +18,11 @@ interface FormData {
 }
 
 const AddTopic: React.FC = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>();
 	const [title, setTitle] = useState<string>("");
 	const [subtitle, setSubTitle] = useState<string>("");
 	const [description, setDescription] = useState<string>("");

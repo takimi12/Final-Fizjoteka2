@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Photo from "../../../../public/assets/HomePage/Fizquizz/fizquiz.webp";
 import styles from "./Six.module.scss";
+import { getPreferredLocale } from "../../../../helpers/getLocale";
+import { getDictionary } from "../../../../lib/dictionary";
 
 async function Six() {
+	const lang = getPreferredLocale() as "pl" | "en";
+	const { WizytaPage } = await getDictionary(lang);
+	const { OnlineConsultationSection } = WizytaPage;
+	const { title, description1, emphasis1, description2, emphasis2 } = OnlineConsultationSection;
+
 	return (
 		<>
 			<section className={styles.Six}>
@@ -11,25 +18,21 @@ async function Six() {
 						<div className={styles.inner}>
 							<div className={styles.leftSection}>
 								<div className={styles.text}>
-									<h6 className={styles.mainHeading}>Konsultacja online</h6>
+									<h6 className={styles.mainHeading}>{title}</h6>
 
 									<div className={styles.paragraphParent}>
 										<p>
-											Podczas wideorozmowy zbieram wywiad i ustalam jak pomóc dziecku oraz dobieram
-											odpowiednią terapię i ćwiczenia dla rodzica.
+											{description1}
 										</p>
 										<p className={styles.semibold}>
-											Nauczę Cię prawidłowego sposobu noszenia oraz pielęgnacji dziecka.
+											{emphasis1}
 										</p>
 										<p>
-											Nie jest to typowa wizyta, gdzie fizjoterapeuta ćwiczy, a Ty się przyglądasz.
-											Celem konsultacji online jest nauczyć Cię ćwiczeń tak, byś to Ty rodzicu wziął
-											odpowiedzialność za swoje dziecko.
+											{description2}
 										</p>
 										<p className={styles.bold}>
 											<span>
-												Wystarczy nam jedna wizyta, by wybrać odpowiednie ćwiczenia dla dziecka.
-												Ustalamy cele, a gdy je osiągniesz, umawiamy kolejną wizytę.
+												{emphasis2}
 											</span>
 										</p>
 									</div>

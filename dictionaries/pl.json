@@ -12,7 +12,584 @@
     "Hero": {
       "title": "Cześć, jestem Magda!",
       "description1": "Jestem fizjoterapeutką dziecięcą i edukatorką. E-fizjoteka to moje miejsce w sieci.",
-      "description2":"Dzielę się tu wiedzą fizjoterapeutyczną i uczę rodziców prawidłowej pielęgnacji dzieci oraz metod wspierania ich zdrowego rozwoju."
+      "description2": "Dzielę się tu wiedzą fizjoterapeutyczną i uczę rodziców prawidłowej pielęgnacji dzieci oraz metod wspierania ich zdrowego rozwoju."
+    }
+  },
+  "FirstSection": {
+    "title": "Jak mogę Ci pomóc?",
+    "subtitle": "Na e-fizjotece znajdziesz artykuły oraz filmy i e-booki z poradami fizjoterapeuty.",
+    "items": [
+      {
+        "title": "Blog",
+        "description": "Koniecznie zajrzyj do zakładki Blog. Każdego miesiąca szuka na nim porady ponad 50 tys. osób. To najchętniej czytany blog o tej tematyce!",
+        "link": "/blog"
+      },
+      {
+        "title": "Filmy i ebooki",
+        "description": "W zakładce Filmy i e-booki znajdziesz nagrania moich najpopularniejszych webinarów oraz poradnik na temat asymetrii ułożeniowej.",
+        "link": "/filmy-i-ebooki"
+      },
+      {
+        "title": "Konsultacje",
+        "description": "Bezpośrednio pomagam pacjentom na wizytach domowych oraz online. Więcej na ten temat znajdziesz w zakładce O mnie.",
+        "link": "/wizyta"
+      }
+    ]
+  },
+  "EbookSection": {
+    "title": "Mój pierwszy e-book",
+    "subtitle": "Asymetria ułożeniowa - poradniik dla rodzica",
+    "description1": "Jestem autorką e-booka Asymetria ułożeniowa - poradnik dla rodzica. To jedyna taka książka w Polsce i na świecie!",
+    "description2": "Znajdziesz w niej wiedzę medyczną oraz praktyczne wskazówkami dla rodziców. Dowiesz się jak zapobiegać asymetrii oraz wspierać dziecko, które ma postawioną diagnozę.",
+    "button": {
+      "text": "DOWIEDZ SIĘ WIĘCEJ",
+      "link": "/filmy-i-ebooki/asymetria-ulozeniowa"
+    }
+  },
+  "QuizSection": {
+    "title": "FizQuiz Asymetria",
+    "description1": "Asymetria ułożeniowa to jedno z najczęstszych schorzeń u niemowląt. Rodzice często jednak nie wiedzą dużo na jej temat.",
+    "description2": "Jeśli Ty masz wątpliwości, czy Twoje dziecko może mieć asymetrię sprawdź koniecznie mój FizQuiz.",
+    "button": {
+      "text": "Przejdź quiz",
+      "link": "/fizzquiz"
+    }
+  },
+  "ContactSection": {
+    "title": "Bądźmy w kontakcie!",
+    "subtitle": "Dołącz do moich kanałów i bądź na bieżąco z poradami fizjoterapeuty.",
+    "channels": [
+      {
+        "name": "Facebook",
+        "description": "Stworzyłam wspierającą grupę na Faceebooku. Łączy ona już ponad 8 tys. rodziców i fizjoterapeutów. Możesz zadawać pytania i pomagać innym mamom.",
+        "link": "/"
+      },
+      {
+        "name": "Youtube",
+        "description": "Na kanał trafiają filmy edukacyjne ze wskazówkami dotyczącymi pielęgnacji i wspierania prawidłowego rozwoju dzieci i niemowląt",
+        "link": "/"
+      },
+      {
+        "name": "Instagram",
+        "description": "Na Instagramie poza merytorycznymi postami dzielę się lżejszymi tematami i kulisami pracy fizjoterapeuty.",
+        "link": "/"
+      }
+    ]
+  },
+  
+    "NewsletterForm": {
+      "introText": "Zapisz się na newsletter a otrzymasz w prezencie kalendarz rozwoju dziecka w pierwszym roku życia",
+      "successMessage": "Dziękujemy za zapisanie się! Sprawdź swoją skrzynkę e-mail.",
+      "successDetail": "Mail z darmowym rozdziałem e-booka już leci na Twojego emaila {{submittedEmail}}. Jeśli będziesz czekać dłużej niż kilka minut, sprawdź zakładkę spam.",
+      "errorMessage": "Wystąpił błąd podczas wysyłania danych.",
+      "labels": {
+        "name": "Imię",
+        "namePlaceholder": "Twoje imię",
+        "email": "Adres email",
+        "emailPlaceholder": "Adres email",
+        "consent": "Wyrażam zgodę na wysyłanie maili. W każdym momencie mogę wypisać się z listy mailingowej."
+      },
+      "button": {
+        "default": "CHCĘ OTRZYMAĆ KALENDARZ",
+        "submitting": "Przetwarzanie..."
+      }
+    },
+  "TopFooter": {
+    "mainHeading": "Nadal masz wątpliwości?",
+    "qualityTitle": "Wszystkie produkty objęte są gwarancją jakości.",
+    "qualityParagraph1": "Jestem pewna jakości opracowanych przeze mnie materiałów.",
+    "qualityParagraph2": "Jeśli jednak po zakupie nie spełnią one Twoich indywidualnych oczekiwań wystarczy, że napiszesz do mnie a otrzymasz zwrot pieniędzy.",
+    "qualityParagraph3": "Możesz również zacząć od darmowego pierwszego rozdziału e-booka. Wypełnij formularz zapisu na newsletter, a wyślę go na podany adres mailowy.",
+    "qualityParagraph4": "Masz pytanie dotyczące oferty? Koniecznie napisz do mnie maila lub wiadomość na Facebooku."
+  },
+  "FormFooter": {
+    "description": "Zapisz się na newsletter, a otrzymasz w prezencie kalendarz rozwoju dziecka w pierwszym roku życia.",
+   "errorMessage": "Wystąpił błąd podczas wysyłania danych.",
+    "inputNameLabel": "Imię",
+    "inputNamePlaceholder": "Twoje imię",
+    "inputEmailLabel": "Adres e-mail",
+    "inputEmailPlaceholder": "Twój adres e-mail",
+    "consentText": "Wyrażam zgodę na otrzymywanie maili. W każdej chwili mogę zrezygnować z subskrypcji.",
+    "buttonText": "CHCĘ OTRZYMAĆ KALENDARZ",
+    "processingText": "Przetwarzanie...",
+    "emailSubject": "Przesyłamy link do pobrania poradnika",
+    "emailBodyLinkText": "Kliknij tutaj, aby pobrać poradnik."
+  },
+  "Footer":{
+    "policy":"Polityka prywatności",
+    "regulations":"Regulamin sklepu"
+  }, 
+   "kurs_noszenia": {
+    "hero_section": {
+      "title": "Noszenie i pielęgnacja maluszka",
+      "subtitle": "Kurs dla rodzica • Nagrania wideo • Spotkanie online",
+      "description": "Pigułka wiedzy medycznej i doświadczenia pracy z małymi pacjentami. Nauczysz się, jak dbać o twoje maleństwo bez stresu i wychodzenia z domu.",
+      "buttons": ["Czytaj więcej", "Zobacz ofertę"]
+    },
+    "about_author": {
+      "greeting": "Cześć!",
+      "name": "Nazywam się Magdalena Adaś",
+      "profession": "Jestem fizjoterapeutka dziecięca i edukatorka",
+      "education": "Ukończylam Collegium Medicum Uniwersytetu Jagiellońskiego w Krakowie.",
+      "workplace": "Aktualnie pracuję w Kraków i Warszawa.",
+      "description": "Na co dzień zajmuję się rehabilitacją najmłodszych pacjentów oraz wspieraniem ich rodziców. Swoją wiedzą i doświadczeniem dzielę się na blogu, w kursach online, e-bookach oraz na webinarach. Sprawiam, że fizjoterapia jest dostępna dla każdego."
+    },
+    "course_goal": {
+      "title": "Chcę, żeby każdy rodzic wiedział, jak prawidłowo nosić i podnosić swoje dziecko",
+      "heading":"Podnoszenie i odkładanie noworodka",
+      "topics": [
+        "Kiedy noszenie dziecka przodem do świata jest wskazane?",
+        "Jak nosić, jeśli dziecko nie lubi fasolki?",
+        "Jak podnieść dziecko do odbicia?",
+        "Jak podnieść dziecko z łóżeczka?",
+        "Jak obracać noworodka?"
+      ],
+      "description": "To najczęstsze pytania, jakie dostaję na konsultacjach. W kursie pokażę Ci, jak nosić dziecko, by było to dla niego bezpiecznie."
+    },
+    "importance_of_carrying": {
+      "title": "Dlaczego noszenie dziecka jest ważne?",
+      "content": [
+        {"p1": "Noworodek tuż po porodzie nie potrafi kontrolować swojego ciała w taki sposób, jak osoby dorosłe. Dlatego na podstawie tego, co mu serwujemy każdego dnia, uczy się wzorców ruchowych. To od nas zależy czy te wzorce będą prawidłowe, czy też nie."
+        },
+        {"p2":"Znając podstawy prawidłowej pielęgnacji niemowląt możemy już od pierwszych dni życia wspierać naszego maluszka w dalszym rozwoju. Wykonując prawidłowo czynności pielęgnacyjne, maluszek nie musi się napinać i denerwować, gdyż nie traci gwałtownie płaszczyzny podparcia oraz sam pomaga w tych aktywnościach."
+        },
+        {
+        "p3":"Pielęgnacja dopasowana do wieku i możliwości dziecka znacznie ułatwia mu naukę kolejnych umiejętności, a także pomaga przystosować się do życia w nowych warunkach."
+        }
+      ]
+    },
+    "common_mistake": {
+      "title": "Czy też popełniasz ten błąd?",
+      "problem": "Najczęściej rodzice podnoszą dziecko pod głową i pod pupą.",
+      "explanation": [
+        {"p1":  "Mimo, że to najprostszy i najszybszy sposób podnoszenia, nie jest zdrowy ani dla dziecka, ani dla rodzica."
+      },
+      {
+       "p2": "Maluszek podnoszony w ten sposób gwałtownie traci płaszczyznę podparcia, przez co napina się i pręży, a czasem odruchowo odrzuca rączki w tył. Takim podnoszeniem niepotrzebnie stymulujesz odruch Moro."
+      }
+      ]
+    },
+    "help_offer": {
+      "title": "Jak konkretnie mogę Ci pomóc?",
+      "subtitle": "Przygotowałam zestaw filmów o noszeniu i opiece nad niemowlakiem",
+      "sections": {
+        "carrying_baby": {
+          "title": "Jak podnosić niemowlę?",
+          "topics": [
+            "Podnoszenie noworodka bokiem.",
+            "Podnoszenie noworodka z łóżeczka.",
+            "Czy podnoszenie noworodka pod paszki jest bezpieczne?",
+            "Do kiedy podtrzymywać główkę?"
+          ]
+        },
+        "after_feeding": {
+          "title": "Podnoszenie noworodka po karmieniu",
+          "topics": [
+            "Jak przełożyć dziecko do drugiej piersi?",
+            "Pozycje do karmienia dziecka.",
+            "Pozycje do odbicia dziecka."
+          ]
+        },
+        "diaper_change": {
+          "title": "Jak przewinąć dziecko?",
+          "topics": [
+            "Porady od fizjoterapeuty, jak zrobić to sprawnie.",
+            "Dlaczego nie ciągniemy dziecko za nóżki?"
+          ]
+        }
+      }
+    },
+    "trustMe": {
+      "header": "Dlaczego możesz mi zaufać?",
+      "subheader": "Tysiące rodziców są już ze mną",
+      "stats": [
+        {
+          "number": "50 TYS.+",
+          "description": "Ponad 50 tysięcy osób każdego miesiąca znajduje pomoc na moim blogu. To najchętniej czytany blog w tej tematyce!"
+        },
+        {
+          "number": "3 000+",
+          "description": "Nawet 3 000 osób bierze udział na żywo w moich webinarach."
+        },
+        {
+          "number": "100 000+",
+          "description": "Ponad 100 tysięcy rodziców i fizjoterapeutów tworzy moją społeczność na Instagramie."
+        }
+      ],
+      "opinionSection": {
+        "title": "Opinie mam to najlepsza recenzja mojej pracy",
+        "thankYouNote": "Dziękuję, że jesteście ❤️ To dla Was tworzę. Dzięki Waszym komentarzom mam siłę, by wciąż się uczyć i dzielić zdobytą wiedzą.",
+        "rating": "5/5",
+        "altText": "Gwiazdki"
+      }
+    },    
+    "guarantees": {
+      "title": "Co mogę zagwarantować?",
+      "subtitle": "Przede wszystkim staniesz się bardziej świadomym i spokojniejszym rodzicem.",
+      "benefits": [
+        {
+          "title": "Nauczysz się, jak bezpiecznie nosić dziecko",
+          "description": "W materiałach znajdziesz odpowiedzi na najczęstsze pytania i wątpliwości rodziców. Dowiesz się, jak nosić noworodka i dziecko nieco starsze, by wspierać jego rozwój. Przestaniesz się bać nosić własne dziecko."
+        },
+        {
+          "title": "Nauczysz się jak łatwo ćwiczyć z dzieckiem w formie zabawy",
+          "description": "W filmach znajdziesz inspiracje do bezpiecznych ćwiczeń z maleństwem. Poznasz ćwiczenia stymulujące rozwój dziecka w formie zabaw, dostosowane do wieku malucha."
+        },
+        {
+          "title": "Zmniejszysz swój poziom niepokoju o prawidłowy rozwój dziecka",
+          "description": "Już po samym noszeniu możesz poznać, czy dziecko ma prawidłowe napięcie mięśniowe. Wybierając opcję z książką, dowiesz się, jak wygląda rozwój dziecka w kolejnych miesiącach życia."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Znajdziesz odpowiedzi na najczęstsze pytania rodziców",
+      "questions": [
+        {
+          "question": "Czy każde dziecko wymaga wizyty u fizjoterapeuty?",
+          "answer": "Nie każdy maluszek wymaga wizyty u fizjoterapeuty. Jeżeli wiesz, jak prawidłowo nosić dziecko i na co zwracać uwagę w jego rozwoju, wybierz się na konsultację wtedy, gdy coś cię zaniepokoi. W kursie tłumaczę, jakie są niepokojące symptomy w rozwoju dziecka."
+        },
+        {
+          "question": "Czy każde dziecko trzeba nosić w fasolce?",
+          "answer": "Fasolka to pierwsza podstawowa pozycja dla noworodka i dziecka w pierwszych trzech miesiącach życia. Gdy maluszek zaczyna trzymać główkę, wtedy możemy wprowadzić kolejne pozycje, dzięki czemu dziecko będzie mogło się rozglądać."
+        },
+        {
+          "question": "Dlaczego dziecko się pręży? Jak nosić dziecko, które wyrywa się z rąk?",
+          "answer": "Prężenie się to sygnał dla rodzica, że coś z maluszkiem nie jest w porządku. Być może dziecko ma bóle brzuszka, a może jest głodne. Jeśli dziecko pręży się przez większość czasu, zmień sposób noszenia, jeśli to nie pomaga należy skonsultować to z fizjoterapeutą."
+        }
+      ]
+    },
+    "products": {
+      "title": "Znajdź produkt odpowiedni dla Ciebie",
+      "subtitle": "Uzyskując nieograniczony dostęp do filmów, masz szansę nadrobić webinary w wygodnym dla siebie momencie.",
+      "availability1":"Produkt dostępny",
+      "availability2":"Produkt dostępny"
+    },
+    "course_content": {
+      "title": "Co znajdziesz w kursie",
+      "subtitle": "Kurs przygotowałam na podstawie najczęstszych pytań, jakie dostaję podczas konsultacji. Aby uzyskać odpowiedzi na nie wszystkie, potrzebowalibyśmy minimum 5 wizyt! A w tym kursie otrzymujesz to w cenie jednej wizyty z fizjoterapeutą.",
+      "modules": [
+        {
+          "title": "Noszenie i podnoszenie noworodka",
+          "content": [
+            "jak podnieść dziecko bokiem,",
+            "jak podnieść dziecko z przewijaka,",
+            "jak podawać dziecko z rąk do rąk,",
+            "w jakich pozycjach nosić noworodka."
+          ]
+        },
+        {
+          "title": "Pielęgnacja noworodka i starszych niemowląt",
+          "content": [
+            "jak przewinąć dziecko,",
+            "jak pielęgnować noworodka,",
+            "jak obracać dziecko na boczki podczas przewijania,",
+            "jak ubrać maluszka,",
+            "jak podnieść z maty."
+          ]
+        },
+        {
+          "title": "Najczęstsze problemy rodziców",
+          "content": [
+            "jak włożyć i wyciągnąć dziecko z fotelika samochodowego,",
+            "podnoszenie i odkładanie maluszka do gondoli,",
+            "ile dziecko powinno leżeć na brzuszku,",
+            "jak kangurować dziecko."
+          ]
+        },
+        {
+          "title": "Najczęstsze schorzenia u niemowląt",
+          "content": [
+            "jak zapobiegać asymetrii u dziecka,",
+            "jak nosić dziecko, gdy się pręży,",
+            "jak rozpoznać obniżone i wzmożone napięcie mięśniowe u dziecka,",
+            "jak dbać o bioderka."
+          ]
+        },
+        {
+          "title": "Codzienne rutyny w opiece nad maluszkiem",
+          "content": [
+            "w jakich pozycjach układać dziecko,",
+            "od kiedy układać dziecko na brzuszku,",
+            "ile dziecko powinno leżeć na brzuszku,",
+            "jak wybrać matę dla dziecka."
+          ]
+        },
+        {
+          "title": "Karmienie i pozycje do odbicia",
+          "content": [
+            "w jakich pozycjach karmić dziecko piersią i butelką,",
+            "jak przełożyć dziecko podczas karmienia,",
+            "jak podnieść dziecko do odbicia,",
+            "pozycje do odbicia na udach rodzica"
+          ]
+        },
+        {
+          "title": "Sen, rutyny wieczorne i kąpiel dziecka",
+          "content": [
+            "jak odkładać dziecko do łóżeczka i dostawki,",
+            "w jakiej pozycji powinno spać dziecko,",
+            "czy można układać niemowlę do snu na brzuszku,",
+            "jak kąpać dziecko."
+          ]
+        },
+        {
+          "title": "Zabawy wspierające rozwój dziecka",
+          "content": [
+            "bezpieczne zabawki,",
+            "zabawy stymulujące rozwój dziecka,",
+            "zabawy na piłce gimnastycznej,",
+            "zabawy na macie,",
+            "zabawy pomagające w nauce obrotów."
+          ]
+        },
+        {
+          "title": "Kolki u niemowląt - jak sobie z nimi poradzić?",
+          "content": [
+            "jak pomóc dziecku, które ma kolkę,",
+            "w jakich pozycjach nosić maluszka, który ma bóle brzuszka,",
+            "jak i kiedy masować dziecko, które ma problemy z kolkami."
+          ]
+        }
+      ]
+    },
+    "call_to_action": {
+      "title": "Już wiesz, że chcesz dołączyć do grona świadomych i spokojniejszych rodziców?",
+      "button_text": "WRÓĆ DO OFERTY"
+    }
+  },
+  "AboutMe":{
+      "AboutMePage": {
+        "Hero": {
+          "title": "Nazywam się Magdalena Adaś",
+          "description1": "Jestem fizjoterapeutką dziecięcą i edukatorką.",
+          "description2": "Moim marzeniem jest aby każdy rodzic, niezależnie od miejsca zamieszkania i funduszy, miał dostęp do merytorycznej wiedzy o prawidłowej pielęgnacji dzieci.",
+          "description3": "Na co dzień realizuję je przez pracę z pacjentami oraz działalność edukacyjną w świecie online."
+        },
+        "PatientsSection": {
+          "title": "Codzienna praca z pacjentami",
+          "subtitle": "Specjalizuję się w fizjoterapii niemowląt oraz dzieci z wadami postawy",
+          "locationTitle": "Kraków i Warszawa",
+          "description1": "Jestem absolwentką Collegium Medicum w Krakowie. Pierwsze doświadczenia w pracy z maluszkami zdobyłam w Hospicjum domowym dla dzieci Alma Spei.",
+          "description2": "Pomagam w formie wizyt domowych w Krakowie i w Warszawie oraz podczas konsultacji on-line. W sprawie wizyt możesz kontaktować się ze mną telefonicznie albo za pomocą Facebooka lub Instagrama.",
+          "description3": "Rodzice nazywają mnie zaklinaczką dzieci. Pomagam nawet tym, które nieustannie płaczą i wymagają ciągłego noszenia na rękach."
+        },
+        "MethodsSection": {
+          "title": "Metody, które stosuję",
+          "methods": [
+            "FITS – Funkcjonalna Indywidualna Terapia Skolioz",
+            "Osteopatia w pediatrii i neonatologii",
+            "Trójpłaszczyznowa terapia wad stóp u dzieci",
+            "Terapia manualna dzieci i niemowląt",
+            "PNF",
+            "Powięź w ujęciu osteopatycznym",
+            "Kinesiotaping",
+            "Masaż tkanek głębokich",
+            "Mięśniowo - powięziowe uwalnianie punktów spustowych",
+            "Osteopatyczne podejście w leczeniu migren i bólów głowy"
+          ]
+        },
+        "EbookSection": {
+          "title": "Mój pierwszy e-book",
+          "subtitle": "Asymetria ułożeniowa - poradniik dla rodzica",
+          "description1": "Jestem autorką e-booka Asymetria ułożeniowa - poradnik dla rodzica. To jedyna taka książka w Polsce i na świecie!",
+          "description2": "Znajdziesz w niej wiedzę medyczną oraz praktyczne wskazówkami dla rodziców. Dowiesz się jak zapobiegać asymetrii oraz wspierać dziecko, które ma postawioną diagnozę.",
+          "button": {
+            "text": "DOWIEDZ SIĘ WIĘCEJ",
+            "link": "/filmy-i-ebooki/asymetria-ulozeniowa"
+          }
+        },
+        "OnlineActivitySection": {
+          "title": "Działalność online",
+          "description1": "Zaczęło się trzy lata temu od bloga, później doszły kanały w social mediach. Obecnie regularnie prowadzę również webinary i nagrywam wideo.",
+          "description2": "Porady na moim blogu szuka każdego miesiąca ponad 50 tysięcy rodziców!",
+          "description3": "Dzięki działalności online miałam okazję współpracować z: M jak mama • Świadoma Mama • Kobiecy Białystok • Znajdź fizjoterapeutę • Krajowa Izba Fizjoterapii • Radio Wnet i ZET"
+        }
+      }    
+  },
+  "WizytaPage": {
+    "Hero": {
+      "title": "Umów wizytę teraz w domu lub online",
+      "description1": "Jestem fizjoterapeutką dziecięcą i edukatorką.",
+      "description2": "Jestem specjalistką fizjoterapii niemowlęcej. Pomagam w formie konsultacji online i docieram tam, gdzie nie ma dostępu do fizjoterapeuty.",
+      "description3": "Pomagam rodzicom odzyskać spokój i pewność w opiece nad dzieckiem."
+    },
+    "BookingSection": {
+      "title": "Zapisz się na konsultację",
+      "buttons": [
+        "KONSULTACJA ONLINE",
+        "WIZYTA DOMOWA W WARSZAWIE", 
+        "WIZYTA DOMOWA W POŁAŃCU"
+      ]
+    },
+    "HomeVisitSection": {
+      "title": "WIZYTA DOMOWA",
+      "subtitle": "Specjalizuję się w fizjoterapii niemowląt oraz dzieci z wadami postawy",
+      "howItWorks": {
+        "title": "Jak przebiega wizyta",
+        "steps": [
+          "Na pierwszej wizycie zbieram wywiad od rodzica i badam maluszka.",
+          "Stawiam diagnozę i tłumaczę, jak mogę pomóc dziecku.",
+          "Uczę rodzica prawidłowej pielęgnacji, czyli noszenia, podnoszenia, przewijania itp.",
+          "Rozluźniam, masuję i ćwiczę z dzieckiem.",
+          "Pokazuję ćwiczenia domowe dla rodzica i sprawdzam poprawność ich wykonania."
+        ],
+        "emphasis": "Zależy mi na edukacji rodzica. Na konsultacji u mnie nauczysz się jak ćwiczyć z dzieckiem."
+      }
+    },
+    "WhatMakesMeDifferent": {
+      "title": "Co mnie wyróżnia?",
+      "points": [
+        "Nie znajdziesz tu pakietu 10 wizyt. Moim celem nie jest prowadzenie Twojego dziecka przez wiele miesięcy. Celem moich terapii jest uwolnienie przeszkody, która blokuje dalszy rozwój (np. rozluźnienie napięć w ciele) tak, by umożliwić dziecku naturalny rozwój.",
+        "Nie stosuję metod, które sprawiają ból, a na wizytach dbam o to, by dziecko nie płakało.",
+        "Tłumaczę trudne sformułowania medyczne, tak by rodzice zrozumieli problem u dziecka i aktywnie uczestniczyli w terapii.",
+        "Zadaję ćwiczenia domowe. To rodzice spędzają najwięcej czasu z dzieckiem i jeśli nie zadbamy o podstawy takie jak: codzienna pielęgnacja, prawidłowe noszenie, czy leżenie na brzuszku, nawet najlepszy fizjoteraputa będzie potrzebował wielu wizyt, by pomóc dziecku.",
+        "Zaproponuję zabawy dopasowane do wieku i możliwości twojego dziecka tak, by wspierać jego rozwój oraz pomagać w budowaniu więzi między Wami.",
+        "Na moich wizytach możesz nagrywać ćwiczenia. Co więcej - nauczę Cię jak bezpiecznie ćwiczyć z dzieckiem tak, bym była pewna, że wykonasz je poprawnie.",
+        "Dzięki konsultacjom online oszczędzam Twój czas, a dziecko nie stresuje się wyjściem do nowego miejsca."
+      ]
+    },
+    "MethodsSection": {
+      "title": "Metody, które stosuję",
+      "methods": [
+        "Osteopatia w pediatrii i neonatologii,",
+        "Zoga movement w terapii niemowląt,",
+        "Terapia niemowląt z zaburzeniami karmienia,",
+        "Trójpłaszczyznowa terapia wad stóp u dzieci,",
+        "Terapia manualna dzieci i niemowląt,",
+        "PNF w pediatrii,",
+        "Powięź w ujęciu osteopatycznym,",
+        "Kinesiotaping w pediatrii,",
+        "Neurorozwojowa diagnoza i terapia dzieci z asymetrią posturalną,",
+        "Neurorozwojowa prewencja i korekcja wad postawy u niemowląt,",
+        "FITS – Funkcjonalna Indywidualna Terapia Skolioz."
+      ]
+    },
+    "OnlineConsultationSection": {
+      "title": "Konsultacja online",
+      "description1": "Podczas wideorozmowy zbieram wywiad i ustalam jak pomóc dziecku oraz dobieram odpowiednią terapię i ćwiczenia dla rodzica.",
+      "emphasis1": "Nauczę Cię prawidłowego sposobu noszenia oraz pielęgnacji dziecka.",
+      "description2": "Nie jest to typowa wizyta, gdzie fizjoterapeuta ćwiczy, a Ty się przyglądasz. Celem konsultacji online jest nauczyć Cię ćwiczeń tak, byś to Ty rodzicu wziął odpowiedzialność za swoje dziecko.",
+      "emphasis2": "Wystarczy nam jedna wizyta, by wybrać odpowiednie ćwiczenia dla dziecka. Ustalamy cele, a gdy je osiągniesz, umawiamy kolejną wizytę."
+    },
+    "HowOnlineConsultationWorks": {
+      "title": "Jak przebiega konsultacja online?",
+      "steps": [
+        "Konsultacja online odbywa się w formie wideorozmowy.",
+        "Przed konsultacją proszę rodzica o przesłanie filmów koniecznych do oceny dziecka.",
+        "Podczas wideorozmowy możesz skonsultować problem swojego dziecka, uzyskasz rzetelne informacje, pokażę Ci ćwiczenia na profesjonalnej lalce instruktażowej, sprawdzę poprawność wykonywanych ćwiczeń, prześlę potrzebne materiały, a podczas kolejnych konsultacji monitoruję postępy dziecka."
+      ],
+      "emphasis": "Po wizycie otrzymasz dodatkowe materiały i film, by samodzielnie ćwiczyć z dzieckiem w domu."
+    },
+    "OnlineVsStationaryDifferences": {
+      "title": "Czym różni się konsultacja online od wizyty stacjonarnej?",
+      "differences": [
+        "Podczas konsultacji nie mam możliwości zbadania i dotknięcia dziecka. Dlatego, żeby ocenić napięcie mięśniowe, symetrię ciała, czy rozwój dziecka najpierw uczę rodzica, jak wykonać dany test i na tej podstawie stawiamy diagnozę i ustalamy ćwiczenia.",
+        "Stawiam na edukację i dogłębne wytłumaczenie problemu. Dlatego po moich konsultacjach stajesz się ekspertem od swojego dziecka. Po konsultacji wiesz jak ćwiczyć z dzieckiem oraz jak ocenić postępy fizjoterapii.",
+        "Konsultacja online znacznie skraca czas oczekiwania na wizytę u specjalisty. W pilnym przypadku możesz się do mnie zgłosić po wcześniejszy termin.",
+        "Nie zostajesz bez opieki. Po konsultacji jesteśmy w kontakcie i w razie problemów z ćwiczeniami, służę pomocą.",
+        "Konsultacja online może być tak samo skuteczna jak wizyta stacjonarna. Wszystko zależy od tego jak pewnie rodzic czuje się ćwicząc ze swoim dzieckiem. Ponadto niektóre dzieci często płaczą i niechętnie ćwiczą w gabinecie. Wtedy ćwiczenia domowe z rodzicem mogą być jedyną opcją.",
+        "Konsultacja online może być też dobrym wsparciem dla dziecka, które jest już objęte rehabilitacją stacjonarną, ale nie otrzymujesz zaleceń domowych. W takim przypadku dobieram ćwiczenia tak, by wzmacniały efekt prowadzonej terapii.",
+        "Podczas konsultacji online pomagam maluszkom, które nie mają dostępu do rehabilitacji, bo mieszkają za granicą lub w miejscu, gdzie brakuje specjalistów fizjoterapii niemowlęcej."
+      ],
+      "additionalInfo": "Sprawdź, czy konsultacja online jest dla Ciebie. Najczęstsze pytania przeczytasz tutaj"
+    },
+    "TestimonialsSection": {
+      "title": "Nie wierzysz? Sprawdź opinie.",
+      "subtitle": "Zobacz, jak rodzice z sukcesami ćwiczą po moich konsultacjach.",
+      "rating": "5/5",
+      "testimonials": [
+        {
+          "text": "Korzystałam z pomocy Pani Magdy, przyjechała do nas na wizytę domową. Obserwowała synka podczas aktywności i zabawy w jego codziennym środowisku. Przekazała nam cenne wskazówki i dobrała ćwiczenia, dzięki czemu widać postępy. Polecam!",
+          "author": "Paula K."
+        },
+        {
+          "text": "Pani Magdą to bardzo ciepła i miła osoba 😉 To szczególnie ważne przy małych dzieciach. Wszystko dobrze tłumaczy i nie 'straszy' niepotrzebnie. gorąco polecam do kontaktu z Panią Magdaleną nawet profilaktycznie",
+          "author": "Dorota B."
+        },
+        {
+          "text": "Pani Magda profesjonalnie i z dużym zaangażowaniem podeszła do moich córek oraz wykonywanych przez nią zabiegów fizjoterapeutycznych. Poleciła nam dodatkowe ćwiczenia i skutecznie pomogła. Bardzo dziękuję i polecam Panią całym sercem!👍",
+          "author": "Marta S."
+        },
+        {
+          "text": "Profesjonalizm, punktualność i wiedza!!! Wizyty domowe są ułatwieniem dla mam i maluszków. Ponadto dobry kontakt na fb, można o wszystko zapytać. Pani Magda ma wspaniałe podejście do dzieci, edukuje rodziców zarówno w zakresie pielęgnacji niemowląt, jak i ćwiczeń do samodzielnego wykonywania w domu. Polecam wszystkim.",
+          "author": "Sylwia Sz."
+        },
+        {
+          "text": "Mieszkam za granicą i napotkałam problemy z dostępem do fizjoterapii dziecięcej w sprawie, która mnie niepokoiła. Mówiono mi, że niektóre dzieci 'takie są'. Zdecydowałam się na konsultacje online, których nie jestem fanką w normalnych okolicznościach. Termin dostałam już na następny dzień. Jestem bardzo zadowolona z konsultacji, rozwiały się moje wątpliwości. Pani Magda pokazała wszystkie techniki, które były dla mnie ważne, jak i ćwiczenia usprawniające pewne niedociągnięcia nad którymi musimy popracować. Serdecznie polecam, dużo informacji podanych w przystępny sposób, a co najważniejsze, konkretów. Dodatkowo Pani Magda oferuje wsparcie w związku z ćwiczeniami, które otrzymaliśmy w późniejszym czasie. 10/10!",
+          "author": "Kasia Ś."
+        }
+      ],
+      "moreReviews": "Te i więcej recenzji przeczytasz na moim fanpage'u"
+    },
+    "PricingSection": {
+      "title": "Cennik",
+      "consultations": [
+        {
+          "type": "Konsultacja online",
+          "price": "200 zł",
+          "features": [
+            "Czas: 40 minut",
+            "Dostępne szybkie terminy",
+            "Rezerwacja terminu online",
+            "Nauka ćwiczeń do samodzielnej pracy",
+            "Otrzymasz zestaw ćwiczeń na 1 do 3 miesięcy"
+          ],
+          "button": "Zarezerwuj teraz"
+        },
+        {
+          "type": "Wizyta domowa Warszawa", 
+          "price": "300 zł",
+          "features": [
+            "Czas: 60 minut",
+            "Zalecenia domowe",
+            "Wizyta w domu pacjenta",
+            "Brak dopłat za dojazd",
+            "Kolejne wizyty ustalone wg indywidualnych potrzeb pacjenta"
+          ],
+          "button": "Zarezerwuj teraz"
+        },
+        {
+          "type": "Wizyta stacjonarna Połaniec",
+          "price": "250 zł", 
+          "features": [
+            "Czas: 60 minut",
+            "Zalecenia domowe",
+            "Wizyta w domu pacjenta lub w gabinecie",
+            "Brak dopłat za dojazd",
+            "W Połańcu konsultacje raz w miesiącu"
+          ],
+          "button": "Zarezerwuj teraz"
+        }
+      ]
+    }
+  },
+  "Repeated": {
+    "TestimonialsSection": {
+      "testimonials": [
+        {
+          "text": "Korzystałam z pomocy Pani Magdy, przyjechała do nas na wizytę domową. Obserwowała synka podczas aktywności i zabawy w jego codziennym środowisku. Przekazała nam cenne wskazówki i dobrała ćwiczenia, dzięki czemu widać postępy. Polecam!",
+          "author": "Paula K."
+        },
+        {
+          "text": "Pani Magdą to bardzo ciepła i miła osoba 😉 To szczególnie ważne przy małych dzieciach. Wszystko dobrze tłumaczy i nie 'straszy' niepotrzebnie. gorąco polecam do kontaktu z Panią Magdaleną nawet profilaktycznie",
+          "author": "Dorota B."
+        },
+        {
+          "text": "Pani Magda profesjonalnie i z dużym zaangażowaniem podeszła do moich córek oraz wykonywanych przez nią zabiegów fizjoterapeutycznych. Poleciła nam dodatkowe ćwiczenia i skutecznie pomogła. Bardzo dziękuję i polecam Panią całym sercem!👍",
+          "author": "Marta S."
+        },
+        {
+          "text": "Profesjonalizm, punktualność i wiedza!!! Wizyty domowe są ułatwieniem dla mam i maluszków. Ponadto dobry kontakt na fb, można o wszystko zapytać. Pani Magda ma wspaniałe podejście do dzieci, edukuje rodziców zarówno w zakresie pielęgnacji niemowląt, jak i ćwiczeń do samodzielnego wykonywania w domu. Polecam wszystkim.",
+          "author": "Sylwia Sz."
+        },
+        {
+          "text": "Mieszkam za granicą i napotkałam problemy z dostępem do fizjoterapii dziecięcej w sprawie, która mnie niepokoiła. Mówiono mi, że niektóre dzieci 'takie są'. Zdecydowałam się na konsultacje online, których nie jestem fanką w normalnych okolicznościach. Termin dostałam już na następny dzień. Jestem bardzo zadowolona z konsultacji, rozwiały się moje wątpliwości. Pani Magda pokazała wszystkie techniki, które były dla mnie ważne, jak i ćwiczenia usprawniające pewne niedociągnięcia nad którymi musimy popracować. Serdecznie polecam, dużo informacji podanych w przystępny sposób, a co najważniejsze, konkretów. Dodatkowo Pani Magda oferuje wsparcie w związku z ćwiczeniami, które otrzymaliśmy w późniejszym czasie. 10/10!",
+          "author": "Kasia Ś."
+        }
+      ],
+      "moreReviews": "Te i więcej recenzji przeczytasz na moim fanpage'u"
     }
   }
+  
 }
+

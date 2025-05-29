@@ -1,42 +1,44 @@
 import Image from "next/image";
 import Photo from "../../../../public/assets/HomePage/Fizquizz/fizquiz.webp";
 import styles from "./Third.module.scss";
+import { getPreferredLocale } from "../../../../helpers/getLocale";
+import { getDictionary } from "../../../../lib/dictionary";
 
 async function Third() {
+	const lang = getPreferredLocale() as "pl" | "en";
+	const dictionary = await getDictionary(lang);
+	const { kurs_noszenia: kursNoszenia } = dictionary;
+
+	const {
+		course_goal: courseGoal
+	} = kursNoszenia;
+	
+	// @ts-ignore
+	const { title, heading, topics, description } = courseGoal;
+
 	return (
 		<>
 			<section className={styles.Ebook}>
 				<div className="Container">
 					<div className={styles.topSection}>
 						<h2 className="">
-							Chcę, żeby każdy rodzic wiedział, jak prawidłowo nosić i podnosić swoje dziecko
+							{title}
 						</h2>
 					</div>
 					<div className={styles.bottomSection}>
 						<div className={styles.Inner}>
 							<div className={styles.leftSection}>
 								<div className={styles.text}>
-									<h6>Podnoszenie i odkładanie noworodka</h6>
+									<h6>{heading}</h6>
 									<ul>
-										<li>
-											<p>Kiedy noszenie dziecka przodem do świata jest wskazane?</p>
-										</li>
-										<li>
-											<p>Jak nosić, jeśli dziecko nie lubi fasolki?</p>
-										</li>
-										<li>
-											<p>Jak podnieść dziecko do odbicia?</p>
-										</li>
-										<li>
-											<p>Jak podnieść dziecko z łóżeczka?</p>
-										</li>
-										<li>
-											<p>Jak obracać noworodka?</p>
-										</li>
+										{topics.map((topic, index) => (
+											<li key={index}>
+												<p>{topic}</p>
+											</li>
+										))}
 									</ul>
 									<p>
-										To najczęstsze pytania, jakie dostaję na konsultacjach. W kursie pokażę Ci, jak
-										nosić dziecko, by było to dla niego bezpiecznie.
+										{description}
 									</p>
 								</div>
 							</div>

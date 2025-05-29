@@ -2,51 +2,36 @@ import Image from "next/image";
 import styles from "./Nine.module.scss";
 import photo from "../../../../public/assets/Kurs-Noszenia/guarantee1.svg";
 import photo1 from "../../../../public/assets/Kurs-Noszenia/guarantee2.svg";
+import { getDictionary } from "../../../../lib/dictionary";
+import { getPreferredLocale } from "../../../../helpers/getLocale";
 
 async function Nine() {
-	const data = [
-		{
-			title: "Nauczysz się, jak bezpiecznie nosić dziecko      ",
-			paragraph:
-				"W materiałach znajdziesz odpowiedzi na najczęstsze pytania i wątpliwości rodziców. Dowiesz się, jak nosić noworodka i dziecko nieco starsze, by wspierać jego rozwój. Przestaniesz się bać nosić własne dziecko.",
-			image: photo,
-		},
-		{
-			title: "Nauczysz się jak łatwo ćwiczyć z dzieckiem w formie zabawy",
-			paragraph:
-				"W filmach znajdziesz inspiracje do bezpiecznych ćwiczeń z maleństwem. Poznasz ćwiczenia stymulujące rozwój dziecka w formie zabaw, dostosowane do wieku malucha.",
-			image: photo1,
-		},
-		{
-			title: "Zmniejszysz swój poziom niepokoju o prawidłowy rozwój dziecka",
-			paragraph:
-				"Już po samym noszeniu możesz poznać, czy dziecko ma prawidłowe napięcie mięśniowe. Wybierając opcję z książką, dowiesz się, jak wygląda rozwój dziecka w kolejnych miesiącach życia. ",
-			image: photo,
-		},
-	];
+	const lang = getPreferredLocale() as "pl" | "en";
+	const dictionary = await getDictionary(lang);
+	const { guarantees } = dictionary.kurs_noszenia;
+
+	const images = [photo, photo1, photo]; 
 
 	return (
-		<>
-			<section className={`${styles.Nine} `}>
-				<div className={`Container`}>
-					<div className={`${styles.topSection}`}>
-						<h2>Co mogę zagwarantować?</h2>
-						<p>Przede wszystkim staniesz się bardziej świadomym i spokojniejszym rodzicem. </p>
-					</div>
-					<div className={` ${styles.itemWraper}`}>
-						{data.map((item, index) => (
-							<div key={index} className={` ${styles.bottomItem}`}>
-								<div className={`iconBox`}>
-									<Image width={25} height={25} src={item.image} alt="photo" />
-								</div>
-								<h3 className={` `}>{item.title}</h3>
-								<p className={styles.paragraph}>{item.paragraph}</p>
-							</div>
-						))}
-					</div>
+		<section className={`${styles.Nine}`}>
+			<div className="Container">
+				<div className={styles.topSection}>
+					<h2>{guarantees.title}</h2>
+					<p>{guarantees.subtitle}</p>
 				</div>
-			</section>
-		</>
+				<div className={styles.itemWraper}>
+					{guarantees.benefits.map((item, index) => (
+						<div key={index} className={styles.bottomItem}>
+							<div className="iconBox">
+								<Image width={25} height={25} src={images[index]} alt="guarantee icon" />
+							</div>
+							<h3>{item.title}</h3>
+							<p className={styles.paragraph}>{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
 	);
 }
 

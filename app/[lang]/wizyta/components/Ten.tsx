@@ -1,64 +1,35 @@
 import Link from "next/link";
 import styles from "./Ten.module.scss";
+import { getPreferredLocale } from "../../../../helpers/getLocale";
+import { getDictionary } from "../../../../lib/dictionary";
 
 async function Ten() {
-	const consultations = [
-		{
-			type: "Konsultacja online",
-			price: "200 zł",
-			time: "Czas: 40 minut",
-			reservation: "Dostępne szybkie terminy",
-			place: "Rezerwacja terminu online",
-			exercise: "Nauka ćwiczeń do samodzielnej pracy",
-			setskillbold: "Otrzymasz zestaw ćwiczeń na 1 do 3 miesięcy",
-			url: "https://widget.zarezerwuj.pl/direct/b02f996b-e919-4357-8c78-99b006488d85",
-		},
-		{
-			type: "Wizyta domowa Warszawa",
-			price: "300 zł",
-			time: "Czas: 60 minut",
-			reservationbold: "Zalecenia domowe",
-			place: "Wizyta w domu pacjenta",
-			exercise: "Brak dopłat za dojazd",
-			setskill: "Kolejne wizyty ustalone wg indywidualnych potrzeb pacjenta",
-			url: "https://widget.zarezerwuj.pl/direct/b02f996b-e919-4357-8c78-99b006488d85",
-		},
-		{
-			type: "Wizyta stacjonarna Połaniec",
-			price: "250 zł",
-			time: "Czas: 60 minut",
-			reservationbold: "Zalecenia domowe",
-			place: "Wizyta w domu pacjenta lub w gabinecie",
-			exercise: "Brak dopłat za dojazd",
-			setskill: "W Połańcu konsultacje raz w miesiącu",
-			url: "https://widget.zarezerwuj.pl/direct/b02f996b-e919-4357-8c78-99b006488d85",
-		},
-	];
+	const lang = getPreferredLocale() as "pl" | "en";
+	const { WizytaPage } = await getDictionary(lang);
+	const { PricingSection } = WizytaPage;
+	const { title, consultations } = PricingSection;
 
 	return (
 		<section className={styles.ten}>
 			<div className={` Container ${styles.container}`}>
-				<h2 className={styles.title}>Cennik</h2>
+				<h2 className={styles.title}>{title}</h2>
 				<div className={styles.wraper}>
-					{consultations.map((consultation, index) => (
+					{consultations.map((consultation: any, index: number) => (
 						<div key={index} className={styles.consultationSingle}>
 							<h3 className={styles.consulationHeading}>{consultation.type}</h3>
 							<p className={styles.consultationPrice}>{consultation.price}</p>
 							<ul className={styles.ul}>
-								<li className={styles.listItem}>{consultation.time}</li>
-								{consultation.reservation && <li>{consultation.reservation}</li>}
-								{consultation.reservationbold && (
-									<li className={styles.bold}>{consultation.reservationbold}</li>
-								)}
-								<li>{consultation.place}</li>
-								<li>{consultation.exercise}</li>
-								{consultation.setskill && <li>{consultation.setskill}</li>}
-								{consultation.setskillbold && (
-									<li className={styles.bold}>{consultation.setskillbold}</li>
-								)}
+								{consultation.features.map((feature: string, featureIndex: number) => (
+									<li 
+										key={featureIndex} 
+										className={feature.includes("Otrzymasz zestaw") || feature.includes("Zalecenia domowe") ? styles.bold : ""}
+									>
+										{feature}
+									</li>
+								))}
 							</ul>
-							<Link href={consultation.url}>
-								<button className={styles.bookLink}>Zarezerwuj teraz</button>
+							<Link href="https://widget.zarezerwuj.pl/direct/b02f996b-e919-4357-8c78-99b006488d85">
+								<button className={styles.bookLink}>{consultation.button}</button>
 							</Link>
 						</div>
 					))}

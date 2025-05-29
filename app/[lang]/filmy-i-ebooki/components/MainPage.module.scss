@@ -9,10 +9,23 @@
 	.fitlersGroup {
 		min-width: 310px;
 	}
+	.titleText{
+		text-align: center;
+		padding-bottom: 30px;
+	}
+	.titleTextEnglish{
+		text-align: center;
+		padding-bottom: 30px;
+		background-color: #f5f6f5;
+		.English{
+			color: var(--primary);
+		}
+	}
 }
 .Container {
 	margin: auto;
 	padding-top: 20px;
+	padding-bottom: 30px;
 	position: static;
 }
 .localContainer {

@@ -14,6 +14,7 @@ import ActiveLink from "../../ActiveLink/ActiveLink";
 import { useEffect, useState } from "react";
 import search from "../../../public/assets/Header/Search.svg";
 import LocaleSwitcher from "./LocaleSwitcher";
+import { paths } from "../../../app/address/adress";
 
 const Header = () => {
 	const [isSticky, setIsSticky] = useState(false);
@@ -100,75 +101,76 @@ const Header = () => {
 				</div>
 			</div>
 			<div className={` ${isSticky ? styles.sticky : ""}`}>
-				<div className={` Container`}>
-					<div className={styles.bottomContainerInner}>
-						<div className={styles.logo}>
-							<Link className={styles.logos} href="/">
-								<Image src={Logo} width={200} height={200} alt="Logo" />
-							</Link>
-						</div>
+  <div className={` Container`}>
+    <div className={styles.bottomContainerInner}>
+      <div className={styles.logo}>
+        <Link className={styles.logos} href={paths.HOME}>
+          <Image src={Logo} width={200} height={200} alt="Logo" />
+        </Link>
+      </div>
 
-						<div className={` ${styles.rightSide} `}>
-							<div className={styles.cart}>
-								<Image src={cart} width={20} height={20} alt="cart" />
-							</div>
-							<div className={styles.hamburger}>
-								<button className={` button`} onClick={openModal}>
-									<Image src={hamburger} width={15} height={15} alt="cart" />
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+      <div className={` ${styles.rightSide} `}>
+        <div className={styles.cart}>
+          <Image src={cart} width={20} height={20} alt="cart" />
+        </div>
+        <div className={styles.hamburger}>
+          <button className={` button`} onClick={openModal}>
+            <Image src={hamburger} width={15} height={15} alt="cart" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-			{isModalOpen && (
-				<div className={styles.modalBackdrop} onClick={closeModal}>
-					<div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-						<div className={styles.modalHeaderWraper}>
-							<div className={`${styles.modalHeader} `}>
-								<div className={styles.logo}>
-									<Link className={styles.logos} href="/">
-										<Image src={Logo} width={200} height={200} alt="Logo" />
-									</Link>
-								</div>
-								<button className={` button`} onClick={closeModal}>
-									×
-								</button>
-							</div>
-							<div className={`${styles.links}`}>
-								<ActiveLink
-									href="/"
-									className={styles.anchor}
-									activeClassName={styles.anchorActive}
-									onClick={closeModal}
-								>
-									Start
-								</ActiveLink>
-								<Link className={styles.anchor} href="/blog" onClick={closeModal}>
-									Blog
-								</Link>
-								<Link className={styles.anchor} href="/filmy-i-ebooki" onClick={closeModal}>
-									Filmy i ebooki
-								</Link>
-								<Link className={styles.anchor} href="/kurs-noszenia" onClick={closeModal}>
-									Kurs noszenia
-								</Link>
-								<Link className={styles.anchor} href="/o-mnie" onClick={closeModal}>
-									O mnie
-								</Link>
-								<Link className={styles.anchor} href="/wizyta" onClick={closeModal}>
-									Wizyta
-								</Link>
-								<LocaleSwitcher />
-								<Link href="/search" className={styles.anchor}>
-									<Image src={search} width={20} height={20} alt="search" />
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			)}
+{isModalOpen && (
+  <div className={styles.modalBackdrop} onClick={closeModal}>
+    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.modalHeaderWraper}>
+        <div className={`${styles.modalHeader} `}>
+          <div className={styles.logo}>
+            <Link className={styles.logos} href={paths.HOME}>
+              <Image src={Logo} width={200} height={200} alt="Logo" />
+            </Link>
+          </div>
+          <button className={` button`} onClick={closeModal}>
+            ×
+          </button>
+        </div>
+        <div className={`${styles.links}`}>
+          <ActiveLink
+            href={paths.HOME}
+            className={styles.anchor}
+            activeClassName={styles.anchorActive}
+            onClick={closeModal}
+          >
+            Start
+          </ActiveLink>
+          <Link className={styles.anchor} href={paths.BLOG} onClick={closeModal}>
+            Blog
+          </Link>
+          <Link className={styles.anchor} href={paths.FILMY_EBOOKI} onClick={closeModal}>
+            Filmy i ebooki
+          </Link>
+          <Link className={styles.anchor} href={paths.KURS_NOSZENIA} onClick={closeModal}>
+            Kurs noszenia
+          </Link>
+          <Link className={styles.anchor} href={paths.O_MNIE} onClick={closeModal}>
+            O mnie
+          </Link>
+          <Link className={styles.anchor} href={paths.WIZYTA} onClick={closeModal}>
+            Wizyta
+          </Link>
+          <LocaleSwitcher />
+          <Link href={paths.SEARCH} className={styles.anchor}>
+            <Image src={search} width={20} height={20} alt="search" />
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
 		</header>
 	);
 };

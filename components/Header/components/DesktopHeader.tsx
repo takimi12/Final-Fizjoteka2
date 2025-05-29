@@ -13,10 +13,12 @@ import Link from "next/link";
 import ActiveLink from "../../ActiveLink/ActiveLink";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, selectTotalPrice, CartItem } from "../../../Redux/Cartslice";
+import { removeFromCart, selectTotalPrice, CartItem } from "../../../Redux/Cartslice";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { Locale } from "../../../i18n";
 import { RootState } from "../../../Redux/Store";
+import { paths } from "../../../app/address/adress";
+
 
 type Navigation = {
 	home: string;
@@ -44,7 +46,6 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 	const handlePaymentClick = () => {
 		setIsCartHidden(true);
-		// Reset po krótkiej chwili, żeby hover mógł znów działać
 		setTimeout(() => {
 			setIsCartHidden(false);
 		}, 500);
@@ -52,11 +53,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 50) {
-				setIsSticky(true);
-			} else {
-				setIsSticky(false);
-			}
+			setIsSticky(window.scrollY > 50);
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -67,63 +64,41 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 
 	return (
 		<header>
-			<div className={` ${styles.topHeader} `}>
-				<div className={`${styles.inner}`}>
-					<Image
-						src={youTubeIcon}
-						className={styles.headerImage}
-						alt="YouTube"
-						width={15}
-						height={15}
-					/>
-					<Image
-						src={instagramIcon}
-						className={styles.headerImage}
-						alt="Instagram"
-						width={15}
-						height={15}
-					/>
-					<Image
-						src={facebookIcon}
-						className={styles.headerImage}
-						alt="Facebook"
-						width={15}
-						height={15}
-					/>
-					<Image
-						src={tikTokIcon}
-						className={styles.headerImage}
-						alt="TikTok"
-						width={15}
-						height={15}
-					/>
+			<div className={styles.topHeader}>
+				<div className={styles.inner}>
+					<Image src={youTubeIcon} className={styles.headerImage} alt="YouTube" width={15} height={15} />
+					<Image src={instagramIcon} className={styles.headerImage} alt="Instagram" width={15} height={15} />
+					<Image src={facebookIcon} className={styles.headerImage} alt="Facebook" width={15} height={15} />
+					<Image src={tikTokIcon} className={styles.headerImage} alt="TikTok" width={15} height={15} />
 				</div>
 			</div>
+
 			<div className={`${isSticky ? styles.sticky : ""} ${styles.bottom}`}>
 				<div className={`${styles.bottomContainer} Container`}>
 					<div className={styles.bottomContainerInner}>
 						<div className={styles.logo}>
-							<Link href="/" className={styles.logoss}>
+							<Link href={paths.HOME} className={styles.logoss}>
 								<Image src={Logo} width={200} height={200} alt="Logo" />
 							</Link>
 						</div>
+
 						<div className={styles.links}>
-							<ActiveLink href="/" className={styles.anchor} activeClassName={styles.anchorActive}>
+							<ActiveLink href={paths.HOME} className={styles.anchor} activeClassName={styles.anchorActive}>
 								{navigation.home}
 							</ActiveLink>
-							<ActiveLink className={styles.anchor} href="/blog">
+							<ActiveLink className={styles.anchor} href={paths.BLOG}>
 								{navigation.blog}
 							</ActiveLink>
-							<ActiveLink className={styles.anchor} href="/filmy-i-ebooki">
+							<ActiveLink className={styles.anchor} href={paths.FILMY_EBOOKI}>
 								{navigation.filmyIEbooki}
 							</ActiveLink>
-							<ActiveLink className={styles.anchor} href="/kurs-noszenia">
+							<ActiveLink className={styles.anchor} href={paths.KURS_NOSZENIA}>
 								{navigation.kursNoszenia}
 							</ActiveLink>
-							<ActiveLink className={styles.anchor} href="/o-mnie">
+							<ActiveLink className={styles.anchor} href={paths.O_MNIE}>
 								{navigation.oMnie}
 							</ActiveLink>
-							<ActiveLink className={styles.anchor} href="/wizyta">
+							<ActiveLink className={styles.anchor} href={paths.WIZYTA}>
 								{navigation.wizyta}
 							</ActiveLink>
 
@@ -135,8 +110,8 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 									<Image src={cart} width={20} height={20} alt="cart" />
 								</div>
 								<div className={styles.cartContent}>
-									<h4 className={` ${styles.myCart}`}>Mój koszyk</h4>
-									<span className={` ${styles.desc}`}>Sprawdź i zapłać za produkty</span>
+									<h4 className={styles.myCart}>Mój koszyk</h4>
+									<span className={styles.desc}>Sprawdź i zapłać za produkty</span>
 									<div className={styles.noProducts}>
 										<div>
 											{cartItems.length > 0 ? (
@@ -163,12 +138,12 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 															</button>
 														</div>
 													))}
-													<div className={` ${styles.sum}`}>
+													<div className={styles.sum}>
 														<p className={styles.text}>Liczba: {item.length}</p>
 														<p className={styles.text}>Suma: {totalPrice.toFixed(2)} zł</p>
 													</div>
 													<div className={styles.payment}>
-														<Link href="/koszyk">
+														<Link href={paths.KOSZYK}>
 															<button className="button" onClick={handlePaymentClick}>
 																Zapłać
 															</button>
@@ -183,7 +158,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 								</div>
 							</div>
 
-							<Link href="/search" className={styles.anchor}>
+							<Link href={paths.SEARCH} className={styles.anchor}>
 								<Image src={search} width={20} height={20} alt="search" />
 							</Link>
 						</div>

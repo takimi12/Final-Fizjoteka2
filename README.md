@@ -74,14 +74,12 @@ npm install
 ```bash
 npm run dev
 ```
---
 ## Link do aplikacji / Link for live app
 
 https://fizjoteka2.vercel.app/
---
+
 ## Dostępy
 
---
 ## Co zostało zrobione
 
 W aplikacji zostały wprowadzone następujące funkcjonalności:
@@ -125,12 +123,10 @@ Możliwość zarządzania zawartością aplikacji, w tym:
 - Po zakończonej płatności:  
   - Automatyczna wysyłka pliku produktu na adres e-mail użytkownika
 
---
 ## Plany na przyszłość.
 Jest deweloperska aplikacji, która została oddana klientowi i zrealizowała wszystkie jego wymagania. W przyszłości, w celach naukowych planowane jest połączenie tej aplikacji
 z wszysktimi polskimi providerami płatności, w celu oceny który z nich zapewnia najszybszą integrację z API.
 
---
 ## Kontakt do autora / Author Contact
 
 - GitHub: [takimi12](https://github.com/takimi12)

@@ -14,5 +14,587 @@
       "description1": "I'm a pediatric physiotherapist and educator. E-fizjoteka is my space on the web.", 
       "description2": "Here, I share physiotherapy knowledge and teach parents proper child care and methods to support their healthy development." 
     }
+    },
+      "FirstSection": {
+        "title": "How can I help you?",
+        "subtitle": "On e-fizjoteka you will find articles, videos, and e-books with advice from a physiotherapist.",
+        "items": [
+          {
+            "title": "Blog",
+            "description": "Be sure to check out the Blog section. Every month, over 50,000 people look for advice there. It's the most read blog on this topic!",
+            "link": "/blog"
+          },
+          {
+            "title": "Videos and e-books",
+            "description": "In the Videos and e-books section, you will find recordings of my most popular webinars and a guide on positional asymmetry.",
+            "link": "/filmy-i-ebooki"
+          },
+          {
+            "title": "Consultations",
+            "description": "I directly help patients through home visits and online consultations. You can find more about this in the About Me section.",
+            "link": "/wizyta"
+          }
+        ]
+      },
+      "EbookSection": {
+        "title": "My first e-book",
+        "subtitle": "Positional Asymmetry – A Parent’s Guide",
+        "description1": "I am the author of the e-book Positional Asymmetry – A Parent’s Guide. It is the only book of its kind in Poland and worldwide!",
+        "description2": "Inside you will find medical knowledge and practical tips for parents. You will learn how to prevent asymmetry and support a child diagnosed with it.",
+        "button": {
+          "text": "LEARN MORE",
+          "link": "/filmy-i-ebooki/asymetria-ulozeniowa"
+        }
+      },
+      "QuizSection": {
+        "title": "PhysioQuiz Asymmetry",
+        "description1": "Positional asymmetry is one of the most common conditions in infants. However, parents often don’t know much about it.",
+        "description2": "If you have doubts whether your child might have asymmetry, be sure to try my PhysioQuiz.",
+        "button": {
+          "text": "Take the quiz",
+          "link": "/fizzquiz"
+        }
+      },
+      "ContactSection": {
+        "title": "Let’s stay in touch!",
+        "subtitle": "Join my channels and stay updated with physiotherapist advice.",
+        "channels": [
+          {
+            "name": "Facebook",
+            "description": "I created a supportive group on Facebook. It already connects over 8,000 parents and physiotherapists. You can ask questions and help other moms.",
+            "link": "/"
+          },
+          {
+            "name": "Youtube",
+            "description": "The channel features educational videos with tips on caring for and supporting the proper development of children and infants.",
+            "link": "/"
+          },
+          {
+            "name": "Instagram",
+            "description": "On Instagram, besides informative posts, I share lighter topics and behind-the-scenes of a physiotherapist’s work.",
+            "link": "/"
+          }
+        ]
+      },
+        "NewsletterForm": {
+          "introText": "Subscribe to the newsletter and receive a child development calendar for the first year of life as a gift",
+          "successMessage": "Thank you for subscribing! Check your email inbox.",
+          "successDetail": "A mail with a free chapter of the e-book is on its way to your email {{submittedEmail}}. If you wait longer than a few minutes, please check your spam folder.",
+          "errorMessage": "An error occurred while sending the data.",
+          "labels": {
+            "name": "First Name",
+            "namePlaceholder": "Your first name",
+            "email": "Email Address",
+            "emailPlaceholder": "Email address",
+            "consent": "I agree to receive emails. I can unsubscribe from the mailing list at any time."
+          },
+          "button": {
+            "default": "I WANT TO RECEIVE THE CALENDAR",
+            "submitting": "Processing..."
+          }
+        },      
+      "TopFooter": {
+        "mainHeading": "Still have doubts?",
+        "qualityTitle": "All products come with a quality guarantee.",
+        "qualityParagraph1": "I am confident in the quality of the materials I have created.",
+        "qualityParagraph2": "However, if after purchase they do not meet your individual expectations, just write to me and you will receive a refund.",
+        "qualityParagraph3": "You can also start with a free first chapter of the e-book. Fill out the newsletter sign-up form, and I will send it to the provided email address.",
+        "qualityParagraph4": "Have a question about the offer? Be sure to send me an email or a message on Facebook."
+      },
+      "FormFooter": {
+        "description": "Sign up for the newsletter and receive a child development calendar for the first year of life as a gift.",
+        "errorMessage": "An error occurred while sending data.",
+        "inputNameLabel": "Name",
+        "inputNamePlaceholder": "Your name",
+        "inputEmailLabel": "Email address",
+        "inputEmailPlaceholder": "Your email address",
+        "consentText": "I consent to receiving emails. I can unsubscribe at any time.",
+        "buttonText": "I WANT TO RECEIVE THE CALENDAR",
+        "processingText": "Processing...",
+        "emailSubject": "Here is the link to download the guide",
+        "emailBodyLinkText": "Click here to download the guide."
+      },
+      "Footer":{
+        "policy":"Privacy policy",
+        "regulations":"Shop regulations"
+      },
+      "kurs_noszenia": {
+        "hero_section": {
+          "title": "Babywearing and Baby Care",
+          "subtitle": "Course for Parents • Video Recordings • Online Meeting",
+          "description": "A capsule of medical knowledge and experience working with little patients. You will learn how to care for your baby without stress and without leaving home.",
+          "buttons": ["Read More", "See the Offer"]
+        },
+        "about_author": {
+          "greeting": "Hi!",
+          "name": "My name is Magdalena Adaś",
+          "profession": "I am a pediatric physiotherapist and educator",
+          "education": "I graduated from the Jagiellonian University Medical College in Kraków.",
+          "workplace": "Currently, I work in Kraków and Warsaw.",
+          "description": "On a daily basis, I focus on the rehabilitation of the youngest patients and supporting their parents. I share my knowledge and experience through my blog, online courses, e-books, and webinars. I make physiotherapy accessible to everyone."
+        },
+        "course_goal": {
+          "title": "I want every parent to know how to properly carry and lift their child",
+          "heading": "Lifting and Putting Down a Newborn",
+          "topics": [
+            "When is carrying a baby facing outward recommended?",
+            "How to carry if the baby doesn't like the 'bean' position?",
+            "How to lift a baby for burping?",
+            "How to lift a baby from the crib?",
+            "How to turn a newborn?"
+          ],
+          "description": "These are the most common questions I get during consultations. In this course, I’ll show you how to carry your baby safely."
+        },
+        "importance_of_carrying": {
+          "title": "Why is carrying your baby important?",
+          "content": [
+            {
+              "p1": "A newborn right after birth cannot control their body the way adults can. That’s why the experiences we provide daily shape their movement patterns. It’s up to us whether these patterns will be correct or not."
+            },
+            {
+              "p2": "By understanding the basics of proper infant care, we can support our baby’s development from the very first days of life. When care activities are done correctly, the baby doesn’t need to tense up or become upset, as they don’t suddenly lose their support surface and can actively participate in these activities."
+            },
+            {
+              "p3": "Care that is adapted to the child’s age and abilities significantly supports learning new skills and helps them adjust to life in a new environment."
+            }
+          ]
+        },        
+        "common_mistake": {
+          "title": "Are you making this mistake too?",
+          "problem": "Most often, parents lift their baby by the head and bottom.",
+          "explanation": [
+            {
+              "p1": "Although this is the simplest and quickest way to lift a baby, it is not healthy for either the child or the parent."
+            },
+            {
+              "p2": "When lifted this way, the baby suddenly loses their support surface, which causes them to tense up and arch their body, sometimes reflexively throwing their arms back. By lifting like this, you are unnecessarily stimulating the Moro reflex."
+            }
+          ]
+        },        
+        "help_offer": {
+          "title": "How exactly can I help you?",
+          "subtitle": "I have prepared a set of videos about carrying and caring for a baby",
+          "sections": {
+            "carrying_baby": {
+              "title": "How to lift a baby?",
+              "topics": [
+                "Lifting a newborn from the side.",
+                "Lifting a newborn from the crib.",
+                "Is it safe to lift a newborn under the armpits?",
+                "Until when should you support the baby's head?"
+              ]
+            },
+            "after_feeding": {
+              "title": "Lifting a newborn after feeding",
+              "topics": [
+                "How to switch the baby to the other breast?",
+                "Positions for feeding the baby.",
+                "Positions for burping the baby."
+              ]
+            },
+            "diaper_change": {
+              "title": "How to change the baby's diaper?",
+              "topics": [
+                "Tips from a physiotherapist on how to do it efficiently.",
+                "Why don’t we pull the baby by the legs?"
+              ]
+            }
+          }
+        },"trustMe": {
+          "header": "Why You Can Trust Me",
+          "subheader": "Thousands of parents are already with me",
+          "stats": [
+            {
+              "number": "50K+",
+              "description": "Over 50,000 people find help on my blog every month. It's the most-read blog on this topic!"
+            },
+            {
+              "number": "3,000+",
+              "description": "Up to 3,000 people attend my live webinars."
+            },
+            {
+              "number": "100K+",
+              "description": "Over 100,000 parents and physiotherapists make up my Instagram community."
+            }
+          ],
+          "opinionSection": {
+            "title": "What moms say is the best review of my work",
+            "thankYouNote": "Thank you for being here ❤️ I create for you. Your comments give me the strength to keep learning and sharing what I’ve learned.",
+            "rating": "5/5",
+            "altText": "Stars"
+          }
+        },                
+        "guarantees": {
+          "title": "What can I guarantee?",
+          "subtitle": "Above all, you will become a more aware and calmer parent.",
+          "benefits": [
+            {
+              "title": "You will learn how to carry your baby safely",
+              "description": "In the materials, you will find answers to the most common questions and doubts of parents. You will learn how to carry a newborn and an older baby to support their development. You will stop being afraid to carry your own child."
+            },
+            {
+              "title": "You will learn how to easily exercise with your baby in a playful way",
+              "description": "In the videos, you will find inspiration for safe exercises with your little one. You will learn exercises that stimulate your baby’s development through play, adapted to their age."
+            },
+            {
+              "title": "You will reduce your anxiety about your child's proper development",
+              "description": "Just by carrying your baby, you can assess whether their muscle tone is normal. If you choose the option with the book, you will learn what your child’s development looks like in the following months."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Find answers to the most common parent questions",
+          "questions": [
+            {
+              "question": "Does every child need a visit to a physiotherapist?",
+              "answer": "Not every baby needs a visit to a physiotherapist. If you know how to carry your child properly and what to watch for in their development, see a specialist only if something worries you. In the course, I explain what developmental symptoms are concerning."
+            },
+            {
+              "question": "Does every baby need to be carried in the ‘bean’ position?",
+              "answer": "The ‘bean’ position is the first basic position for newborns and babies up to three months. When the baby starts holding their head, you can introduce other positions, allowing the baby to look around."
+            },
+            {
+              "question": "Why does the baby arch? How to carry a baby who wriggles out of your arms?",
+              "answer": "Arching is a signal to the parent that something is wrong with the baby. Maybe the baby has tummy pain or is hungry. If the baby arches most of the time, change the carrying method; if that doesn’t help, consult a physiotherapist."
+            }
+          ]
+        },
+        "products": {
+          "title": "Find the product suitable for you",
+          "subtitle": "By getting unlimited access to the videos, you have the chance to catch up on webinars at a convenient time.",
+          "availability1":"Produkt available",
+          "availability2":"Produkt available"
+        },
+        "course_content": {
+          "title": "What you will find in the course",
+          "subtitle": "I prepared this course based on the most frequent questions I get during consultations. To answer all of them, we would need at least 5 visits! And in this course, you get all this for the price of one physiotherapist visit.",
+          "modules": [
+            {
+              "title": "Carrying and lifting a newborn",
+              "content": [
+                "how to lift a baby from the side,",
+                "how to lift a baby from a changing table,",
+                "how to hand the baby from hand to hand,",
+                "positions for carrying a newborn."
+              ]
+            },
+            {
+              "title": "Care of newborns and older infants",
+              "content": [
+                "how to change a diaper,",
+                "how to care for a newborn,",
+                "how to turn the baby on their side during diaper change,",
+                "how to dress the baby,",
+                "how to lift from a mat."
+              ]
+            },
+            {
+              "title": "Most common parent problems",
+              "content": [
+                "how to put in and take out a baby from a car seat,",
+                "lifting and putting the baby in a stroller bassinet,",
+                "how much tummy time the baby needs,",
+                "how to do kangaroo care."
+              ]
+            },
+            {
+              "title": "Most common infant conditions",
+              "content": [
+                "how to prevent asymmetry in the baby,",
+                "how to carry a baby who arches,",
+                "how to recognize low and high muscle tone in a baby,",
+                "how to care for the baby’s hips."
+              ]
+            },
+            {
+              "title": "Daily routines in caring for the baby",
+              "content": [
+                "in which positions to lay the baby,",
+                "when to start tummy time,",
+                "how much tummy time the baby needs,",
+                "how to choose a mat for the baby."
+              ]
+            },
+            {
+              "title": "Feeding and burping positions",
+              "content": [
+                "positions for breastfeeding and bottle feeding,",
+                "how to switch the baby during feeding,",
+                "how to lift the baby for burping,",
+                "burping positions on the parent’s thighs."
+              ]
+            },
+            {
+              "title": "Sleep, evening routines, and bathing the baby",
+              "content": [
+                "how to put the baby down in a crib and co-sleeper,",
+                "what position the baby should sleep in,",
+                "can you put a baby to sleep on their tummy,",
+                "how to bathe the baby."
+              ]
+            },
+            {
+              "title": "Play supporting the baby’s development",
+              "content": [
+                "safe toys,",
+                "development-stimulating play,",
+                "play on a gym ball,",
+                "play on a mat,",
+                "play helping with learning to roll over."
+              ]
+            },
+            {
+              "title": "Infant colic – how to deal with it?",
+              "content": [
+                "how to help a baby with colic,",
+                "positions for carrying a baby with tummy pain,",
+                "how and when to massage a baby with colic problems."
+              ]
+            }
+          ]
+        },
+        "call_to_action": {
+          "title": "Already know you want to join the group of aware and calmer parents?",
+          "button_text": "BACK TO OFFER"
+        }
+      },      
+      "AboutMe": {
+        "AboutMePage": {
+          "Hero": {
+            "title": "My name is Magdalena Adaś",
+            "description1": "I am a pediatric physiotherapist and educator.",
+            "description2": "My dream is for every parent, regardless of their location or financial means, to have access to reliable knowledge about proper child care.",
+            "description3": "I pursue this daily through my work with patients and educational activities online."
+          },
+          "PatientsSection": {
+            "title": "Daily work with patients",
+            "subtitle": "I specialize in physiotherapy for infants and children with posture defects",
+            "locationTitle": "Kraków and Warsaw",
+            "description1": "I graduated from Collegium Medicum in Kraków. My first experience working with little ones was at the Alma Spei children's home hospice.",
+            "description2": "I provide help through home visits in Kraków and Warsaw as well as online consultations. You can contact me by phone or via Facebook or Instagram regarding visits.",
+            "description3": "Parents call me a child whisperer. I help even those who cry constantly and need to be carried all the time."
+          },
+          "MethodsSection": {
+            "title": "Methods I use",
+            "methods": [
+              "FITS – Functional Individual Therapy of Scoliosis",
+              "Osteopathy in pediatrics and neonatology",
+              "Three-dimensional therapy of children's foot deformities",
+              "Manual therapy for children and infants",
+              "PNF",
+              "Fascia from an osteopathic perspective",
+              "Kinesiotaping",
+              "Deep tissue massage",
+              "Muscle-fascial trigger point release",
+              "Osteopathic approach to treating migraines and headaches"
+            ]
+          },
+          "EbookSection": {
+            "title": "My first e-book",
+            "subtitle": "Positional asymmetry – a guide for parents",
+            "description1": "I am the author of the e-book Positional Asymmetry – a guide for parents. It is the only book of its kind in Poland and worldwide!",
+            "description2": "It contains medical knowledge as well as practical advice for parents. You will learn how to prevent asymmetry and support a child who has been diagnosed.",
+            "button": {
+              "text": "LEARN MORE",
+              "link": "/films-and-ebooks/positional-asymmetry"
+            }
+          },
+          "OnlineActivitySection": {
+            "title": "Online activity",
+            "description1": "It started three years ago with a blog, then social media channels followed. Currently, I also regularly conduct webinars and record videos.",
+            "description2": "Every month, over 50,000 parents look for advice on my blog!",
+            "description3": "Thanks to my online activity, I have had the opportunity to collaborate with: M jak mama • Świadoma Mama • Kobiecy Białystok • Find a Physiotherapist • National Chamber of Physiotherapy • Radio Wnet and ZET"
+          }
+        }
+      },
+      "WizytaPage": {
+        "Hero": {
+          "title": "Book an Appointment Now – Home or Online",
+          "description1": "I’m a pediatric physiotherapist and educator.",
+          "description2": "I specialize in infant physiotherapy. I offer online consultations and reach families who have no access to a physiotherapist.",
+          "description3": "I help parents regain peace of mind and confidence in caring for their child."
+        },
+        "BookingSection": {
+          "title": "Book a Consultation",
+          "buttons": [
+            "ONLINE CONSULTATION",
+            "HOME VISIT IN WARSAW",
+            "HOME VISIT IN POŁANIEC"
+          ]
+        },
+        "HomeVisitSection": {
+          "title": "HOME VISIT",
+          "subtitle": "I specialize in infant physiotherapy and postural defects in children",
+          "howItWorks": {
+            "title": "How the Visit Works",
+            "steps": [
+              "During the first visit, I take a history from the parent and examine the baby.",
+              "I make a diagnosis and explain how I can help the child.",
+              "I teach the parent proper care: how to carry, lift, change, etc.",
+              "I perform relaxation, massage, and exercises with the child.",
+              "I demonstrate home exercises for the parent and check they’re done correctly."
+            ],
+            "emphasis": "Parental education is key for me. During my consultation, you will learn how to exercise with your child."
+          }
+        },
+        "WhatMakesMeDifferent": {
+          "title": "What Makes Me Different?",
+          "points": [
+            "You won’t find a 10-visit package here. My goal is not to see your child for months on end. My therapy aims to remove the obstacle blocking development (e.g., relieving tension), enabling natural growth.",
+            "I do not use painful methods, and I ensure the child doesn’t cry during sessions.",
+            "I explain complex medical terms so parents can understand the issue and be active in therapy.",
+            "I assign home exercises. Parents spend the most time with their child, and without focusing on basics like daily care, proper carrying, or tummy time, even the best therapist would need many visits to help.",
+            "I suggest age-appropriate play to support development and strengthen your bond with your child.",
+            "You can record exercises during my visits. Moreover, I teach you how to exercise safely with your child so I’m confident you’ll do it right.",
+            "Online consultations save your time and prevent your child from stressing about a new environment."
+          ]
+        },
+        "MethodsSection": {
+          "title": "Methods I Use",
+          "methods": [
+            "Osteopathy in pediatrics and neonatology,",
+            "Zoga movement for infant therapy,",
+            "Therapy for infants with feeding disorders,",
+            "Three-dimensional therapy for foot deformities in children,",
+            "Manual therapy for children and infants,",
+            "PNF in pediatrics,",
+            "Fascial therapy from an osteopathic perspective,",
+            "Kinesiotaping in pediatrics,",
+            "Neurodevelopmental diagnosis and therapy for postural asymmetry,",
+            "Neurodevelopmental prevention and correction of postural defects in infants,",
+            "FITS – Functional Individual Therapy of Scoliosis."
+          ]
+        },
+        "OnlineConsultationSection": {
+          "title": "Online Consultation",
+          "description1": "During a video call, I collect medical history, assess how to help your child, and provide appropriate therapy and exercises for the parent.",
+          "emphasis1": "I will teach you how to properly hold and care for your child.",
+          "description2": "This is not a typical session where the therapist does the work while you watch. The aim is to teach you how to exercise so you, the parent, can take charge.",
+          "emphasis2": "One session is enough to choose suitable exercises. We set goals, and once they’re reached, we schedule the next visit."
+        },
+        "HowOnlineConsultationWorks": {
+          "title": "How Does an Online Consultation Work?",
+          "steps": [
+            "Online consultations are held via video call.",
+            "Before the consultation, I ask parents to send necessary assessment videos.",
+            "During the video call, we discuss your child’s issue, I provide clear information, demonstrate exercises with a professional doll, check your technique, send necessary materials, and monitor progress in future sessions."
+          ],
+          "emphasis": "After the session, you'll receive additional materials and a video to help you exercise at home with your child."
+        },
+        "OnlineVsStationaryDifferences": {
+          "title": "What’s the Difference Between Online and In-Person Consultations?",
+          "differences": [
+            "During an online consultation, I can’t physically examine the child. To assess muscle tone, body symmetry, or development, I teach the parent how to perform certain tests, then we diagnose and assign exercises accordingly.",
+            "I focus on education and thorough explanation of the issue. After a consultation, you’ll become an expert on your child and know how to monitor therapy progress.",
+            "Online consultations reduce wait time for a specialist. In urgent cases, earlier appointments are possible.",
+            "You’re not left alone. After the session, we stay in touch, and I help if issues arise with the exercises.",
+            "Online sessions can be as effective as in-person visits, depending on how confident the parent feels exercising with the child. Some kids cry in clinics and only exercise well at home with a parent.",
+            "Online consultations can also support children already in therapy but lacking home guidance. I provide exercises to enhance existing therapy.",
+            "I help infants without local access to physiotherapy – whether abroad or in underserved areas."
+          ],
+          "additionalInfo": "Check if an online consultation is right for you. Read the most frequently asked questions here."
+        },
+        "TestimonialsSection": {
+          "title": "Don’t Take My Word for It – Read the Reviews",
+          "subtitle": "See how parents succeed after my consultations.",
+          "rating": "5/5",
+          "testimonials": [
+            {
+              "text": "I used Magda’s help for a home visit. She observed our son during daily activities and play. She gave us valuable advice and selected exercises that showed results. I recommend her!",
+              "author": "Paula K."
+            },
+            {
+              "text": "Magda is a very warm and kind person 😉 Especially important when working with little children. She explains everything well and doesn’t scare you unnecessarily. I highly recommend contacting her, even for preventive care.",
+              "author": "Dorota B."
+            },
+            {
+              "text": "Magda approached my daughters and the treatments with professionalism and great commitment. She recommended extra exercises and helped effectively. Thank you so much! Highly recommended!",
+              "author": "Marta S."
+            },
+            {
+              "text": "Professionalism, punctuality, and expertise!!! Home visits make things easier for moms and little ones. Plus, great contact on Facebook – you can ask anything. Magda has a wonderful approach to children and educates parents on infant care and home exercises. Highly recommended.",
+              "author": "Sylwia Sz."
+            },
+            {
+              "text": "I live abroad and had trouble accessing pediatric physiotherapy. I was told some kids are just ‘like that.’ I decided to try an online consultation, which I normally wouldn’t. I got an appointment the next day. It exceeded my expectations. Magda explained and demonstrated every important technique and exercise. Everything was clear and concrete. She also followed up to support us. 10/10!",
+              "author": "Kasia Ś."
+            }
+          ],
+          "moreReviews": "You can read these and more on my Facebook page"
+        },
+        "PricingSection": {
+          "title": "Pricing",
+          "consultations": [
+            {
+              "type": "Online Consultation",
+              "price": "200 PLN",
+              "features": [
+                "Duration: 40 minutes",
+                "Fast appointment availability",
+                "Online booking",
+                "Learn exercises for home practice",
+                "You’ll receive an exercise set for 1 to 3 months"
+              ],
+              "button": "Book Now"
+            },
+            {
+              "type": "Home Visit – Warsaw",
+              "price": "300 PLN",
+              "features": [
+                "Duration: 60 minutes",
+                "Home recommendations",
+                "Visit at the patient’s home",
+                "No extra travel fees",
+                "Follow-up visits scheduled individually"
+              ],
+              "button": "Book Now"
+            },
+            {
+              "type": "In-Person Visit – Połaniec",
+              "price": "250 PLN",
+              "features": [
+                "Duration: 60 minutes",
+                "Home recommendations",
+                "Visit at home or in clinic",
+                "No extra travel fees",
+                "Monthly consultations in Połaniec"
+              ],
+              "button": "Book Now"
+            }
+          ]
+        }
+      },
+      "Repeated": {
+        "TestimonialsSection": {
+          "testimonials": [
+            {
+              "text": "I used Ms. Magda's help; she came to our home for a visit. She observed my son during activities and play in his everyday environment. She gave us valuable advice and selected exercises, thanks to which progress is visible. I recommend her!",
+              "author": "Paula K."
+            },
+            {
+              "text": "Ms. Magda is a very warm and kind person 😉 This is especially important with small children. She explains everything well and doesn't 'scare' unnecessarily. I highly recommend contacting Ms. Magdalena even for preventive purposes.",
+              "author": "Dorota B."
+            },
+            {
+              "text": "Ms. Magda approached my daughters and the physiotherapy treatments she performed professionally and with great commitment. She recommended additional exercises and effectively helped us. Many thanks and I wholeheartedly recommend her!👍",
+              "author": "Marta S."
+            },
+            {
+              "text": "Professionalism, punctuality, and knowledge!!! Home visits are a great help for moms and little ones. Also, good communication on Facebook, you can ask anything. Ms. Magda has a wonderful approach to children, educates parents both in infant care and exercises to be done independently at home. I recommend her to everyone.",
+              "author": "Sylwia Sz."
+            },
+            {
+              "text": "I live abroad and encountered difficulties accessing pediatric physiotherapy regarding a concern I had. I was told some children 'are just like that.' I decided to have an online consultation, which I am usually not a fan of. I got an appointment for the next day. I am very satisfied with the consultation; my doubts were cleared. Ms. Magda showed all the techniques important to me, as well as exercises to improve certain issues we need to work on. I warmly recommend her, lots of information presented clearly, and most importantly, concrete advice. Additionally, Ms. Magda offers support related to the exercises we received later. 10/10!",
+              "author": "Kasia Ś."
+            }
+          ],
+          "moreReviews": "You can read these and more reviews on my fanpage"
+        }
+      }
+      
+      
+      
+      
     }
-}
+    
+

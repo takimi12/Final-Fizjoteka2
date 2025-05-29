@@ -2,8 +2,22 @@ import Image from "next/image";
 import Photo from "../../../../public/assets/HomePage/Hero/helloSection_magda.webp";
 import styles from "./Hero.module.scss";
 import Breadcrumbs from "../../../../components/breadcrumbs/breadcrumbs";
+import { getPreferredLocale } from "../../../../helpers/getLocale";
+import { getDictionary } from "../../../../lib/dictionary";
 
-function Hero() {
+async function Hero() {
+	const lang = getPreferredLocale() as "pl" | "en";
+	const dictionary = await getDictionary(lang);
+	
+	const aboutMeData = (dictionary as any).AboutMe?.AboutMePage?.Hero;
+	
+	const title = aboutMeData?.title
+	const description1 = aboutMeData?.description1 
+	const description2 = aboutMeData?.description2 
+	const description3 = aboutMeData?.description3 
+	
+
+
 	return (
 		<>
 			<section className={`${styles.Hero}`}>
@@ -12,18 +26,16 @@ function Hero() {
 					<div className={`${styles.Inner}`}>
 						<div className={` ${styles.leftSection}`}>
 							<div className={` ${styles.title}`}>
-								<h1>Nazywam się Magdalena Adaś</h1>
+								<h1>{title}</h1>
 							</div>
 							<p className={`${styles.paragraph}`}>
-								Jestem fizjoterapeutką dziecięcą i edukatorką.
+								{description1}
 							</p>
 							<p className={`font-bold ${styles.paragraph}`}>
-								Moim marzeniem jest aby każdy rodzic, niezależnie od miejsca zamieszkania i
-								funduszy, miał dostęp do merytorycznej wiedzy o prawidłowej pielęgnacji dzieci.
+								{description2}
 							</p>
 							<p className={`${styles.paragraph}`}>
-								Na co dzień realizuję je przez pracę z pacjentami oraz działalność edukacyjną w
-								świecie online.
+								{description3}
 							</p>
 						</div>
 						<div className={` ${styles.rightSection}`}>

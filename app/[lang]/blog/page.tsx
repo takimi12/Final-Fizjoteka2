@@ -6,8 +6,8 @@ import { Blog } from "../../types/Blog/types";
 export default async function Page({ params }: { params: { lang: string } }) {
 	const { lang } = params;
 
-	const response = await fetch("https://fizjoteka.vercel.app/api/gql/blog");
-	const responseEng = await fetch("https://fizjoteka.vercel.app/api/gql/blogEng");
+	const response = await fetch("https://www.projektfizjoteki.pl/api/gql/blog");
+	const responseEng = await fetch("https://www.projektfizjoteki.pl/api/gql/blogEng");
 
 	if (!response.ok) {
 		return <div>Error loading blogs</div>;

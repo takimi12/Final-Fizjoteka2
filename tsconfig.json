@@ -46,7 +46,7 @@
     "components/AdminComponents/Components/EditCategory.tsx",
     "components/Header/components/DesktopHeader.tsx",
     "app/api/auth/[...nextauth]/route.ts",
-    "app/api/news/route.js",
+    "app/api/news/route.ts",
     "app/api/auth/[...nextauth]/options.ts",
     "app/api/category/route.ts",
     "app/api/category/[id]/route.ts",

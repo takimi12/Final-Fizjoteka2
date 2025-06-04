@@ -17,11 +17,11 @@ export default async function BlogPage({ params }: { params: { lang: string; id:
 
 	let blogResponse, blogsResponse;
 	if (lang === "en") {
-		blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogpostsEng?id=${pathname}`);
-		blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogEng`);
+		blogResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogpostsEng?id=${pathname}`);
+		blogsResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogEng`);
 	} else {
-		blogResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blogposts?id=${pathname}`);
-		blogsResponse = await fetch(`https://fizjoteka.vercel.app/api/gql/blog`);
+		blogResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogposts?id=${pathname}`);
+		blogsResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blog`);
 	}
 
 	if (!blogResponse.ok || !blogsResponse.ok) {

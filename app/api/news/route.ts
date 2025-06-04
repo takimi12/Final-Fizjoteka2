@@ -1,10 +1,20 @@
 import { dbConnect } from "../../../backend/config/dbConnect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Newsletter from "../../../backend/models/newsletter";
 
-export async function POST(request) {
+interface NewsletterRequestData {
+	name: string;
+	email: string;
+}
+
+interface ApiResponse {
+	message?: string;
+	error?: string;
+}
+
+export async function POST(request: NextRequest): Promise<NextResponse<ApiResponse>> {
 	try {
-		const requestData = await request.json();
+		const requestData: NewsletterRequestData = await request.json();
 
 		const { name, email } = requestData;
 
@@ -13,17 +23,19 @@ export async function POST(request) {
 
 		return NextResponse.json({ message: "Topic Created" }, { status: 201 });
 	} catch (error) {
+		console.error("Error creating newsletter:", error);
 		return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 	}
 }
 
-export async function GET() {
+export async function GET(): Promise<NextResponse<any[] | ApiResponse>> {
 	try {
 		await dbConnect();
 		const newsletters = await Newsletter.find({});
 
 		return NextResponse.json(newsletters, { status: 200 });
 	} catch (error) {
+		console.error("Error fetching newsletters:", error);
 		return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 	}
 }

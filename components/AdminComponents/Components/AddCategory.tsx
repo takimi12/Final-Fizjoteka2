@@ -11,7 +11,6 @@ interface FormData {
 	subtitle3: string;
 	description: string;
 	category: string;
-	price: string;
 }
 
 const AddCategory = () => {
@@ -71,10 +70,16 @@ const AddCategory = () => {
 				}),
 			});
 
+			const mongoData = await mongoResponse.json();
+			console.log("MongoDB response:", mongoData);
+
 			if (mongoResponse.ok) {
 				setShowPopup(false);
+				alert("Kategoria została dodana pomyślnie!");
 				router.refresh();
 			} else {
+				console.error("MongoDB error:", mongoData);
+				alert(`Błąd przy dodawaniu kategorii: ${mongoData.error || mongoData.message}`);
 				throw new Error("Failed to create a category");
 			}
 		} catch (error) {
@@ -141,16 +146,6 @@ const AddCategory = () => {
 							/>
 							{errors.category && <p>{errors.category.message?.toString()}</p>}
 
-							<input
-								{...register("price", {
-									required: "Price is required",
-									pattern: { value: /^\d+$/, message: "Invalid price" },
-								})}
-								className={styles.input}
-								type="text"
-								placeholder="Price"
-							/>
-							{errors.price && <p>{errors.price.message?.toString()}</p>}
 
 							<input type="file" accept="image/*" onChange={handleImageFileChange} />
 							<button type="submit" className="button" disabled={uploading}>

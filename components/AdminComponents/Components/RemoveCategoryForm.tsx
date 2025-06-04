@@ -18,33 +18,43 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 	const removeTopic = async () => {
 		setIsDeleting(true);
 		setError(null);
-
+	
 		try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category?id=${id}`, {
 				method: "DELETE",
 			});
-
+	
 			if (!res.ok) {
 				throw new Error("Nie udało się usunąć tematu");
 			}
-
-			const imageName = imageFileUrl.split("/").pop();
-
-			try {
-				await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
-					method: "DELETE",
-					body: JSON.stringify({ fileName: imageName }),
-				});
-			} catch (err) {}
-
+	
+			if (imageFileUrl && imageFileUrl.trim() !== "") {
+				const imageName = imageFileUrl.split("/").pop();
+	
+				if (imageName) {
+					try {
+						await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
+							method: "DELETE",
+							body: JSON.stringify({ fileName: imageName }),
+						});
+					} catch (err) {
+						console.warn("Nie udało się usunąć obrazu:", err);
+					}
+				}
+			}
+	
+			alert("Kategoria została pomyślnie usunięta.");
+	
 			router.refresh();
 		} catch (error) {
+			console.log(error);
 			setError("Wystąpił błąd podczas usuwania kategorii.");
 		} finally {
 			setIsDeleting(false);
 			setShowConfirmation(false);
 		}
 	};
+	
 
 	const handleConfirmation = () => {
 		setShowConfirmation(true);

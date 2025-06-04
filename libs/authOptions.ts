@@ -12,24 +12,25 @@ export const authOptions: AuthOptions = {
 				email: { label: "Email", type: "text" },
 				password: { label: "Hasło", type: "password" },
 			},
-			async authorize(credentials) {
+			authorize: async (credentials) => {
 				try {
 					await dbConnect();
-					const user = await User.findOne({ email: credentials?.email });
-
+			
+					const user = await User.findOne({ email: credentials?.email }).select("+password");
+			
 					if (!user) {
 						return null;
 					}
-
+			
 					const isPasswordCorrect = await bcrypt.compare(
 						credentials?.password || "",
-						user.password,
+						user.password
 					);
-
+			
 					if (!isPasswordCorrect) {
 						return null;
 					}
-
+			
 					return {
 						id: user._id.toString(),
 						name: user.name,
@@ -37,10 +38,12 @@ export const authOptions: AuthOptions = {
 						role: user.role,
 					};
 				} catch (error) {
-					console.log("Błąd: ", error);
+					console.error("Błąd logowania:", error);
 					return null;
 				}
 			},
+			
+			  
 		}),
 	],
 	callbacks: {
@@ -60,5 +63,5 @@ export const authOptions: AuthOptions = {
 	pages: {
 		signIn: "/login",
 	},
-	secret: process.env.NEXTAUTH_SECRET,
+	secret: "twoj_secret",
 };

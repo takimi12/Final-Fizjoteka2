@@ -6,7 +6,6 @@ export interface ICategory extends Document {
 	subtitle1: string;
 	subtitle2: string;
 	subtitle3: string;
-	price: number;
 	description: string;
 	category: string;
 	imageFileUrl: string;
@@ -39,12 +38,6 @@ const categorySchema = new Schema(
 			required: [true, "Subtitle 3 is required"],
 			trim: true,
 			maxLength: [200, "Subtitle 3 cannot be more than 200 characters"],
-		},
-		price: {
-			type: Number,
-			required: [true, "Price is required"],
-			min: [0, "Price cannot be negative"],
-			set: (v: string) => parseFloat(parseFloat(v).toFixed(2)),
 		},
 		description: {
 			type: String,
@@ -82,7 +75,7 @@ const categorySchema = new Schema(
 categorySchema.index({ category: 1 });
 categorySchema.index({ title: 1 });
 
-const Categories =
+const Category =
 	mongoose.models.Categories || mongoose.model<ICategory>("Categories", categorySchema);
 
-export default Categories;
+export default Category;

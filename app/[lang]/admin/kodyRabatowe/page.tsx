@@ -20,12 +20,12 @@ const AddCode = () => {
 			});
 			const data = await res.json();
 			if (data.success) {
-				alert("Code added successfully!");
+				alert("kod został dodany poprawnie!");
 			} else {
-				alert("Error adding code.");
+				alert("błąd podczas dodawania kodu");
 			}
 		} catch (error) {
-			alert("Error adding code.");
+			alert("błąd podczas dodawania kodu");
 		}
 	};
 

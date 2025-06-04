@@ -50,7 +50,7 @@ export default function Admin() {
             }}
             className={styles.logoutButton}
           >
-            Logout
+Wyloguj się
           </button>
         </div>
       </div>

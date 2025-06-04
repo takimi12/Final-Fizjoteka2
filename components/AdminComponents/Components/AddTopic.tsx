@@ -109,6 +109,7 @@ const AddTopic: React.FC = () => {
 			});
 
 			if (mongoResponse.ok) {
+				alert("Produkt pomyślnie dodany"); // Dodany alert sukcesu
 				setTitle("");
 				setSubTitle("");
 				setDescription("");

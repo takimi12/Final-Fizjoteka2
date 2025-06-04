@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import styles from "./Register.module.scss";
@@ -43,7 +42,7 @@ const Register = () => {
 					name,
 					email,
 					password,
-				}),
+					role: "user",				}),
 			});
 
 			if (res.status === 400) {

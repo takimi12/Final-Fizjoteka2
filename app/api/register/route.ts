@@ -27,7 +27,7 @@ export const POST = async (request: Request): Promise<NextResponse> => {
 		const newUser = new User({
 			name,
 			email,
-			password: hashedPassword,
+			password,
 			role,
 		});
 

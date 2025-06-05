@@ -3,6 +3,9 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #fff;
+	@media screen and (max-width: 500px) {
+		padding: 16px;
+	}
 }
 .container {
 	margin: auto;
@@ -50,6 +53,10 @@
 	justify-content: center;
 	gap: 10px;
 	width: 100%;
+
+	@media screen and (max-width: 500px) {
+		padding: 0px 16px;
+	}
 }
 
 .text {

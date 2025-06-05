@@ -19,10 +19,15 @@ async function Hero() {
 
 
 	return (
-		<>
+		<>	
+		<section className={styles.breadcrumbs}>
+		<div className="Container">
+		<Breadcrumbs />
+		</div>
+		</section>
 			<section className={`${styles.Hero}`}>
 				<div className={`Container `}>
-					<Breadcrumbs />
+				
 					<div className={`${styles.Inner}`}>
 						<div className={` ${styles.leftSection}`}>
 							<div className={` ${styles.title}`}>

@@ -16,6 +16,10 @@
 .Inner {
 	display: flex;
 	align-items: center;
+	@media screen and (max-width: 899px) {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 .leftSection {

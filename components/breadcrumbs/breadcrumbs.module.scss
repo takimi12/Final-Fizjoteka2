@@ -1,3 +1,12 @@
+.section {
+	padding: 0px 16px;
+	margin-top: 50px;
+	margin-bottom: 0px;
+  
+	@media (max-width: 500px) {
+	  margin-bottom: 100px;
+	}
+  }
 .locations {
 	display: flex;
 	padding: 0;

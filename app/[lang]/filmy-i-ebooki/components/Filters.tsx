@@ -7,13 +7,15 @@ interface FilterProps {
 	selectedCategories: string[];
 	setSelectedCategories: (categories: string[]) => void;
 	onSearch: () => void;
-}
+	isEnglish: boolean;
+  }
 
 const Filter: React.FC<FilterProps> = ({
 	allCategories,
 	selectedCategories,
 	setSelectedCategories,
 	onSearch,
+	isEnglish
 }) => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [showPopup, setShowPopup] = useState(false);
@@ -40,15 +42,8 @@ const Filter: React.FC<FilterProps> = ({
 			{isMobile ? (
 				<div className={styles.rwdWrapper}>
 					<button className={styles.filtersButton} onClick={() => setShowPopup(true)}>
-						Sprecyzuj czego szukasz
+				{isEnglish ? "Specify what you're looking for" : "Sprecyzuj, czego szukasz"}
 					</button>
-					<div className={styles.listingHeading}>
-						<h2>Znajdź produkt odpowiedni dla Ciebie</h2>
-						<p>
-							Uzyskując nieograniczony dostęp do filmów, masz szansę nadrobić webinary w wygodnym
-							dla siebie momencie.
-						</p>
-					</div>
 				</div>
 			) : (
 				<div className={styles.filters}>

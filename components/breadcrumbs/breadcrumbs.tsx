@@ -30,7 +30,7 @@ function Breadcrumbs() {
 	});
 
 	return (
-		<section className={``}>
+		<section className={styles.section}>
 			<div className={`${styles.locations} Container`}>
 				<p className={`${styles.color}`}>
 					<Link className={`body-small ${styles.color}`} href={hasEnPrefix ? "/en" : "/"}>

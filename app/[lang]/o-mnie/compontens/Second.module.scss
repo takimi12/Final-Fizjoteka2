@@ -13,9 +13,7 @@
 		align-items: center;
 		margin-bottom: 50px;
 
-		h2 {
-			/* Style nagłówka h2 */
-		}
+	
 
 		.smaller {
 			font-size: 18px;
@@ -28,6 +26,7 @@
 			grid-template-columns: 2fr 2fr;
 
 			@media screen and (max-width: 899px) {
+				display: flex;
 				flex-direction: column;
 			}
 

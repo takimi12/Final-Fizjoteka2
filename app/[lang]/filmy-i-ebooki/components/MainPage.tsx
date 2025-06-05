@@ -51,12 +51,13 @@ const MainPage: React.FC<MainPageProps> = ({ topics, categories }) => {
     <div className={`Container ${styles.Container}`}>
       <div className={`${styles.mainWrapper} ${styles.localContainer}`}>
         <div className={styles.fitlersGroup}>
-          <Filter
-            allCategories={allCategories}
-            selectedCategories={selectedCategories}
-            setSelectedCategories={setSelectedCategories}
-            onSearch={handleFilter}
-          />
+        <Filter
+  allCategories={allCategories}
+  selectedCategories={selectedCategories}
+  setSelectedCategories={setSelectedCategories}
+  onSearch={handleFilter}
+  isEnglish={isEnglish}
+/>
         </div>
 		<div>
   <div className={styles.titleText}>

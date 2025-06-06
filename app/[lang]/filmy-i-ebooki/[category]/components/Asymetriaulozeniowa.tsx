@@ -1,16 +1,17 @@
 import Hero from "./asymetriaUlozeniowa/Hero";
-import Second from "./asymetriaUlozeniowa/Second";
+import Second from "../../../kurs-noszenia/components/Second"
 import Third from "./asymetriaUlozeniowa/Third";
-import Fourth from "./asymetriaUlozeniowa/Fourth";
+import Fourth from "../../../kurs-noszenia/components/Seven";
 import Five from "./asymetriaUlozeniowa/Five";
 import Six from "./asymetriaUlozeniowa/Six";
-import Seven from "./asymetriaUlozeniowa/Seven";
-import Nine from "./asymetriaUlozeniowa/Nine";
+import Seven from "../../../kurs-noszenia/components/Nine"
 import Contact from "../../../../../components/Homepage/Contact/page";
 import BubbleSection from "../../../kurs-noszenia/components/Ten";
 import OpinionSection from "../../../kurs-noszenia/components/Eight";
 
-export default function Asymetria() {
+
+export default async function Asymetria() {
+
 	return (
 		<>
 			<Hero />
@@ -21,7 +22,6 @@ export default function Asymetria() {
 			<Six />
 			<Seven />
 			<BubbleSection />
-			<Nine />
 			<OpinionSection />
 			<Contact />
 		</>

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = process.env.NEXT_PUBLIC_MONGODB_URL;
+const MONGODB_URL = "mongodb+srv://chao:chao@cluster0.sbxy1gl.mongodb.net/fizjoteka1";
 
 
 if (!MONGODB_URL) {

@@ -1,4 +1,8 @@
 {
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js",
-  "/[lang]/koszyk/page": "app/[lang]/koszyk/page.js"
+  "/[lang]/page": "app/[lang]/page.js",
+  "/[lang]/blog/[...id]/page": "app/[lang]/blog/[...id]/page.js",
+  "/[lang]/filmy-i-ebooki/[category]/page": "app/[lang]/filmy-i-ebooki/[category]/page.js",
+  "/[lang]/kurs-noszenia/page": "app/[lang]/kurs-noszenia/page.js"
 }

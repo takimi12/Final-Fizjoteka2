@@ -62,17 +62,17 @@
           {
             "name": "Facebook",
             "description": "I created a supportive group on Facebook. It already connects over 8,000 parents and physiotherapists. You can ask questions and help other moms.",
-            "link": "/"
+            "link": "https://www.facebook.com/groups/712691532866956"
           },
           {
             "name": "Youtube",
             "description": "The channel features educational videos with tips on caring for and supporting the proper development of children and infants.",
-            "link": "/"
+            "link": "https://www.youtube.com/channel/UCZHUJJFBzq5T6F2pRWvZMEQ"
           },
           {
             "name": "Instagram",
             "description": "On Instagram, besides informative posts, I share lighter topics and behind-the-scenes of a physiotherapist’s work.",
-            "link": "/"
+            "link": "https://www.instagram.com/e_fizjoteka/"
           }
         ]
       },
@@ -358,6 +358,234 @@
           "button_text": "BACK TO OFFER"
         }
       },      
+      "asymetria": {
+        "Hero": {
+          "title": "Positional Asymmetry – A Guide for Parents",
+          "subtitle": "E-book • Exercise Video • Online Meeting",
+          "description": "A capsule of medical knowledge and hands-on experience with young patients. Become a more aware and confident parent without leaving your home.",
+          "buttons": [
+            {
+              "label": "Read more",
+              "link": "#info",
+              "type": "secondary"
+            },
+            {
+              "label": "See the offer",
+              "link": "#products",
+              "type": "primary"
+            }
+          ],
+          "image": {
+            "alt": "my first ebook"
+          }
+        },
+        
+          "Second": {
+            "sectionId": "info",
+            "heading": "I want every parent to have access to reliable knowledge about asymmetry.",
+            "content": {
+              "subheading": "Positional asymmetry is one of the most common conditions in infants.",
+              "paragraph": "It is difficult for parents to find verified information on this topic. Sometimes even specialists fall short! I can't help everyone personally. However, I guarantee that the materials I’ve prepared are a true capsule of knowledge."
+            },
+            "image": {
+              "alt": "video"
+            }
+          },
+          "Third": {
+            "products": {
+              "title": "Find the right product for you",
+              "subtitle": "By gaining unlimited access to videos, you have the chance to catch up on webinars at a time that suits you best.",
+              "availability1": "Product available",
+              "availability2": "Product available"
+            }
+          },
+          "Fourth":{
+            
+              "title": "What will you find in the e-book?",
+              "subtitle": "I share the e-book's table of contents. You can check if the topics I cover are important to you.",
+              "chapters": [
+                {
+                  "chapter": "Chapter 1",
+                  "title": "Symmetry and the body's midline",
+                  "points": [
+                    "what symmetry and the body's midline are",
+                    "why symmetry is important",
+                    "what may worry a parent",
+                    "what preventive exercises can be done with the child"
+                  ]
+                },
+                {
+                  "chapter": "Chapter 2",
+                  "title": "Positional asymmetry",
+                  "points": [
+                    "what positional asymmetry is",
+                    "what its causes are",
+                    "what consequences it may have",
+                    "how to distinguish asymmetry from the child's side preferences"
+                  ]
+                },
+                {
+                  "chapter": "Chapter 3",
+                  "title": "How to recognize positional asymmetry in a child?",
+                  "points": [
+                    "how to recognize asymmetry month by month in a baby",
+                    "how to recognize asymmetry in different body positions",
+                    "what asymmetry of the head and torso is"
+                  ]
+                },
+                {
+                  "chapter": "Chapter 4",
+                  "title": "Recommendations for positional asymmetry",
+                  "points": [
+                    "how to properly care for a child with asymmetry",
+                    "how to engage the less active side",
+                    "the importance of the crib, mattress, and pillow"
+                  ]
+                },
+                {
+                  "chapter": "Chapter 5",
+                  "title": "Exercises for asymmetry",
+                  "points": [
+                    "practical exercises to do with the child at home",
+                    "sample exercise plan in the Appendix"
+                  ]
+                },
+                {
+                  "chapter": "Chapter 6",
+                  "title": "Untreated asymmetry",
+                  "points": [
+                    "consequences of untreated asymmetry",
+                    "why it's worth taking action immediately"
+                  ]
+                }
+              ]
+            }
+            
+          
+        
+      },      
+      "rozwoj":{
+          "hero_section": {
+            "title": "Child development in the first year of life",
+            "subheadline": "E-book • Exercise videos • Online meeting",
+            "description": "A capsule of medical knowledge and experience working with young patients. Become a confident and calm parent without leaving home. Take care of your child today.",
+            "buttons": ["Read more", "View offer"]
+          },
+          "third_section": {
+            "headline": "I want every parent to have access to reliable knowledge about child development",
+            "question_title": "Is my child developing properly?",
+            "paragraphs": [
+              "This is one of the most frequently asked questions I receive.",
+              "I can’t help everyone personally. However, I guarantee that the materials I’ve prepared are a true capsule of knowledge."
+            ]
+          },
+          "topics_section": {
+            "headline": "Not sure if the guide is for you?",
+            "subheadline": "Check what topics I cover in it.",
+            "topics": [
+              {
+                "title": "What will you find in the guide?",
+                "points": [
+                  "Month by month I explain how a child develops during the first year.",
+                  "I will show you what signs in development should concern you."
+                ]
+              },
+              {
+                "title": "Developmental milestones – how and when a child reaches them.",
+                "points": [
+                  "When does the baby hold their head up?",
+                  "When does the baby start to roll over?",
+                  "Is crawling necessary?",
+                  "When does the baby sit up?",
+                  "When does the baby start to sit?"
+                ]
+              },
+              {
+                "title": "How and when to place your baby on their tummy?",
+                "points": [
+                  "Did you know that babies should be placed on their tummy from birth?",
+                  "I’ll show you how to make your baby love this position."
+                ]
+              },
+              {
+                "title": "I explain the most common conditions",
+                "points": [
+                  "What is positional asymmetry?",
+                  "How to recognize increased or decreased muscle tone in a baby?",
+                  "What is hip dysplasia?"
+                ]
+              },
+              {
+                "title": "How to lay your baby down to sleep?",
+                "points": [
+                  "How do the crib, mattress, and pillow affect a baby’s proper development?",
+                  "What is the best sleeping position for your baby?"
+                ]
+              },
+              {
+                "title": "What’s included in the video version?",
+                "points": [
+                  "In the video I demonstrate all daily care techniques for your baby.",
+                  "I teach how to lift and carry your baby appropriately for their age."
+                ]
+              }
+            ]
+          },
+          "fourth":{
+            
+              "title": "Are you unsure if this guide is for you?",
+              "subtitle": "Check out the topics I cover in it.",
+              "sections": [
+                {
+                  "heading": "What will you find in the guide?",
+                  "points": [
+                    "Month by month, I explain how a child develops during the first year of life.",
+                    "I will show you what aspects of development should raise concerns."
+                  ]
+                },
+                {
+                  "heading": "Developmental milestones – how and when a child reaches them.",
+                  "points": [
+                    "When do they start holding their head up?",
+                    "When do they start rolling over?",
+                    "Do they need to crawl?",
+                    "When will they sit up?",
+                    "When will they begin to sit independently?"
+                  ]
+                },
+                {
+                  "heading": "How and when to place your baby on their tummy?",
+                  "points": [
+                    "Did you know that babies should be placed on their tummy from birth?",
+                    "I'll show you how to position your baby so they enjoy tummy time."
+                  ]
+                },
+                {
+                  "heading": "Explaining the most common conditions",
+                  "points": [
+                    "What is positional asymmetry?",
+                    "How to recognize if your baby has increased or decreased muscle tone?",
+                    "What is hip dysplasia?"
+                  ]
+                },
+                {
+                  "heading": "How to position your baby for sleep?",
+                  "points": [
+                    "Why the crib, mattress, and pillow matter for healthy development.",
+                    "What is the best sleep position for a baby?"
+                  ]
+                },
+                {
+                  "heading": "What’s included in the video version?",
+                  "points": [
+                    "In the video, I demonstrate all the techniques used daily during baby care.",
+                    "I teach how to lift and carry your baby appropriately for their age."
+                  ]
+                }
+              ]
+            }
+                
+      },
       "AboutMe": {
         "AboutMePage": {
           "Hero": {

@@ -11,7 +11,7 @@ import Eleven from "./components/Eleven";
 import Tvelwe from "./components/Tvelwe";
 import Thirteen from "./components/Thirteen";
 
-function NaukaNoszenia() {
+ function NaukaNoszenia() {
 	return (
 		<>
 			<Main />

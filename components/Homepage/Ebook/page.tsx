@@ -44,7 +44,7 @@ export default async function Ebook() {
                   <p className={`${styles.paragraph}`}>{description2}</p>
                 </div>
                 <div className={`${styles.button}`}>
-                  <Link href={button.link}>
+                  <Link href="filmy-i-ebooki/Asymetria-ulozeniowa">
                     <button>{button.text}</button>
                   </Link>
                 </div>

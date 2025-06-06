@@ -59,7 +59,7 @@ const MainPage: React.FC<MainPageProps> = ({ topics, categories }) => {
   isEnglish={isEnglish}
 />
         </div>
-		<div>
+		<div className={styles.rightSection}>
   <div className={styles.titleText}>
     {isEnglish ? (
       <>

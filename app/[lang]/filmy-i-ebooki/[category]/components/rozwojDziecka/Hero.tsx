@@ -3,8 +3,21 @@ import styles from "./Hero.module.scss";
 import Breadcrumbs from "../../../../../../components/breadcrumbs/breadcrumbs";
 import Photo from "../../../../../../public/assets/Kurs-Noszenia/noszenie_maluszka.webp";
 import Link from "next/link";
+import { getPreferredLocale } from "../../../../../../helpers/getLocale";
+import { getDictionary } from "../../../../../../lib/dictionary";
 
-function Hero() {
+async function Hero() {
+	const lang = getPreferredLocale() as "pl" | "en";
+	const dictionary = await getDictionary(lang);
+	const { rozwoj } = dictionary;
+
+	const {
+		title,
+		subheadline,
+		description,
+		buttons
+	} = rozwoj.hero_section;
+
 	return (
 		<>
 			<section className={styles.Hero}>
@@ -14,27 +27,19 @@ function Hero() {
 						<div className={styles.Inner}>
 							<div className={styles.leftSection}>
 								<div className={styles.text}>
-									<h2>Rozwój dziecka w pierwszym roku życia</h2>
-
-									<p className={styles.paragraph}>
-										E-book • Wideo z ćwiczeniami • Spotkanie online
-									</p>
-									<p>
-										Pigułka wiedzy medycznej i doświadczenia pracy z małymi pacjentami. Stań się
-										świadomym i spokojnym rodzicem bez wychodzenia z domu. Zadbaj o dziecko już
-										dziś.
-									</p>
+									<h2>{title}</h2>
+									<p className={styles.paragraph}>{subheadline}</p>
+									<p>{description}</p>
 								</div>
 								<div className={styles.buttonContainer}>
 									<div className={styles.button}>
 										<Link href="#info">
-											<button className={styles.secondaryButton}>Czytaj więcej</button>
+											<button className={styles.secondaryButton}>{buttons[0]}</button>
 										</Link>
 									</div>
-
-									<div className={`${styles.button}`}>
+									<div className={styles.button}>
 										<Link href="#products">
-											<button className={styles.primaryButton}>Zobacz ofertę</button>
+											<button className={styles.primaryButton}>{buttons[1]}</button>
 										</Link>
 									</div>
 								</div>

@@ -1,22 +1,5 @@
 {
   "pages": {
-    "/[lang]/filmy-i-ebooki/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/filmy-i-ebooki/page.css",
-      "static/chunks/app/[lang]/filmy-i-ebooki/page.js"
-    ],
-    "/[lang]/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/[lang]/layout.css",
-      "static/chunks/app/[lang]/layout.js"
-    ],
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/layout.js"
-    ],
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -29,11 +12,70 @@
       "static/css/app/_not-found/page.css",
       "static/chunks/app/_not-found/page.js"
     ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/layout.js"
+    ],
     "/[lang]/koszyk/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/[lang]/koszyk/page.css",
       "static/chunks/app/[lang]/koszyk/page.js"
+    ],
+    "/[lang]/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/layout.css",
+      "static/chunks/app/[lang]/layout.js"
+    ],
+    "/[lang]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/page.css",
+      "static/chunks/app/[lang]/page.js"
+    ],
+    "/[lang]/filmy-i-ebooki/[category]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/filmy-i-ebooki/[category]/page.css",
+      "static/chunks/app/[lang]/filmy-i-ebooki/[category]/page.js"
+    ],
+    "/[lang]/filmy-i-ebooki/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/filmy-i-ebooki/page.css",
+      "static/chunks/app/[lang]/filmy-i-ebooki/page.js"
+    ],
+    "/[lang]/blog/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/blog/page.css",
+      "static/chunks/app/[lang]/blog/page.js"
+    ],
+    "/[lang]/wizyta/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/wizyta/page.css",
+      "static/chunks/app/[lang]/wizyta/page.js"
+    ],
+    "/[lang]/kurs-noszenia/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/kurs-noszenia/page.css",
+      "static/chunks/app/[lang]/kurs-noszenia/page.js"
+    ],
+    "/[lang]/o-mnie/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/o-mnie/page.css",
+      "static/chunks/app/[lang]/o-mnie/page.js"
+    ],
+    "/[lang]/blog/[...id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[lang]/blog/[...id]/page.css",
+      "static/chunks/app/[lang]/blog/[...id]/page.js"
     ]
   }
 }

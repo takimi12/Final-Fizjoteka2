@@ -62,17 +62,18 @@
       {
         "name": "Facebook",
         "description": "Stworzyłam wspierającą grupę na Faceebooku. Łączy ona już ponad 8 tys. rodziców i fizjoterapeutów. Możesz zadawać pytania i pomagać innym mamom.",
-        "link": "/"
+        "link": "https://www.facebook.com/groups/712691532866956"
+      
       },
       {
         "name": "Youtube",
         "description": "Na kanał trafiają filmy edukacyjne ze wskazówkami dotyczącymi pielęgnacji i wspierania prawidłowego rozwoju dzieci i niemowląt",
-        "link": "/"
+        "link": "https://www.youtube.com/channel/UCZHUJJFBzq5T6F2pRWvZMEQ"
       },
       {
         "name": "Instagram",
         "description": "Na Instagramie poza merytorycznymi postami dzielę się lżejszymi tematami i kulisami pracy fizjoterapeuty.",
-        "link": "/"
+        "link": "https://www.instagram.com/e_fizjoteka/"
       }
     ]
   },
@@ -357,6 +358,229 @@
       "button_text": "WRÓĆ DO OFERTY"
     }
   },
+  "asymetria":{
+    "Hero":{
+      "title": "Asymetria ułożeniowa - poradnik dla rodzica",
+      "subtitle": "E-book • Wideo z ćwiczeniami • Spotkanie online",
+      "description": "Pigułka wiedzy medycznej i doświadczenia pracy z małymi pacjentami. Stań się bardziej świadomym i spokojniejszym rodzicem bez wychodzenia z domu.",
+      "buttons": [
+        {
+          "label": "Czytaj więcej",
+          "link": "#info",
+          "type": "secondary"
+        },
+        {
+          "label": "Zobacz ofertę",
+          "link": "#products",
+          "type": "primary"
+        }
+      ],
+      "image": {
+        "alt": "moj pierwszy ebook"
+      }
+    },
+    "Second":{
+        "sectionId": "info",
+        "heading": "Chcę, żeby każdy rodzic miał dostęp do rzetelnej wiedzy na temat asymetrii.",
+        "content": {
+          "subheading": "Asymetria ułożeniowa to jedno z najczęstszych schorzeń u niemowląt.",
+          "paragraph": "Rodzicom trudno jednak dotrzeć do sprawdzonych informacji na ten temat. Niekiedy zawodzą nawet specjaliści! Nie jestem w stanie pomóc wszystkim osobiście. Gwarantuję jednak, że przygotowane przeze mnie materiały są prawdziwą pigułką wiedzy."
+        },
+        "image": {
+          "alt": "video"
+        }
+      },
+      "Third":{
+        "products": {
+          "title": "Znajdź produkt odpowiedni dla Ciebie",
+          "subtitle": "Uzyskując nieograniczony dostęp do filmów, masz szansę nadrobić webinary w wygodnym dla siebie momencie.",
+          "availability1":"Produkt dostępny",
+          "availability2":"Produkt dostępny"
+        }
+      },
+      "Fourth":{
+        
+          "title": "Co znajdziesz w e-booku?",
+          "subtitle": "Udostępniam spis treści e-booka. Możesz sprawdzić, czy tematy, które poruszam są dla Ciebie ważne.",
+          "chapters": [
+            {
+              "chapter": "Rozdzial 1",
+              "title": "Symetria i linia środkowa ciała",
+              "points": [
+                "czym jest symetria i linia środkowa ciała",
+                "dlaczego symetria jest ważna",
+                "co może zaniepokoić rodzica",
+                "jakie profilaktyczne ćwiczenia można wykonywać z dzieckiem"
+              ]
+            },
+            {
+              "chapter": "Rozdzial 2",
+              "title": "Asymetria ułożeniowa",
+              "points": [
+                "czym jest asymetria ułożeniowa",
+                "jakie są jej przyczyny",
+                "jak mogą być konsekwencje",
+                "jak odróżnić asymetrię od preferencji stron przez dziecko"
+              ]
+            },
+            {
+              "chapter": "Rozdzial 3",
+              "title": "Jak rozpoznać asymetrię ułożeniową u dziecka?",
+              "points": [
+                "jak miesiąc po miesiącu rozpoznać asymetrię u maluszka",
+                "jak rozpoznać asymetrię w różnych pozycjach ciała",
+                "czym jest asymetria główki i tułowia"
+              ]
+            },
+            {
+              "chapter": "Rozdzial 4",
+              "title": "Zalecenia przy asymetrii ułożeniowej",
+              "points": [
+                "jak właściwie pielęgnować dziecko z asymetrią",
+                "jak angażować stronę mniej aktywną",
+                "jakie znaczenie ma łóżeczko, materac i poduszka"
+              ]
+            },
+            {
+              "chapter": "Rozdzial 5",
+              "title": "Ćwiczenia na asymetrię",
+              "points": [
+                "praktyczne ćwiczenia do wykonywania z dzieckiem w domu",
+                "przykładowy plan ćwiczeń w Aneksie"
+              ]
+            },
+            {
+              "chapter": "Rozdzial 6",
+              "title": "Nieleczona asymetria",
+              "points": [
+                "konsekwencje nieleczonej asymetrii",
+                "dlaczego warto wdrożyć działania od razu"
+              ]
+            }
+          ]
+        }
+  },
+  "rozwoj":{
+    
+      "hero_section": {
+        "title": "Rozwój dziecka w pierwszym roku życia",
+        "subheadline": "E-book • Wideo z ćwiczeniami • Spotkanie online",
+        "description": "Pigułka wiedzy medycznej i doświadczenia pracy z małymi pacjentami. Stań się świadomym i spokojnym rodzicem bez wychodzenia z domu. Zadbaj o dziecko już dziś.",
+        "buttons": ["Czytaj więcej", "Zobacz ofertę"]
+      },
+      "third_section": {
+        "headline": "Chcę, żeby każdy rodzic miał dostęp do rzetelnej wiedzy na temat rozwoju dziecka",
+        "question_title": "Czy moje dziecko rozwija się prawidłowo?",
+        "paragraphs": [
+          "To jedno z najczęściej zadawanych pytań, jakie od Was dostaję.",
+          "Nie jestem w stanie pomóc wszystkim osobiście. Gwarantuję jednak, że przygotowane przeze mnie materiały są prawdziwą pigułką wiedzy."
+        ]
+      },
+      "topics_section": {
+        "headline": "Wahasz się czy poradnik jest dla Ciebie?",
+        "subheadline": "Sprawdź jakie tematy w nim poruszam.",
+        "topics": [
+          {
+            "title": "Co znajdziesz w poradniku?",
+            "points": [
+              "Miesiąc po miesiącu tłumaczę, jak rozwija się dziecko w 1. roku życia.",
+              "Pokażę Ci, co powinno Cię zaniepokoić w rozwoju."
+            ]
+          },
+          {
+            "title": "Kamienie milowe - jak i kiedy dziecko je osiąga.",
+            "points": [
+              "Od kiedy trzyma główkę?",
+              "Kiedy dziecko się obraca?",
+              "Czy musi czworakować?",
+              "Kiedy usiądzie?",
+              "Kiedy zacznie siadać?"
+            ]
+          },
+          {
+            "title": "Jak i kiedy układać dziecko na brzuszku?",
+            "points": [
+              "Czy wiesz, że dziecko układamy na brzuszku już od urodzenia?",
+              "Pokażę Ci, jak układać dziecko, by pokochało tę pozycję."
+            ]
+          },
+          {
+            "title": "Tłumaczę najczęściej występujące schorzenia",
+            "points": [
+              "Czym jest asymetria ułożeniowa?",
+              "Jak rozpoznać, czy dziecko ma wzmożone lub obniżone napięcie mięśniowe?",
+              "Czym jest dysplazja stawów biodrowych?"
+            ]
+          },
+          {
+            "title": "Jak układać dziecko do snu?",
+            "points": [
+              "Jakie znaczenie ma łóżeczko, materac i poduszka dla prawidłowego rozwoju dziecka?",
+              "W jakiej pozycji najlepiej układać dziecko do snu?"
+            ]
+          },
+          {
+            "title": "Co znajdziesz w wersji z filmem?",
+            "points": [
+              "W filmie pokazuję, wszystkie techniki wykonywane co dzień podczas pielęgnacji dziecka.",
+              "Uczę jak podnosić i nosić dziecko adekwatnie do jego wieku."
+            ]
+          }
+        ]
+      },
+      "fourth":{
+          "title": "Wahasz się czy poradnik jest dla Ciebie?",
+          "subtitle": "Sprawdź jakie tematy w nim poruszam.",
+          "sections": [
+            {
+              "heading": "Co znajdziesz w poradniku?",
+              "points": [
+                "Miesiąc po miesiącu tłumaczę, jak rozwija się dziecko w 1. roku życia.",
+                "Pokażę Ci, co powinno Cię zaniepokoić w rozwoju."
+              ]
+            },
+            {
+              "heading": "Kamienie milowe - jak i kiedy dziecko je osiąga.",
+              "points": [
+                "Od kiedy trzyma główkę?",
+                "Kiedy dziecko się obraca?",
+                "Czy musi czworakować?",
+                "Kiedy usiądzie?",
+                "Kiedy zacznie siadać?"
+              ]
+            },
+            {
+              "heading": "Jak i kiedy układać dziecko na brzuszku?",
+              "points": [
+                "Czy wiesz, że dziecko układamy na brzuszku już od urodzenia?",
+                "Pokażę Ci, jak układać dziecko, by pokochało tę pozycję."
+              ]
+            },
+            {
+              "heading": "Tłumaczę najczęściej występujące schorzenia",
+              "points": [
+                "Czym jest asymetria ułożeniowa?",
+                "Jak rozpoznać, czy dziecko ma wzmożone lub obniżone napięcie mięśniowe?",
+                "Czym jest dysplazja stawów biodrowych?"
+              ]
+            },
+            {
+              "heading": "Jak układać dziecko do snu?",
+              "points": [
+                "Jakie znaczenie ma łóżeczko, materac i poduszka dla prawidłowego rozwoju dziecka?",
+                "W jakiej pozycji najlepiej układać dziecko do snu?"
+              ]
+            },
+            {
+              "heading": "Co znajdziesz w wersji z filmem?",
+              "points": [
+                "W filmie pokazuję, wszystkie techniki wykonywane co dzień podczas pielęgnacji dziecka.",
+                "Uczę jak podnosić i nosić dziecko adekwatnie do jego wieku."
+              ]
+            }
+          ]
+        }
+    },    
   "AboutMe":{
       "AboutMePage": {
         "Hero": {

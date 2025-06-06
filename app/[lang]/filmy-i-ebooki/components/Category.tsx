@@ -20,9 +20,8 @@ const Category1 = ({ categories }: CategoryListProps) => {
 					</div>
 					<div className={`${styles.textWraper} `}>
 						<div className={styles.cardTitle}>
-							<Link className={styles.anchor} href="">
-								<h4>{product.title}</h4>
-							</Link>
+								<h4 className={styles.anchor}>{product.title}</h4>
+						
 							<span className={styles.underLink}>
 								{product.subtitle1} • {product.subtitle2} • {product.subtitle3}
 							</span>

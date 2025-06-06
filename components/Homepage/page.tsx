@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "./Hero/Hero";
 import Help from "./Help/page";
 import Ebook from "./Ebook/page";
-import QuizFiz from "./Quizfizz/page";
 import Contact from "./Contact/page";
 
 export default async function HomeLayout() {
@@ -11,7 +10,6 @@ export default async function HomeLayout() {
 			<Hero />
 			<Help />
 			<Ebook />
-			<QuizFiz />
 			<Contact />
 		</>
 	);

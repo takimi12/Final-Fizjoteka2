@@ -220,7 +220,7 @@ const Header = () => {
 									Wizyta
 								</Link>
 								<LocaleSwitcher />
-								<Link href={paths.SEARCH} className={styles.anchor}>
+								<Link href={paths.SEARCH} className={styles.anchor} onClick={closeModal}>
 									<Image src={search} width={20} height={20} alt="search" />
 								</Link>
 							</div>

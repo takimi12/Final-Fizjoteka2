@@ -9,10 +9,8 @@ async function Third() {
 	const dictionary = await getDictionary(lang);
 	const { kurs_noszenia: kursNoszenia } = dictionary;
 
-	const {
-		course_goal: courseGoal
-	} = kursNoszenia;
-	
+	const { course_goal: courseGoal } = kursNoszenia;
+
 	// @ts-ignore
 	const { title, heading, topics, description } = courseGoal;
 
@@ -21,9 +19,7 @@ async function Third() {
 			<section className={styles.Ebook}>
 				<div className="Container">
 					<div className={styles.topSection}>
-						<h2 className="">
-							{title}
-						</h2>
+						<h2 className="">{title}</h2>
 					</div>
 					<div className={styles.bottomSection}>
 						<div className={styles.Inner}>
@@ -37,9 +33,7 @@ async function Third() {
 											</li>
 										))}
 									</ul>
-									<p>
-										{description}
-									</p>
+									<p>{description}</p>
 								</div>
 							</div>
 						</div>

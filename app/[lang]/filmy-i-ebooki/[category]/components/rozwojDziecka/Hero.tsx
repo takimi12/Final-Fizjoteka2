@@ -11,12 +11,7 @@ async function Hero() {
 	const dictionary = await getDictionary(lang);
 	const { rozwoj } = dictionary;
 
-	const {
-		title,
-		subheadline,
-		description,
-		buttons
-	} = rozwoj.hero_section;
+	const { title, subheadline, description, buttons } = rozwoj.hero_section;
 
 	return (
 		<>

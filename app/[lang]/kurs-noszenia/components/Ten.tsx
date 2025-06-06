@@ -18,31 +18,13 @@ async function Ten() {
 			<section className={styles.asked}>
 				<div className={styles.bubbleWrapper}>
 					<div className={styles.bubbleWrapper1}>
-						<Image
-							className={styles.buble1}
-							src={Buble1}
-							alt="Buble1"
-							width={125}
-							height={125}
-						/>
+						<Image className={styles.buble1} src={Buble1} alt="Buble1" width={125} height={125} />
 					</div>
 					<div className={`${styles.bubbleWrapper1} ${styles.bubbleWrapper2}`}>
-						<Image
-							className={styles.buble2}
-							src={Buble2}
-							alt="Buble2"
-							width={125}
-							height={125}
-						/>
+						<Image className={styles.buble2} src={Buble2} alt="Buble2" width={125} height={125} />
 					</div>
 					<div className={styles.bubbleWrapper1}>
-						<Image
-							className={styles.buble3}
-							src={Buble3}
-							alt="Buble3"
-							width={125}
-							height={125}
-						/>
+						<Image className={styles.buble3} src={Buble3} alt="Buble3" width={125} height={125} />
 					</div>
 				</div>
 				<div className={`${styles.container} Container`}>

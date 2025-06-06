@@ -19,7 +19,6 @@ import { Locale } from "../../../i18n";
 import { RootState } from "../../../Redux/Store";
 import { paths } from "../../../app/address/adress";
 
-
 type Navigation = {
 	home: string;
 	blog: string;
@@ -66,10 +65,34 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 		<header>
 			<div className={styles.topHeader}>
 				<div className={styles.inner}>
-					<Image src={youTubeIcon} className={styles.headerImage} alt="YouTube" width={15} height={15} />
-					<Image src={instagramIcon} className={styles.headerImage} alt="Instagram" width={15} height={15} />
-					<Image src={facebookIcon} className={styles.headerImage} alt="Facebook" width={15} height={15} />
-					<Image src={tikTokIcon} className={styles.headerImage} alt="TikTok" width={15} height={15} />
+					<Image
+						src={youTubeIcon}
+						className={styles.headerImage}
+						alt="YouTube"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={instagramIcon}
+						className={styles.headerImage}
+						alt="Instagram"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={facebookIcon}
+						className={styles.headerImage}
+						alt="Facebook"
+						width={15}
+						height={15}
+					/>
+					<Image
+						src={tikTokIcon}
+						className={styles.headerImage}
+						alt="TikTok"
+						width={15}
+						height={15}
+					/>
 				</div>
 			</div>
 
@@ -83,7 +106,11 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 						</div>
 
 						<div className={styles.links}>
-							<ActiveLink href={paths.HOME} className={styles.anchor} activeClassName={styles.anchorActive}>
+							<ActiveLink
+								href={paths.HOME}
+								className={styles.anchor}
+								activeClassName={styles.anchorActive}
+							>
 								{navigation.home}
 							</ActiveLink>
 							<ActiveLink className={styles.anchor} href={paths.BLOG}>

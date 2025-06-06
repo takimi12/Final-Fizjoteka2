@@ -20,19 +20,14 @@ async function Five() {
 					<div className={styles.inner}>
 						<div className={styles.leftSection}>
 							<div className={styles.image}>
-								<Image
-									src={Photo}
-									alt="moj pierwszy ebook"
-									width={361}
-									height={322}
-								/>
+								<Image src={Photo} alt="moj pierwszy ebook" width={361} height={322} />
 							</div>
 						</div>
 						<div className={styles.rightSection}>
 							<div className={styles.text}>
 								<p>{commonMistake.problem}</p>
 								{commonMistake.explanation.map((item, index) => {
-									const text = Object.values(item)[0]; 
+									const text = Object.values(item)[0];
 									return <p key={index}>{text}</p>;
 								})}
 							</div>

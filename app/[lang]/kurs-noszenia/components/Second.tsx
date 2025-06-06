@@ -10,14 +10,7 @@ async function Second() {
 	const { kurs_noszenia: kursNoszenia } = dictionary;
 
 	const {
-		about_author: {
-			greeting,
-			name,
-			profession,
-			education,
-			workplace,
-			description
-		}
+		about_author: { greeting, name, profession, education, workplace, description },
 	} = kursNoszenia;
 
 	return (
@@ -39,11 +32,9 @@ async function Second() {
 								<div className={styles.text}>
 									<h6>{profession}</h6>
 									<p>
-										{education}  {workplace}
+										{education} {workplace}
 									</p>
-									<p>
-										{description}
-									</p>
+									<p>{description}</p>
 								</div>
 							</div>
 						</div>

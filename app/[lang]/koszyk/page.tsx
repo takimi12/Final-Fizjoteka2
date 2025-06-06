@@ -243,7 +243,10 @@ const Cartpage: React.FC = () => {
 						<fieldset className={styles.fieldset}>
 							<label>
 								<input type="checkbox" {...register("isTermsAccepted", { required: true })} />
-								<span>Zapoznałem się z polityką prywatności oraz regulaminem sklepu. Dobrowolnie zrzekam się z prawa do odstąpienia od produktu w terminie 14 dni od zakupu.</span>
+								<span>
+									Zapoznałem się z polityką prywatności oraz regulaminem sklepu. Dobrowolnie zrzekam
+									się z prawa do odstąpienia od produktu w terminie 14 dni od zakupu.
+								</span>
 							</label>
 							{errors.isTermsAccepted && (
 								<span className={styles.errorText}>Akceptacja jest wymagana</span>

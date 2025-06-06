@@ -12,7 +12,7 @@ const FilmyEbooki = async () => {
 		<>
 			<div className={`Container ${styles.Container}`}>
 				<Breadcrumbs />
-				
+
 				<MainPage categories={categories} topics={topics} />
 			</div>
 		</>

@@ -17,7 +17,9 @@ export default async function BlogPage({ params }: { params: { lang: string; id:
 
 	let blogResponse, blogsResponse;
 	if (lang === "en") {
-		blogResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogpostsEng?id=${pathname}`);
+		blogResponse = await fetch(
+			`https://www.projektfizjoteki.pl/api/gql/blogpostsEng?id=${pathname}`,
+		);
 		blogsResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogEng`);
 	} else {
 		blogResponse = await fetch(`https://www.projektfizjoteki.pl/api/gql/blogposts?id=${pathname}`);

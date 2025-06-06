@@ -146,7 +146,6 @@ const AddCategory = () => {
 							/>
 							{errors.category && <p>{errors.category.message?.toString()}</p>}
 
-
 							<input type="file" accept="image/*" onChange={handleImageFileChange} />
 							<button type="submit" className="button" disabled={uploading}>
 								{uploading ? "Dodawanie..." : "Dodaj kategorię"}

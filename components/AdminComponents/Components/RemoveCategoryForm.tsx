@@ -18,19 +18,19 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 	const removeTopic = async () => {
 		setIsDeleting(true);
 		setError(null);
-	
+
 		try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/category?id=${id}`, {
 				method: "DELETE",
 			});
-	
+
 			if (!res.ok) {
 				throw new Error("Nie udało się usunąć tematu");
 			}
-	
+
 			if (imageFileUrl && imageFileUrl.trim() !== "") {
 				const imageName = imageFileUrl.split("/").pop();
-	
+
 				if (imageName) {
 					try {
 						await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deleteAmazonObj`, {
@@ -42,9 +42,9 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 					}
 				}
 			}
-	
+
 			alert("Kategoria została pomyślnie usunięta.");
-	
+
 			router.refresh();
 		} catch (error) {
 			console.log(error);
@@ -54,7 +54,6 @@ export default function RemoveBtn({ id, imageFileUrl }: RemoveBtnProps) {
 			setShowConfirmation(false);
 		}
 	};
-	
 
 	const handleConfirmation = () => {
 		setShowConfirmation(true);

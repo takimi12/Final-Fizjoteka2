@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 		});
 
 		await dbConnect();
-		
+
 		const newCategory = await Category.create({
 			title,
 			subtitle1,
@@ -48,18 +48,23 @@ export async function POST(request: NextRequest) {
 		});
 
 		console.log("Category created successfully:", newCategory);
-		
-		return NextResponse.json({ 
-			message: "Category Created", 
-			category: newCategory 
-		}, { status: 201 });
-		
+
+		return NextResponse.json(
+			{
+				message: "Category Created",
+				category: newCategory,
+			},
+			{ status: 201 },
+		);
 	} catch (err) {
 		console.error("Error creating category:", err);
-		return NextResponse.json({ 
-			message: "Error creating category", 
-			error: err instanceof Error ? err.message : "Unknown error" 
-		}, { status: 500 });
+		return NextResponse.json(
+			{
+				message: "Error creating category",
+				error: err instanceof Error ? err.message : "Unknown error",
+			},
+			{ status: 500 },
+		);
 	}
 }
 

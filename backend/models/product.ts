@@ -76,7 +76,7 @@ const productSchema = new Schema(
 				ret.id = ret._id;
 				delete ret.__v;
 				return ret;
-			},x
+			},
 		},
 	},
 );
@@ -86,4 +86,4 @@ productSchema.index({ title: 1 });
 
 const Products = mongoose.models.Products || mongoose.model<IProduct>("Products", productSchema);
 
-export xdefault Products;
+export default Products;

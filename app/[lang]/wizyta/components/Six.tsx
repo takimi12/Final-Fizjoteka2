@@ -21,19 +21,11 @@ async function Six() {
 									<h6 className={styles.mainHeading}>{title}</h6>
 
 									<div className={styles.paragraphParent}>
-										<p>
-											{description1}
-										</p>
-										<p className={styles.semibold}>
-											{emphasis1}
-										</p>
-										<p>
-											{description2}
-										</p>
+										<p>{description1}</p>
+										<p className={styles.semibold}>{emphasis1}</p>
+										<p>{description2}</p>
 										<p className={styles.bold}>
-											<span>
-												{emphasis2}
-											</span>
+											<span>{emphasis2}</span>
 										</p>
 									</div>
 								</div>

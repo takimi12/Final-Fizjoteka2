@@ -8,14 +8,14 @@ interface FilterProps {
 	setSelectedCategories: (categories: string[]) => void;
 	onSearch: () => void;
 	isEnglish: boolean;
-  }
+}
 
 const Filter: React.FC<FilterProps> = ({
 	allCategories,
 	selectedCategories,
 	setSelectedCategories,
 	onSearch,
-	isEnglish
+	isEnglish,
 }) => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [showPopup, setShowPopup] = useState(false);
@@ -42,7 +42,7 @@ const Filter: React.FC<FilterProps> = ({
 			{isMobile ? (
 				<div className={styles.rwdWrapper}>
 					<button className={styles.filtersButton} onClick={() => setShowPopup(true)}>
-				{isEnglish ? "Specify what you're looking for" : "Sprecyzuj, czego szukasz"}
+						{isEnglish ? "Specify what you're looking for" : "Sprecyzuj, czego szukasz"}
 					</button>
 				</div>
 			) : (

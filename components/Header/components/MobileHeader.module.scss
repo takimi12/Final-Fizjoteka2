@@ -9,7 +9,7 @@
 		padding: 10px;
 	}
 }
-.subContainer{
+.subContainer {
 	overflow: visible;
 }
 
@@ -30,11 +30,11 @@
 	gap: 30px;
 	justify-content: space-between;
 	align-items: center;
-	
+
 	.cart {
-		position: relative; 
+		position: relative;
 		cursor: pointer;
-		
+
 		.numberCart {
 			position: absolute;
 			top: -15px;
@@ -68,7 +68,7 @@
 			z-index: 9999;
 			max-height: 300px;
 			overflow: scroll;
-			
+
 			@media (max-width: 400px) {
 				width: 300px;
 				right: -50px;
@@ -104,7 +104,7 @@
 
 					p {
 						margin: 0;
-						
+
 						&.desc {
 							font-weight: bold;
 							margin-bottom: 5px;
@@ -124,7 +124,7 @@
 					border-radius: 3px;
 					padding: 5px 10px;
 					cursor: pointer;
-					
+
 					&:hover {
 						background-color: #cc0000;
 					}
@@ -157,7 +157,7 @@
 					border-radius: 5px;
 					cursor: pointer;
 					font-size: 16px;
-					
+
 					&:hover {
 						background-color: #255a6b;
 					}

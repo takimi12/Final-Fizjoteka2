@@ -67,10 +67,10 @@ export default function RemoveBtn({ id, imageFileUrl, pdfFileUrl }: RemoveBtnPro
 
 				// Wyświetl alert o powodzeniu usunięcia
 				alert("Produkt został pomyślnie usunięty!");
-				
+
 				router.refresh();
 			} catch (error) {
-				console.log(error)
+				console.log(error);
 				alert("Wystąpił błąd podczas usuwania produktu.");
 			}
 		}

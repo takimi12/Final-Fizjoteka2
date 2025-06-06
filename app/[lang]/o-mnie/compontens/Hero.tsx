@@ -8,40 +8,31 @@ import { getDictionary } from "../../../../lib/dictionary";
 async function Hero() {
 	const lang = getPreferredLocale() as "pl" | "en";
 	const dictionary = await getDictionary(lang);
-	
-	const aboutMeData = (dictionary as any).AboutMe?.AboutMePage?.Hero;
-	
-	const title = aboutMeData?.title
-	const description1 = aboutMeData?.description1 
-	const description2 = aboutMeData?.description2 
-	const description3 = aboutMeData?.description3 
-	
 
+	const aboutMeData = (dictionary as any).AboutMe?.AboutMePage?.Hero;
+
+	const title = aboutMeData?.title;
+	const description1 = aboutMeData?.description1;
+	const description2 = aboutMeData?.description2;
+	const description3 = aboutMeData?.description3;
 
 	return (
-		<>	
-		<section className={styles.breadcrumbs}>
-		<div className="Container">
-		<Breadcrumbs />
-		</div>
-		</section>
+		<>
+			<section className={styles.breadcrumbs}>
+				<div className="Container">
+					<Breadcrumbs />
+				</div>
+			</section>
 			<section className={`${styles.Hero}`}>
 				<div className={`Container `}>
-				
 					<div className={`${styles.Inner}`}>
 						<div className={` ${styles.leftSection}`}>
 							<div className={` ${styles.title}`}>
 								<h1>{title}</h1>
 							</div>
-							<p className={`${styles.paragraph}`}>
-								{description1}
-							</p>
-							<p className={`font-bold ${styles.paragraph}`}>
-								{description2}
-							</p>
-							<p className={`${styles.paragraph}`}>
-								{description3}
-							</p>
+							<p className={`${styles.paragraph}`}>{description1}</p>
+							<p className={`font-bold ${styles.paragraph}`}>{description2}</p>
+							<p className={`${styles.paragraph}`}>{description3}</p>
 						</div>
 						<div className={` ${styles.rightSection}`}>
 							<Image

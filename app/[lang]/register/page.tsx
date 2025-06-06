@@ -42,7 +42,8 @@ const Register = () => {
 					name,
 					email,
 					password,
-					role: "user",				}),
+					role: "user",
+				}),
 			});
 
 			if (res.status === 400) {

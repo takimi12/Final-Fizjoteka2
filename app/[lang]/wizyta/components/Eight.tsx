@@ -14,9 +14,7 @@ async function Eight() {
 			<section className={styles.eight}>
 				<div className={`Container ${styles.container}`}>
 					<div>
-						<h2 className={styles.mainHeading}>
-							{title}
-						</h2>
+						<h2 className={styles.mainHeading}>{title}</h2>
 						<ol>
 							{differences.map((difference: string, index: number) => (
 								<li key={index} className={styles.list}>
@@ -26,7 +24,7 @@ async function Eight() {
 						</ol>
 						<div className={styles.span}>
 							<b>
-								{additionalInfo.split('tutaj')[0]}
+								{additionalInfo.split("tutaj")[0]}
 								<Link
 									className={styles.link}
 									target="_blank"
@@ -35,7 +33,7 @@ async function Eight() {
 								>
 									tutaj
 								</Link>
-								{additionalInfo.split('tutaj')[1] || ''}
+								{additionalInfo.split("tutaj")[1] || ""}
 							</b>
 						</div>
 					</div>

@@ -15,22 +15,22 @@ export const authOptions: AuthOptions = {
 			authorize: async (credentials) => {
 				try {
 					await dbConnect();
-			
+
 					const user = await User.findOne({ email: credentials?.email }).select("+password");
-			
+
 					if (!user) {
 						return null;
 					}
-			
+
 					const isPasswordCorrect = await bcrypt.compare(
 						credentials?.password || "",
-						user.password
+						user.password,
 					);
-			
+
 					if (!isPasswordCorrect) {
 						return null;
 					}
-			
+
 					return {
 						id: user._id.toString(),
 						name: user.name,
@@ -42,8 +42,6 @@ export const authOptions: AuthOptions = {
 					return null;
 				}
 			},
-			
-			  
 		}),
 	],
 	callbacks: {

@@ -15,8 +15,8 @@ async function Hero() {
 			subtitle,
 			description,
 			buttons,
-			image: { alt }
-		}
+			image: { alt },
+		},
 	} = dictionary.asymetria;
 
 	return (

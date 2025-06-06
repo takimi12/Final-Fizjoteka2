@@ -20,9 +20,13 @@ async function Ten() {
 							<p className={styles.consultationPrice}>{consultation.price}</p>
 							<ul className={styles.ul}>
 								{consultation.features.map((feature: string, featureIndex: number) => (
-									<li 
-										key={featureIndex} 
-										className={feature.includes("Otrzymasz zestaw") || feature.includes("Zalecenia domowe") ? styles.bold : ""}
+									<li
+										key={featureIndex}
+										className={
+											feature.includes("Otrzymasz zestaw") || feature.includes("Zalecenia domowe")
+												? styles.bold
+												: ""
+										}
 									>
 										{feature}
 									</li>

@@ -3,7 +3,7 @@ import styles from "./Eight.module.scss";
 import { getPreferredLocale } from "../../../../../../helpers/getLocale";
 import { getDictionary } from "../../../../../../lib/dictionary";
 
-async function Eight () {
+async function Eight() {
 	const lang = getPreferredLocale() as "pl" | "en";
 	const dictionary = await getDictionary(lang);
 	const { rozwoj } = dictionary;

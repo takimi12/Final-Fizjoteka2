@@ -36,7 +36,7 @@ const Login = () => {
 			email,
 			password,
 		});
-		console.log(res, 'res from login page')
+		console.log(res, "res from login page");
 		if (res?.error) {
 			setError("Invalid email or password");
 		} else {

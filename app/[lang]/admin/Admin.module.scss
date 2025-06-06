@@ -23,7 +23,6 @@
 	border-radius: 8px;
 }
 
-
 .linkWrapper {
 	display: flex;
 	justify-content: center;
@@ -39,15 +38,13 @@
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-
-
 }
 
 .logoutButton {
 	padding: 10px 20px;
 	font-size: 16px;
 	color: white;
-	background-color:var(--primary);
+	background-color: var(--primary);
 	border: none;
 	border-radius: 50px;
 	cursor: pointer;

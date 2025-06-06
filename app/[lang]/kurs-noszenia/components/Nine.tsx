@@ -10,7 +10,7 @@ async function Nine() {
 	const dictionary = await getDictionary(lang);
 	const { guarantees } = dictionary.kurs_noszenia;
 
-	const images = [photo, photo1, photo]; 
+	const images = [photo, photo1, photo];
 
 	return (
 		<section className={`${styles.Nine}`}>

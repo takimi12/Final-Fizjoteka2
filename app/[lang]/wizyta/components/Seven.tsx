@@ -28,9 +28,7 @@ async function Seven() {
 												</li>
 											))}
 										</ul>
-										<b>
-											{emphasis}
-										</b>
+										<b>{emphasis}</b>
 									</div>
 								</div>
 							</div>

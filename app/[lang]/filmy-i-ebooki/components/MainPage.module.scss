@@ -9,9 +9,15 @@
 
 	.fitlersGroup {
 		width: 40%;
+		@media only screen and (max-width: 900px) {
+			width: 100%;
+		}
 	}
 	.rightSection {
 		width: 60%;
+		@media only screen and (max-width: 900px) {
+			width: 100%;
+		}
 	}
 	.titleText {
 		text-align: center;

@@ -5,7 +5,6 @@ interface Category {
 	subtitle1: string;
 	subtitle2: string;
 	subtitle3: string;
-	price: number;
 	description: string;
 	category: string;
 	imageFileUrl: string;
@@ -35,7 +34,7 @@ export default async function EditTopic({ id }: { id: string }) {
 	try {
 		const { categories } = await getCategoryById(id);
 
-		const { title, subtitle1, subtitle2, subtitle3, price, description, category, imageFileUrl } =
+		const { title, subtitle1, subtitle2, subtitle3,  description, category, imageFileUrl } =
 			categories;
 
 		return (
@@ -46,7 +45,6 @@ export default async function EditTopic({ id }: { id: string }) {
 				subtitle2={subtitle2}
 				subtitle3={subtitle3}
 				description={description}
-				price={price}
 				category={category}
 				imageFileUrl={imageFileUrl}
 			/>

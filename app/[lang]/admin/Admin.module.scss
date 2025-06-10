@@ -21,6 +21,10 @@
 	padding: 16px;
 	background-color: #f9f9f9;
 	border-radius: 8px;
+	align-items: center;
+    padding: 50px;
+	align-items: center;
+	padding: 50px;
 }
 
 .linkWrapper {
@@ -38,6 +42,7 @@
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
+	max-width: 300px;
 }
 
 .logoutButton {

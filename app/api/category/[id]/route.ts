@@ -8,7 +8,6 @@ interface PutRequestBody {
 	newSubtitle2: string;
 	newSubtitle3: string;
 	newDescription: string;
-	newPrice: number;
 	newCategory: string;
 	imageFileUrl: string;
 }
@@ -25,7 +24,6 @@ export async function PUT(request: Request, { params }: { params: Params }) {
 		newSubtitle2: subtitle2,
 		newSubtitle3: subtitle3,
 		newDescription: description,
-		newPrice: price,
 		newCategory: category,
 		imageFileUrl,
 	} = (await request.json()) as PutRequestBody;
@@ -36,7 +34,6 @@ export async function PUT(request: Request, { params }: { params: Params }) {
 		subtitle2,
 		subtitle3,
 		description,
-		price,
 		category,
 		imageFileUrl,
 	});

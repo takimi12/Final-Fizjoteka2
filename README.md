@@ -77,9 +77,26 @@ https://fizjoteka2.vercel.app/
 
 ## Dostępy / Access
 
-login:admin@admin.pl
 
+# Logowanie podstrona /login  / Login subpage /login
+
+Admin
+
+login:admin@admin.pl
 password:123123123
+
+Regular User
+
+login: user@user.pl
+password:123123123
+
+
+kod rabatowy w koszyku  na rabat 20%/discount code in cart for 20% discount
+
+KOBIETA2
+
+
+
 
 ## Opis projektu / Project Description
 

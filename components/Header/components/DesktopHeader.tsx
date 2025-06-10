@@ -65,13 +65,15 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 		<header>
 			<div className={styles.topHeader}>
 				<div className={styles.inner}>
+					<Link href="https://www.youtube.com/c/efizjotekaMagdalenaAda%C5%9B" >
 					<Image
 						src={youTubeIcon}
 						className={styles.headerImage}
 						alt="YouTube"
 						width={15}
 						height={15}
-					/>
+					/></Link>
+					<Link href="https://www.instagram.com/e_fizjoteka/">
 					<Image
 						src={instagramIcon}
 						className={styles.headerImage}
@@ -79,6 +81,8 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 						width={15}
 						height={15}
 					/>
+					</Link>
+					<Link href={"https://www.facebook.com/efizjotekaMagdalenaAdas"}>
 					<Image
 						src={facebookIcon}
 						className={styles.headerImage}
@@ -86,6 +90,8 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 						width={15}
 						height={15}
 					/>
+					</Link>
+					<Link href={"https://www.tiktok.com/@e_fizjoteka"}>
 					<Image
 						src={tikTokIcon}
 						className={styles.headerImage}
@@ -93,6 +99,7 @@ const Header = ({ navigation, lang }: { navigation: Navigation; lang: Locale }) 
 						width={15}
 						height={15}
 					/>
+					</Link>
 				</div>
 			</div>
 

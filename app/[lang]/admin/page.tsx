@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect } from "react";
 import Link from "next/link";
 import styles from "./Admin.module.scss";
@@ -11,18 +10,38 @@ export default function Admin() {
 	const { data: session, status: sessionStatus } = useSession();
 	const router = useRouter();
 
-	useEffect(() => {
-		if (sessionStatus === "loading") {
-			return;
-		}
-
-		if (!session || session?.user?.role !== "admin") {
-			router.push("/login");
-		}
-	}, [session, sessionStatus, router]);
-
 	if (sessionStatus === "loading") {
 		return <h1>Loading...</h1>;
+	}
+
+	if (!session) {
+		return (
+			<div className={`${styles.container} Container`}>
+				<h1>Brak dostępu</h1>
+				<p>Musisz być zalogowany, aby uzyskać dostęp do tej strony.</p>
+				<button 
+					onClick={() => router.push("/login")}
+					className={styles.linkButton}
+				>
+					Przejdź do logowania
+				</button>
+			</div>
+		);
+	}
+
+	if (session?.user?.role !== "admin") {
+		return (
+			<div className={styles.container}>
+				<h1>Brak uprawnień</h1>
+				<p>Nie masz uprawnień administratora do przeglądania tej strony.</p>
+				<button 
+					onClick={() => signOut()}
+					className={styles.logoutButton}
+				>
+					Wyloguj się
+				</button>
+			</div>
+		);
 	}
 
 	return (

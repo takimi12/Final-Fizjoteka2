@@ -48,9 +48,7 @@ export default async function CategoryList({ categories }: CategoryListProps) {
 							<p>Produkt dostępny</p>
 						</div>
 						<div className={styles.circle}></div>
-						<div className={`${styles.priceParent} `}>
-							<p className={`${styles.amount} `}>{product.price} zł</p>
-						</div>
+					
 					</div>
 					<div className={styles.actionGroup}>
 						<EditCategory id={product._id} />

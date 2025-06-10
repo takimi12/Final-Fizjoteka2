@@ -10,7 +10,6 @@ interface EditTopicFormProps {
 	subtitle1: string;
 	subtitle2: string;
 	subtitle3: string;
-	price: number;
 	category: string;
 	description: string;
 	imageFileUrl: string;
@@ -22,7 +21,6 @@ interface FormData {
 	newSubtitle2: string;
 	newSubtitle3: string;
 	newDescription: string;
-	newPrice: number;
 	newCategory: string;
 }
 
@@ -32,7 +30,6 @@ export default function EditTopicForm({
 	subtitle1,
 	subtitle2,
 	subtitle3,
-	price,
 	category,
 	description,
 	imageFileUrl,
@@ -48,7 +45,6 @@ export default function EditTopicForm({
 			newSubtitle2: subtitle2,
 			newSubtitle3: subtitle3,
 			newDescription: description,
-			newPrice: price,
 			newCategory: category,
 		},
 	});
@@ -170,20 +166,6 @@ export default function EditTopicForm({
 								placeholder="Category"
 							/>
 							{errors.newCategory && <p className={styles.error}>{errors.newCategory.message}</p>}
-
-							<input
-								{...register("newPrice", {
-									required: "Price is required",
-									pattern: {
-										value: /^\d+$/,
-										message: "Price must be a number",
-									},
-								})}
-								className={styles.input}
-								type="text"
-								placeholder="Price"
-							/>
-							{errors.newPrice && <p className={styles.error}>{errors.newPrice.message}</p>}
 
 							<input
 								type="file"

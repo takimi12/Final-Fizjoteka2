@@ -1,9 +1,8 @@
 {
-  "/api/topics/route": "app/api/topics/route.js",
-  "/api/category/route": "app/api/category/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/[lang]/blog/page": "app/[lang]/blog/page.js",
   "/[lang]/filmy-i-ebooki/[category]/page": "app/[lang]/filmy-i-ebooki/[category]/page.js",
-  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js"
+  "/[lang]/filmy-i-ebooki/page": "app/[lang]/filmy-i-ebooki/page.js",
+  "/[lang]/o-mnie/page": "app/[lang]/o-mnie/page.js",
+  "/[lang]/wizyta/page": "app/[lang]/wizyta/page.js"
 }

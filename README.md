@@ -95,6 +95,15 @@ kod rabatowy w koszyku  na rabat 20%/discount code in cart for 20% discount
 
 KOBIETA2
 
+Email, który należy podać podczas próby zapisania się do newslettera oraz podczas składania zamówienia
+
+Email:
+projektfizjoteki@op.pl
+
+Hasło:
+123a123A/!
+
+
 
 
 
@@ -212,11 +221,21 @@ The following features have been implemented in the application:
 
 Jest to deweloperska wersja aplikacji, która została oddana klientowi i zrealizowała wszystkie jego wymagania.  
 W przyszłości, w celach naukowych, planowane jest połączenie tej aplikacji z wszystkimi polskimi providerami płatności, w celu oceny który z nich zapewnia najszybszą integrację z API.
-
+Aplikacja korzysta z konta sandboxa Amazon SES, dlatego też, wysyłka produktu po podaniu e-maila oraz złożeniu zamówienia odbywa się tylko na e-mail dodany w koncie produkcyjnym Amazon ses. Jest to e-mail Email: projektfizjoteki@op.pl Hasło:123a123A/! założony w serwisie [https://www.onet.pl](https://konto.onet.pl/signin?state=https%3A%2F%2Fpoczta.onet.pl%2F&client_id=poczta.onet.pl.front.onetapi.pl)].  W przyszłości planowane jest złożenie wniosku o przyznanie dostępu produkcyjnego.
 ### Future Plans [ENG]
 
-This is a development version of the application that has been delivered to the client and has met all their requirements.  
-In the future, for educational purposes, there are plans to integrate this application with all Polish payment providers to evaluate which one offers the fastest API integration.
+This is a developer version of the application, which has been delivered to the client and has fulfilled all of their requirements.
+In the future, for research purposes, the application is planned to be integrated with all Polish payment providers in order to evaluate which one offers the fastest API integration.
+The application uses an Amazon SES sandbox account, which means that product delivery after providing an email address and placing an order is only possible to an email address that has been added to the Amazon SES production account. 
+The email is: 
+[https://konto.onet.pl/signin?state=https%3A%2F%2Fpoczta.onet.pl%2F&client_id=poczta.onet.pl.front.onetapi.pl]
+projektfizjoteki@op.pl
+Password: 123a123A/!
+
+
+In the future, a request for production access is planned to be submitted.
+
+
 
 ## Kontakt do autora / Author Contact
 
